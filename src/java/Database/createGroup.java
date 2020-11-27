@@ -38,22 +38,29 @@ public class createGroup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //decides the nature of the group's "goal"
         String groupType = request.getParameter("grouptype1");
+        
+        //DISTANCE if statement
         
         if (groupType.equals("Distance")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //gets the data from the joinGroup html file
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 
+                //connecting to our db
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
+                //SQL syntax to create the group's table and inserting its first user.
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("CREATE TABLE D_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, PRIMARY KEY(user_id));");
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance) VALUES('" + name + "',0);");
                 
+                //shows that operation has been successful
                 out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
                 
             } catch (SQLException ex) {
@@ -62,20 +69,26 @@ public class createGroup extends HttpServlet {
         } else {    
         }
         
+        //SCORE if statement
+        
         if (groupType.equals("Score")) {    
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            //gets the data from the joinGroup html file
             String groupname = request.getParameter("groupname");            
             String name = request.getParameter("name");
             
+            //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //SQL syntax to create the group's table and inserting its first user.
             Statement stmt = con.createStatement();
             stmt.executeUpdate("CREATE TABLE S_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), score int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,score) VALUES('" + name + "',0);");
             
+            //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
             
         } catch (SQLException ex) {
@@ -83,20 +96,26 @@ public class createGroup extends HttpServlet {
         }
             }   
         
+        //TIME if statement
+        
         if (groupType.equals("Time")) {    
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            
+            //gets the data from the joinGroup html file
             String groupname = request.getParameter("groupname");
             String name = request.getParameter("name");
             
+            //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //SQL syntax to create the group's table and inserting its first user.
             Statement stmt = con.createStatement();
             stmt.executeUpdate("CREATE TABLE T_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), time int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,time) VALUES('" + name + "',0);");
             
+            //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
             
         } catch (SQLException ex) {

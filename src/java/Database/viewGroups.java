@@ -37,23 +37,32 @@ public class viewGroups extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //decides the nature of the group's "goal"
         String groupType = request.getParameter("grouptype");
         
+        //connecting to our db
         dbcon db = new dbcon();
         Connection con = db.getCon();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
+        //DISTANCE if statmement
+        
         if (groupType.equals("Distance")) {
         try {            
             
+            //gets the data from the viewGroup html file
             String groupname = request.getParameter("groupname");
+            
+            //SQL statement to get the data from the group's mySQL table
             String sql = "Select * from d_"+groupname;
-
+            
+            //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Distance</th></tr>";
             
+            //prints table
             out.println("Current standings in "+groupname);
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
@@ -67,16 +76,23 @@ public class viewGroups extends HttpServlet {
         }
     }
         
+        //SCORE if statmement
+        
         if (groupType.equals("Score")) {
         try {            
             
+            //gets the data from the viewGroup html file
             String groupname = request.getParameter("groupname");
+            
+            //SQL statement to get the data from the group's mySQL table
             String sql = "Select * from s_"+groupname;
-
+            
+            //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Score</th></tr>";
             
+            //prints table
             out.println("Current standings in "+groupname);
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
@@ -89,17 +105,24 @@ public class viewGroups extends HttpServlet {
             System.err.println(e);
         }
     } 
-
+        
+        //TIME if statmement
+        
         if (groupType.equals("Time")) {
         try {            
             
+            //gets the data from the viewGroup html file
             String groupname = request.getParameter("groupname");
+            
+            //SQL statement to get the data from the group's mySQL table
             String sql = "Select * from t_"+groupname;
-
+            
+            //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Time</th></tr>";
             
+            //prints table
             out.println("Current standings in "+groupname);
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";

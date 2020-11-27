@@ -40,6 +40,7 @@ public class joinGroup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //decides the nature of the group's "goal"
         String groupType = request.getParameter("grouptype");
                 
         //DISTANCE if statement
@@ -48,20 +49,20 @@ public class joinGroup extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            //gets the data from the joinGroup html file
             String groupname = request.getParameter("groupname");
             String name = request.getParameter("name");
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance) VALUES('" + name + "',0);");
             
+            //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
             request.setAttribute(groupType, this);
-            //Servlet JSP communication
-            RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher("displayGroup.jsp");
-            reqDispatcher.forward(request,response);
             
             
         } catch (SQLException ex) {
@@ -75,15 +76,18 @@ public class joinGroup extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            //gets the data from the joinGroup html file
             String groupname = request.getParameter("groupname");
             String name = request.getParameter("name");            
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,score) VALUES('" + name + "',0);");
             
+            //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
 
            
@@ -99,15 +103,18 @@ public class joinGroup extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            //gets the data from the joinGroup html file
             String groupname = request.getParameter("groupname");
             String name = request.getParameter("name");            
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,time) VALUES('" + name + "',0);");
             
+            //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
 
         } catch (SQLException ex) {

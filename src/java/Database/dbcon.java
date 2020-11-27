@@ -15,6 +15,9 @@ import java.util.logging.Logger;
  */
 public class dbcon {
     Connection con;    
+    
+    //code that connects the project to the mySQL database, referenced in most servlets
+    
     public Connection getCon() 
     {
         try {
