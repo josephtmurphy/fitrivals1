@@ -26,7 +26,7 @@
             </select>        
         <br/>
         <br/>
-        <input type="submit" value="insert"/>
+        <input type="submit" value="View"/>
         </form>
     
 </html>

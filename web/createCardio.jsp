@@ -35,7 +35,7 @@
 
             <input type="text" name="comment" placeholder="Your comment on this activity..."/>
 
-            <input type="submit" value="Create Group"/>
+            <input type="submit" value="Log Activity"/>
 
             </pre>
         </form>

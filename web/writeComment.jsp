@@ -26,7 +26,7 @@
             
             <input type="text" name="comment" placeholder="Your comment..."/>
             
-            <input type="submit" value="Create Group"/>
+            <input type="submit" value="Post Comment"/>
 
             </pre>
         </form>

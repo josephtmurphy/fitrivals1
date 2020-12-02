@@ -28,11 +28,17 @@ public class viewGroups extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+     * @param str
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @return
      */
+    public static boolean isNullOrEmpty(String str) {
+        if(str != null && !str.isEmpty())
+            return false;
+        return true;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -45,6 +51,8 @@ public class viewGroups extends HttpServlet {
         Connection con = db.getCon();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        
+        
         
         //DISTANCE if statmement
         
@@ -73,17 +81,21 @@ public class viewGroups extends HttpServlet {
             out.println("<br/>");
             
             //HTML code to create a table to display the group data
-            ResultSet rs2 = stmt.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
+            
+            
+            Statement stmt2 = con.createStatement();
+            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
-            while(rs2.next()) {
-                if(rs.getString(3).equals("null")) {
+            while(rs2.next()) { 
+                String activity = rs2.getString(3);
+                if(isNullOrEmpty(activity)) {
                 str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(6)+"</td></tr>";
                 }
                 else {
                 str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(6)+"</td></tr>";
                 }
-            }
+                }
             str2 += "</table>";
             out.println(str2);
                      

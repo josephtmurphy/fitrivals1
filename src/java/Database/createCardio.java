@@ -64,7 +64,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println("New  '"+groupname+"' has been successfully added, and "+name+" is the first member. Good luck!");
+                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,7 +97,7 @@ public class createCardio extends HttpServlet {
                 
                 
                 //shows that operation has been successful
-                out.println("New  '"+groupname+"' has been successfully added, and "+name+" is the first member. Good luck!");
+                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,7 +128,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println("New  '"+groupname+"' has been successfully added, and "+name+" is the first member. Good luck!");
+                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
