@@ -58,7 +58,7 @@ public class joinGroup extends HttpServlet {
             
             //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance) VALUES('" + name + "',0);");
+            stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,time,score) VALUES('" + name + "',0,0,0);");
             
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
@@ -85,7 +85,7 @@ public class joinGroup extends HttpServlet {
             
             //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,score) VALUES('" + name + "',0);");
+            stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
@@ -112,7 +112,7 @@ public class joinGroup extends HttpServlet {
             
             //SQL statement to enter a new user in to the group
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,time) VALUES('" + name + "',0);");
+            stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");

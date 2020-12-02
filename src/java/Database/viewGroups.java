@@ -55,7 +55,7 @@ public class viewGroups extends HttpServlet {
             String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select * from d_"+groupname;
+            String sql = "Select user_id,name,distance from d_"+groupname + " ORDER BY distance desc;";
             
             //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
@@ -69,6 +69,25 @@ public class viewGroups extends HttpServlet {
             }
             str += "</table>";
             out.println(str);
+           
+            out.println("<br/>");
+            
+            //HTML code to create a table to display the group data
+            ResultSet rs2 = stmt.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
+            String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
+            
+            while(rs2.next()) {
+                if(rs.getString(3).equals("null")) {
+                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(6)+"</td></tr>";
+                }
+                else {
+                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(6)+"</td></tr>";
+                }
+            }
+            str2 += "</table>";
+            out.println(str2);
+                     
+            
             con.close();
             
         } catch(Exception e) {
@@ -85,7 +104,7 @@ public class viewGroups extends HttpServlet {
             String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select * from s_"+groupname;
+            String sql = "Select user_id,name,score from s_"+groupname + " ORDER BY score desc;";
             
             //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
@@ -99,6 +118,7 @@ public class viewGroups extends HttpServlet {
             }
             str += "</table>";
             out.println(str);
+            
             con.close();
             
         } catch(Exception e) {
@@ -115,7 +135,7 @@ public class viewGroups extends HttpServlet {
             String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select * from t_"+groupname;
+            String sql = "Select user_id,name,time from t_"+groupname + " ORDER BY time desc;";
             
             //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
