@@ -84,7 +84,7 @@ public class viewGroups extends HttpServlet {
             
             
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
             while(rs2.next()) { 
@@ -137,7 +137,7 @@ public class viewGroups extends HttpServlet {
             
             
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from s_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from s_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
             while(rs2.next()) { 
@@ -189,7 +189,7 @@ public class viewGroups extends HttpServlet {
             
             
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from t_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from t_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
             while(rs2.next()) { 

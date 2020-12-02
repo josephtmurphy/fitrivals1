@@ -91,7 +91,7 @@ public class createCardio extends HttpServlet {
                 
                 //SQL syntax to create the group's table and inserting its first user.
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", where name = '" + name + "';");
+                stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 
@@ -124,7 +124,7 @@ public class createCardio extends HttpServlet {
                 
                 //SQL syntax to create the group's table and inserting its first user.
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update t_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", where name = '" + name + "';");
+                stmt.executeUpdate("update t_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 //shows that operation has been successful
