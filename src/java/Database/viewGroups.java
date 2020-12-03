@@ -33,6 +33,8 @@ public class viewGroups extends HttpServlet {
      * @param response servlet response
      * @return
      */
+    
+    //helps to differentiate between comments and activities in the log when they are being printed
     public static boolean isNullOrEmpty(String str) {
         if(str != null && !str.isEmpty())
             return false;
@@ -80,12 +82,14 @@ public class viewGroups extends HttpServlet {
            
             out.println("<br/>");
             
-            //HTML code to create a table to display the group data
+            //HTML code to create a table to display the group log data (individual activities and comments)
             
-            
+            //SQL and HTML syntax to create the table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
                 String activity = rs2.getString(3);
                 if(isNullOrEmpty(activity)) {
@@ -134,18 +138,19 @@ public class viewGroups extends HttpServlet {
             
             //HTML code to create a table to display the group data
             
-            
+            //SQL and HTML syntax to create the table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_score,log_time,log_comment from s_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select * from s_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
+            //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
                 String activity = rs2.getString(3);
                 if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(6)+"</td></tr>";
+                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(7)+"</td></tr>";
                 }
                 else {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes, and scoring a total of " +rs.getInt(6)+ " points. Comment: "+rs2.getString(7)+"</td></tr>";
+                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes, earning a total of "+rs2.getString(6)+" points. Comment: "+rs2.getString(7)+"</td></tr>";
                 }
                 }
             str2 += "</table>";
@@ -186,11 +191,12 @@ public class viewGroups extends HttpServlet {
             
             //HTML code to create a table to display the group data
             
-            
+            //SQL and HTML syntax to create the table
             Statement stmt2 = con.createStatement();
             ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from t_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
+            //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
                 String activity = rs2.getString(3);
                 if(isNullOrEmpty(activity)) {

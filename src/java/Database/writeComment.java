@@ -35,7 +35,8 @@ public class writeComment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //decides the nature of the group's "goal"
+        
+        //differentiates between group types
         String groupType = request.getParameter("grouptype1");
         
         //DISTANCE if statement
@@ -44,7 +45,7 @@ public class writeComment extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the writeComment jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 String comment = request.getParameter("comment");
@@ -53,7 +54,7 @@ public class writeComment extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to insert the comment into the group's log
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 
@@ -71,7 +72,7 @@ public class writeComment extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the writeComment jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 String comment = request.getParameter("comment");
@@ -80,7 +81,7 @@ public class writeComment extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to insert the comment into the group's log
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 
@@ -98,7 +99,7 @@ public class writeComment extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the writeComment jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 String comment = request.getParameter("comment");
@@ -107,7 +108,7 @@ public class writeComment extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to insert the comment into the group's log
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 

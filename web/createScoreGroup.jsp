@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create "Score" Group</title>
     </head>
     <body>
         <form action="createScoreGroup" method="post">
@@ -22,7 +22,7 @@
             <br/>
             <input type="number" name="pointspermin" placeholder="How Many Point Awarded per min"/>
             <br/>
-            <input type="submit" value="Log Activity"/>
+            <input type="submit" value="Create Group"/>
 
             </pre>
         </form>

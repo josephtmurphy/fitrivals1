@@ -37,7 +37,7 @@ public class createCardio extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         
-        //decides the nature of the group's "goal"
+        //differentiates between the types of group
         String groupType = request.getParameter("grouptype1");
         
         //DISTANCE if statement
@@ -46,7 +46,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the createCardio jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
@@ -58,7 +58,7 @@ public class createCardio extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update d_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
@@ -77,7 +77,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the createCardio jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
@@ -89,7 +89,7 @@ public class createCardio extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
@@ -110,7 +110,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the createCardio jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
@@ -122,7 +122,7 @@ public class createCardio extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update t_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");

@@ -39,7 +39,7 @@ public class createScoreGroup extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            //gets the data from the joinGroup html file
+            //gets the data from the createScoreGroup html file
             String groupname = request.getParameter("groupname");            
             String name = request.getParameter("name");
             String pointspermin = request.getParameter("pointspermin");
@@ -56,6 +56,7 @@ public class createScoreGroup extends HttpServlet {
             stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,log_distance,log_time,log_score) VALUES('" + name + "',0,0,0);");
             
+            //SQL syntax to log the groups scoring system
             stmt.executeUpdate("INSERT INTO scoring_systems (groupname,points_min,points_km) VALUES('" + groupname + "'," + pointspermin + "," + pointsperkm + ");");
             
             //shows that operation has been successful

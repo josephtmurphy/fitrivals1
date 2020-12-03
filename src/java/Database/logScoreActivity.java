@@ -39,7 +39,7 @@ public class logScoreActivity extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
-                //gets the data from the joinGroup html file
+                //gets the data from the logScoreActivity jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
@@ -51,15 +51,17 @@ public class logScoreActivity extends HttpServlet {
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
                 
-                //SQL syntax to create the group's table and inserting its first user.
+                //SQL syntax to call on the scoring system outlined by the user who created the group
                 Statement stmt = con.createStatement();
                 ResultSet rs =  stmt.executeQuery("Select points_min,points_km from scoring_systems where groupname = '" + groupname + "';");
                 
+                //ties the logged activity in with the scoring system 
                 rs.next();
                 int minScore = time * rs.getInt(1);                
                 int kmScore = distance * rs.getInt(2);
                 int combinedScore = minScore + kmScore;
                 
+                //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + combinedScore + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + combinedScore + ",'" + comment + "');");
                 
