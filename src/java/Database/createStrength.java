@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class createCardio extends HttpServlet {
+public class createStrength extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,82 +36,45 @@ public class createCardio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //SCORE if statement
 
-        
         //differentiates between the types of group
         String groupType = request.getParameter("grouptype1");
         
-        //DISTANCE if statement
-        
-        if (groupType.equals("Distance")) {
+        if (groupType.equals("Score")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the createCardio jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
-                int distance = Integer.parseInt(request.getParameter("distance"));
+                String muscleGroup1 = request.getParameter("muscleGroup1");
+                String muscleGroup2 = request.getParameter("muscleGroup2");
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
-                String activityType = request.getParameter("activityType");
                 
                 //connecting to our db
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
-                
-                //SQL syntax to create the activity in the log, and update the score within the group
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("update d_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
-                
-                //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-        
-        //SCORE if statement
-        
-        if (groupType.equals("Score")) {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                
-                //gets the data from the logScoreActivity jsp
-                String groupname = request.getParameter("groupname");
-                String name = request.getParameter("name");
-                int distance = Integer.parseInt(request.getParameter("distance"));
-                int time = Integer.parseInt(request.getParameter("time"));
-                String comment = request.getParameter("comment");
-                String activityType = request.getParameter("activityType");
-                
-                //connecting to our db
-                dbcon db = new dbcon();
-                Connection con = db.getCon();
-                
+
                 //SQL syntax to call on the scoring system outlined by the user who created the group
                 Statement stmt = con.createStatement();
-                ResultSet rs =  stmt.executeQuery("Select points_min,points_km from scoring_systems where groupname = '" + groupname + "';");
-                
-                //ties the logged activity in with the scoring system 
+                ResultSet rs =  stmt.executeQuery("Select points_min,points_km from scoring_systems where groupname = '" + groupname + "';"); 
                 rs.next();
-                int minScore = time * rs.getInt(1);                
-                int kmScore = distance * rs.getInt(2);
-                int combinedScore = minScore + kmScore;
+                int minScore = time * rs.getInt(1);               
                 
-                //adds the new score into the group, inserts a record into the log
-                stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + combinedScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + combinedScore + ",'" + comment + "');");
-                
+                //SQL syntax to create the activity in the log, and update the score within the group
+
+                stmt.executeUpdate("update s_" + groupname + " set time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + combinedScore + " points. Good work!");
+                out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + minScore + " points, has been logged in " + groupname + ". Good work!");
 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+        } 
         
         //TIME if statement
         
@@ -122,10 +85,10 @@ public class createCardio extends HttpServlet {
                 //gets the data from the createCardio jsp
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
-                int distance = Integer.parseInt(request.getParameter("distance"));
+                String muscleGroup1 = request.getParameter("muscleGroup1");
+                String muscleGroup2 = request.getParameter("muscleGroup2");
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
-                String activityType = request.getParameter("activityType");
                 
                 //connecting to our db
                 dbcon db = new dbcon();
@@ -133,17 +96,16 @@ public class createCardio extends HttpServlet {
                 
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update t_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("update t_" + groupname + " set time = time + " + time + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
+                out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-        
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -185,4 +147,4 @@ public class createCardio extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+    }
