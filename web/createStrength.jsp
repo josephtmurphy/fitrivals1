@@ -28,6 +28,7 @@
             <option>Chest</option>
             <option>Legs</option>
             <option>Shoulders</option>
+            <option>Full Body</option>
             </select>
 
             <h3>Secondary Muscle Group Worked:</h3>

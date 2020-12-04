@@ -151,7 +151,7 @@ public class viewGroups extends HttpServlet {
                 String muscleGroup2 = rs2.getString(8);
                 
                 if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(7)+"</td></tr>";
+                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(9)+"</td></tr>";
                 }
                 
                 else if(isNullOrEmpty(distance)) {
@@ -207,21 +207,34 @@ public class viewGroups extends HttpServlet {
             
             //SQL and HTML syntax to create the table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select loguser_id,name,activity,log_distance,log_time,log_comment from t_"+groupname+"_log;");
+            ResultSet rs2 = stmt2.executeQuery("Select * from t_"+groupname+"_log;");
             String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
                 String activity = rs2.getString(3);
+                String distance = rs2.getString(4);
+                String muscleGroup2 = rs2.getString(8);
+                
                 if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(6)+"</td></tr>";
+                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(9)+"</td></tr>";
+                }
+                
+                else if(isNullOrEmpty(distance)) {
+                    
+                if(isNullOrEmpty(muscleGroup2)) {
+                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" for " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";
                 }
                 else {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(6)+"</td></tr>";
+                    str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" and " +rs2.getString(8)+" for " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";
                 }
                 }
+                
+                else {
+                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";    
+                }}
             str2 += "</table>";
-            out.println(str2);            
+            out.println(str2);
             
             con.close();
             
