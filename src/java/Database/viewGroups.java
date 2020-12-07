@@ -73,9 +73,11 @@ public class viewGroups extends HttpServlet {
             String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Distance</th></tr>";
             
             //prints table
+            int i = 1;
             out.println("Current standings in "+groupname);
             while(rs.next()) {
-                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
             }
             str += "</table>";
             out.println(str);
@@ -127,9 +129,11 @@ public class viewGroups extends HttpServlet {
             String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Score</th></tr>";
             
             //prints table
+            int i = 1;
             out.println("Current standings in "+groupname);
             while(rs.next()) {
-                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
             }
             str += "</table>";
             out.println(str);
@@ -191,12 +195,14 @@ public class viewGroups extends HttpServlet {
             //HTML code to create a table to display the group data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
-            String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Time</th></tr>";
+            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Time</th></tr>";
             
             //prints table
+            int i = 1;
             out.println("Current standings in "+groupname);
             while(rs.next()) {
-                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
             }
             str += "</table>";
             out.println(str);
