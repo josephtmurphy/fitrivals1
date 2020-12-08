@@ -67,135 +67,10 @@ public class viewGroups extends HttpServlet {
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,distance from d_"+groupname + " ORDER BY distance desc;";
             
-            //HTML code to create a table to display the group data
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
-            String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Distance</th></tr>";
-            
-            //prints table
-            int i = 1;
-            out.println("Current standings in "+groupname);
-            while(rs.next()) {
-                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
-                i++;
-            }
-            str += "</table>";
-            out.println(str);
-           
-            out.println("<br/>");
-            
-            //HTML code to create a table to display the group log data (individual activities and comments)
-            
-            //SQL and HTML syntax to create the table
-            Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select user_id,name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log;");
-            String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
-            
-            //loop that decides whether data is an activity or a comment, and prints it
-            while(rs2.next()) { 
-                String activity = rs2.getString(3);
-                if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(6)+"</td></tr>";
-                }
-                else {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(6)+"</td></tr>";
-                }
-                }
-            str2 += "</table>";
-            out.println(str2);
-                     
-            
-            con.close();
-            
-        } catch(Exception e) {
-            System.err.println(e);
-        }
-    }
-        
-        //SCORE if statmement
-        
-        if (groupType.equals("Score")) {
-        try {            
-            
-            //gets the data from the viewGroup html file
-            String groupname = request.getParameter("groupname");
-            
-            //SQL statement to get the data from the group's mySQL table
-            String sql = "Select user_id,name,score from s_"+groupname + " ORDER BY score desc;";
-            
-            //HTML code to create a table to display the group data
-            Statement stmt = con.createStatement();
-            ResultSet rs =  stmt.executeQuery(sql);
-            String str = "<table border=1><tr><th>ID</th><th>Name</th><th>Score</th></tr>";
-            
-            //prints table
-            int i = 1;
-            out.println("Current standings in "+groupname);
-            while(rs.next()) {
-                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
-                i++;
-            }
-            str += "</table>";
-            out.println(str);
-
-            out.println("<br/>");
-            
-            //HTML code to create a table to display the group data
-            
-            //SQL and HTML syntax to create the table
-            Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select * from s_"+groupname+"_log;");
-            String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
-            
-            //loop that decides whether data is an activity or a comment, and prints it
-            while(rs2.next()) { 
-                
-                String activity = rs2.getString(3);
-                String distance = rs2.getString(4);
-                String muscleGroup2 = rs2.getString(8);
-                
-                if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(9)+"</td></tr>";
-                }
-                
-                else if(isNullOrEmpty(distance)) {
-                    
-                if(isNullOrEmpty(muscleGroup2)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" for " +rs2.getInt(5)+ " minutes, and earning " +rs2.getInt(6)+ " points. Comment: "+rs2.getString(9)+"</td></tr>";
-                }
-                else {
-                    str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" and " +rs2.getString(8)+" for " +rs2.getInt(5)+ " minutes, and earning " +rs2.getInt(6)+ " points. Comment: "+rs2.getString(9)+"</td></tr>";
-                }
-                }
-                
-                else {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes, earning a total of "+rs2.getString(6)+" points. Comment: "+rs2.getString(9)+"</td></tr>";    
-                }}
-            str2 += "</table>";
-            out.println(str2);
-            
-            con.close();
-            
-        } catch(Exception e) {
-            System.err.println(e);
-        }
-    } 
-        
-        //TIME if statmement
-        
-        if (groupType.equals("Time")) {
-        try {            
-            
-            //gets the data from the viewGroup html file
-            String groupname = request.getParameter("groupname");
-            
-            //SQL statement to get the data from the group's mySQL table
-            String sql = "Select user_id,name,time from t_"+groupname + " ORDER BY time desc;";
-            
-            //HTML code to create a table to display the group data
-            Statement stmt = con.createStatement();
-            ResultSet rs =  stmt.executeQuery(sql);
-            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Time</th></tr>";
+            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Total Distance (km)</th></tr>";
             
             //prints table
             int i = 1;
@@ -208,46 +83,224 @@ public class viewGroups extends HttpServlet {
             out.println(str);
           
             out.println("<br/>");
+
             
-            //HTML code to create a table to display the group data
-            
-            //SQL and HTML syntax to create the table
+            //HTML code to create a table to display the group data [CARDIO ACTIVITY]
+            out.println(groupname + " cardio activities");
+            //SQL and HTML syntax to create the activity log table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select * from t_"+groupname+"_log;");
-            String str2 = "<table border=1><tr><th>Activity Log</th></tr>";
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log WHERE activity IS NOT NULL;");
+            String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
-                String activity = rs2.getString(3);
-                String distance = rs2.getString(4);
-                String muscleGroup2 = rs2.getString(8);
-                
-                if(isNullOrEmpty(activity)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ ": "+rs2.getString(9)+"</td></tr>";
+                str2 += "<tr><td>"+rs2.getString(1)+"</td><td>"+rs2.getString(2)+"</td><td>"+rs2.getString(3)+"</td><td>"+rs2.getString(4)+"</td><td>"+rs2.getString(5)+"</td></tr>";
                 }
-                
-                else if(isNullOrEmpty(distance)) {
-                    
-                if(isNullOrEmpty(muscleGroup2)) {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" for " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";
-                }
-                else {
-                    str2 += "<tr><td>"+rs2.getString(2)+ " has completed a gym session, training "+rs2.getString(7)+" and " +rs2.getString(8)+" for " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";
-                }
-                }
-                
-                else {
-                str2 += "<tr><td>"+rs2.getString(2)+ " has completed a "+rs2.getString(3)+", covering "+rs2.getInt(4)+"km in " +rs2.getInt(5)+ " minutes. Comment: "+rs2.getString(9)+"</td></tr>";    
-                }}
+
             str2 += "</table>";
             out.println(str2);
+            
+            out.println("<br/>");
+            
+           
+            out.println(groupname + " comments/forum");
+            //SQL and HTML syntax to create the comments [FORUM]
+            Statement stmt3 = con.createStatement();
+            ResultSet rs3 = stmt3.executeQuery("Select * from d_"+groupname+"_log WHERE activity IS NULL;");
+            String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs3.next()) { 
+                str3 += "<tr><td>"+rs3.getString(2)+"</td><td>"+rs3.getString(6)+"</td></tr>";
+                }
+
+            str3 += "</table>";
+            out.println(str3);
+            
+            out.println("<br/>");            
             
             con.close();
             
         } catch(Exception e) {
             System.err.println(e);
         }
-    }        
+        }
+        
+        //SCORE if statmement
+        
+        if (groupType.equals("Score")) {
+        try {            
+            
+            //gets the data from the viewGroup html file
+            String groupname = request.getParameter("groupname");
+            
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select user_id,name,score from s_"+groupname + " ORDER BY score desc;";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Total Score</th></tr>";
+            
+            //prints table
+            int i = 1;
+            out.println("Current standings in "+groupname);
+            while(rs.next()) {
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");
+
+            
+            //HTML code to create a table to display the group data [CARDIO ACTIVITY]
+            out.println(groupname + " cardio activities");
+            //SQL and HTML syntax to create the activity log table
+            Statement stmt2 = con.createStatement();
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment,log_score from s_"+groupname+"_log WHERE log_distance IS NOT NULL;");
+            String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Score</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs2.next()) { 
+                str2 += "<tr><td>"+rs2.getString(1)+"</td><td>"+rs2.getString(2)+"</td><td>"+rs2.getString(3)+"</td><td>"+rs2.getString(4)+"</td><td>"+rs2.getString(6)+"</td><td>"+rs2.getString(5)+"</td></tr>";
+                }
+
+            str2 += "</table>";
+            out.println(str2);
+            
+            out.println("<br/>");
+            
+            
+            //HTML code to create a table to display the group data [STRENGTH]
+            out.println(groupname + " strength activities");
+            //SQL and HTML syntax to create the activity log table
+            Statement stmt4 = con.createStatement();
+            ResultSet rs4 = stmt4.executeQuery("Select name,activity,log_muscle1,log_muscle2,log_time,log_comment,log_score from s_"+groupname+"_log WHERE log_muscle1 IS NOT NULL;");
+            String str4 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Muscles Worked</th><th>Time (mins)</th><th>Score</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs4.next()) { 
+                str4 += "<tr><td>"+rs4.getString(1)+"</td><td>"+rs4.getString(2)+"</td><td>"+rs4.getString(3)+", "+rs4.getString(4)+"</td><td>"+rs4.getString(5)+"</td><td>"+rs4.getString(7)+"</td><td>"+rs4.getString(6)+"</td></tr>";
+                }
+
+            str4 += "</table>";
+            out.println(str4);
+            
+            out.println("<br/>");
+            
+           
+            out.println(groupname + " comments/forum");
+            //SQL and HTML syntax to create the comments [FORUM]
+            Statement stmt3 = con.createStatement();
+            ResultSet rs3 = stmt3.executeQuery("Select * from s_"+groupname+"_log WHERE activity IS NULL;");
+            String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs3.next()) { 
+                str3 += "<tr><td>"+rs3.getString(2)+"</td><td>"+rs3.getString(9)+"</td></tr>";
+                }
+
+            str3 += "</table>";
+            out.println(str3);
+            
+            out.println("<br/>");            
+            
+            con.close();
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+        }
+        
+        //TIME if statmement
+        
+        if (groupType.equals("Time")) {
+        try {            
+            
+            //gets the data from the viewGroup html file
+            String groupname = request.getParameter("groupname");
+            
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select user_id,name,time from t_"+groupname + " ORDER BY time desc;";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Total Mins</th></tr>";
+            
+            //prints table
+            int i = 1;
+            out.println("Current standings in "+groupname);
+            while(rs.next()) {
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");
+
+            
+            //HTML code to create a table to display the group data [CARDIO ACTIVITY]
+            out.println(groupname + " cardio activities");
+            //SQL and HTML syntax to create the activity log table
+            Statement stmt2 = con.createStatement();
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment from t_"+groupname+"_log WHERE log_distance IS NOT NULL;");
+            String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs2.next()) { 
+                str2 += "<tr><td>"+rs2.getString(1)+"</td><td>"+rs2.getString(2)+"</td><td>"+rs2.getString(3)+"</td><td>"+rs2.getString(4)+"</td><td>"+rs2.getString(5)+"</td></tr>";
+                }
+
+            str2 += "</table>";
+            out.println(str2);
+            
+            out.println("<br/>");
+            
+            
+            //HTML code to create a table to display the group data [STRENGTH]
+            out.println(groupname + " strength activities");
+            //SQL and HTML syntax to create the activity log table
+            Statement stmt4 = con.createStatement();
+            ResultSet rs4 = stmt4.executeQuery("Select name,activity,log_muscle1,log_muscle2,log_time,log_comment from t_"+groupname+"_log WHERE log_muscle1 IS NOT NULL;");
+            String str4 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Muscles Worked</th><th>Time (mins)</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs4.next()) { 
+                str4 += "<tr><td>"+rs4.getString(1)+"</td><td>"+rs4.getString(2)+"</td><td>"+rs4.getString(3)+", "+rs4.getString(4)+"</td><td>"+rs4.getString(5)+"</td><td>"+rs4.getString(6)+"</td></tr>";
+                }
+
+            str4 += "</table>";
+            out.println(str4);
+            
+            out.println("<br/>");
+            
+           
+            out.println(groupname + " comments/forum");
+            //SQL and HTML syntax to create the comments [FORUM]
+            Statement stmt3 = con.createStatement();
+            ResultSet rs3 = stmt3.executeQuery("Select * from t_"+groupname+"_log WHERE activity IS NULL;");
+            String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs3.next()) { 
+                str3 += "<tr><td>"+rs3.getString(2)+"</td><td>"+rs3.getString(9)+"</td></tr>";
+                }
+
+            str3 += "</table>";
+            out.println(str3);
+            
+            out.println("<br/>");            
+            
+            con.close();
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

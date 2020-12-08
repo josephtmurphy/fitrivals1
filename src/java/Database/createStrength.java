@@ -97,7 +97,7 @@ public class createStrength extends HttpServlet {
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update t_" + groupname + " set time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
+                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");
