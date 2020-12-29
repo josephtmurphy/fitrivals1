@@ -37,16 +37,16 @@ public class createUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("name");
-            String dob = request.getParameter("dob");
             String email = request.getParameter("email");
-            String psw = request.getParameter("psw");
+            String username = request.getParameter("username");
+            String fullname = request.getParameter("fullname");
+            String password = request.getParameter("password");
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO user_details (user_name,user_dob,user_email,password) VALUES('"+name+"','"+dob+"','"+email+"','"+psw+"')");
+            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"')");
             
             out.println("success");
             
