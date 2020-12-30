@@ -54,18 +54,17 @@ public class viewGroups extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         
-        
+        //gets the data from the viewGroup html file
+        String groupname = request.getParameter("groupname");        
         
         //DISTANCE if statmement
         
-        if (groupType.equals("Distance")) {
+        if (groupname.startsWith("d")) {
         try {            
             
-            //gets the data from the viewGroup html file
-            String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select user_id,name,distance from d_"+groupname + " ORDER BY distance desc;";
+            String sql = "Select user_id,name,distance from "+groupname + " ORDER BY distance desc;";
             
             //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
@@ -89,7 +88,7 @@ public class viewGroups extends HttpServlet {
             out.println(groupname + " cardio activities");
             //SQL and HTML syntax to create the activity log table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment from d_"+groupname+"_log WHERE activity IS NOT NULL;");
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment from "+groupname+"_log WHERE activity IS NOT NULL;");
             String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
@@ -106,7 +105,7 @@ public class viewGroups extends HttpServlet {
             out.println(groupname + " comments/forum");
             //SQL and HTML syntax to create the comments [FORUM]
             Statement stmt3 = con.createStatement();
-            ResultSet rs3 = stmt3.executeQuery("Select * from d_"+groupname+"_log WHERE activity IS NULL;");
+            ResultSet rs3 = stmt3.executeQuery("Select * from "+groupname+"_log WHERE activity IS NULL;");
             String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
@@ -128,11 +127,9 @@ public class viewGroups extends HttpServlet {
         
         //SCORE if statmement
         
-        if (groupType.equals("Score")) {
+        if (groupname.startsWith("s")) {
         try {            
             
-            //gets the data from the viewGroup html file
-            String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,score from s_"+groupname + " ORDER BY score desc;";
@@ -216,11 +213,9 @@ public class viewGroups extends HttpServlet {
         
         //TIME if statmement
         
-        if (groupType.equals("Time")) {
+        if (groupname.startsWith("t")) {
         try {            
             
-            //gets the data from the viewGroup html file
-            String groupname = request.getParameter("groupname");
             
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,time from t_"+groupname + " ORDER BY time desc;";

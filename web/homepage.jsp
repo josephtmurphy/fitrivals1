@@ -12,9 +12,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    <form action="testdropdown.jsp">
     <body>
         <h2>FitRivals Home</h2>
-        <b>Welcome ${user.username}</b>
+        <input type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
         <p>Please select an action:</p>
         
         <a href="createGroup.jsp">Create a group</a>
@@ -42,6 +43,12 @@ and open the template in the editor.
         <br/>          
         <br/>        
         <a href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a>        
+        <br/>          
+        <br/>
+        <input type="submit" value="Dropdown"/>
+        <br/>          
+        <br/>         
         
     </body>
+    </form>
 </html>

@@ -112,6 +112,9 @@
         <servlet-name>UserLogoutServlet</servlet-name>
         <url-pattern>/UserLogoutServlet</url-pattern>
     </servlet-mapping>
+    <welcome-file-list> 
+        <welcome-file>testdropdown.jsp</welcome-file>
+    </welcome-file-list>
     <session-config>
         <session-timeout>
             30

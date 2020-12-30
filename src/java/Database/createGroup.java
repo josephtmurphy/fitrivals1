@@ -62,7 +62,7 @@ public class createGroup extends HttpServlet {
                 stmt.executeUpdate("CREATE TABLE d_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
                 stmt.executeUpdate("CREATE TABLE d_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_comment text, PRIMARY KEY(user_id));");
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','" + groupname + "');");
+                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
                 
                 //shows that operation has been successful
                 out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
@@ -92,7 +92,7 @@ public class createGroup extends HttpServlet {
             stmt.executeUpdate("CREATE TABLE S_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("CREATE TABLE s_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','" + groupname + "');");
+            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','s_" + groupname + "');");
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
@@ -121,7 +121,7 @@ public class createGroup extends HttpServlet {
             stmt.executeUpdate("CREATE TABLE T_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("CREATE TABLE t_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','" + groupname + "');");
+            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "',t_'" + groupname + "');");
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
