@@ -14,7 +14,7 @@ and open the template in the editor.
     </head>
     <body>
         <h2>FitRivals Home</h2>
-        <b>Welcome ${user.fullname}</b>
+        <b>Welcome ${user.username}</b>
         <p>Please select an action:</p>
         
         <a href="createGroup.jsp">Create a group</a>

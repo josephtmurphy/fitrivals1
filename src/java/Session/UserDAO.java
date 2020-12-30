@@ -32,7 +32,7 @@ public class UserDAO {
  
         if (result.next()) {
             user = new User();
-            user.setFullname(result.getString("full_name"));
+            user.setUsername(result.getString("username"));
             user.setEmail(email);
         }
  

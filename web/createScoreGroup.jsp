@@ -17,7 +17,7 @@
             <pre>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>
-            <input type="text" name="name" value="${user.fullname}" readonly="readonly"/>
+            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
             <br/>
             <input type="number" name="pointsperkm" placeholder="How Many Point Awarded per km"/>
             <br/>

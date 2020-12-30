@@ -12,7 +12,7 @@ package Session;
 public class User {
     private int id;
     private String email;
-    private String username;
+    public String username;
     private String fullname;
     private String password;
  
