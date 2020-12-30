@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%-- 
     Document   : groupList
     Created on : 26-Nov-2020, 09:29:02
     Author     : josep
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%-- 
     Document   : createCardio
     Created on : 02-Dec-2020, 11:29:55
     Author     : josep
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
             <pre>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>
-            <input type="text" name="name" placeholder="Your name in this group..."/>
+            <input type="text" name="name" value="${user.fullname}" readonly="readonly"/>
             <select name="grouptype1" id="grouptype">
             <option>Distance</option>
             <option>Score</option>

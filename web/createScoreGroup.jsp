@@ -1,10 +1,11 @@
-<%-- 
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%><%-- 
     Document   : createScoreGroup
     Created on : 03-Dec-2020, 09:20:32
     Author     : josep
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
             <pre>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>
-            <input type="text" name="name" placeholder="Your name in this group..."/>
+            <input type="text" name="name" value="${user.fullname}" readonly="readonly"/>
             <br/>
             <input type="number" name="pointsperkm" placeholder="How Many Point Awarded per km"/>
             <br/>

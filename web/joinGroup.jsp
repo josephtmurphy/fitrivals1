@@ -1,5 +1,5 @@
-
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -20,7 +20,7 @@ and open the template in the editor.
             <pre>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>
-            <input type="text" name="name" placeholder="Your name in this group..."/>
+            <input type="text" name="name" value="${user.fullname}" readonly="readonly"/>
             <br/>
             <select name="grouptype" id="grouptype">
             <option>Distance</option>

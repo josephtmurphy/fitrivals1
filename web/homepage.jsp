@@ -14,16 +14,16 @@ and open the template in the editor.
     </head>
     <body>
         <h2>FitRivals Home</h2>
-        <b>${user.fullname}</b>
+        <b>Welcome ${user.fullname}</b>
         <p>Please select an action:</p>
         
-        <a href="createGroup.html">Create a group</a>
+        <a href="createGroup.jsp">Create a group</a>
         <br/>
         <br/>
         <a href="createScoreGroup.jsp">Create a "score" (points-based) group</a>
         <br/>
         <br/>        
-        <a href="joinGroup.html">Join an existing group</a>
+        <a href="joinGroup.jsp">Join an existing group</a>
         <br/>
         <br/>
         <a href="groupList.jsp">View your groups</a>
@@ -39,6 +39,9 @@ and open the template in the editor.
         <br/>          
         <br/>        
         <a href="createStrength.jsp">Log a strength training session</a>
+        <br/>          
+        <br/>        
+        <a href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a>        
         
     </body>
 </html>

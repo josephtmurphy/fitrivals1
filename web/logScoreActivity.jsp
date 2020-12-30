@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%-- 
     Document   : logScoreActivity
     Created on : 03-Dec-2020, 09:32:59
     Author     : josep
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
             <pre>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>
-            <input type="text" name="name" placeholder="Your name in this group..."/>
+            <input type="text" name="name" value="${user.fullname}" readonly="readonly"/>
 
             <h2>Activity Details:</h2>
             <select name="activityType" id="activitytype">
