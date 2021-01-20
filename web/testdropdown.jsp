@@ -26,7 +26,7 @@ pageEncoding="ISO-8859-1"%>
     ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
     out.println(blah);
 %>
-<p>Select Name :
+<p>Select Group:
 <select name="groupname" id="groupname">
 <%
 while(rs.next()) {

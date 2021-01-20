@@ -47,8 +47,14 @@ and open the template in the editor.
         <br/>
         <input type="submit" value="Dropdown"/>
         <br/>          
-        <br/>         
+        <br/>
         
     </body>
     </form>
+    <form action="userDetails.jsp">
+                <input type="text" name="loggedname" value="${user.username}" readonly="readonly" visible="false"/>
+    <input type="submit" value="User Details"/>
+        <br/>          
+        <br/>     
+    </form>    
 </html>

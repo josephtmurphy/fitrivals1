@@ -26,6 +26,18 @@ and open the template in the editor.
     
     <label for="email"><b>E-mail Address</b></label>
     <input type="text" placeholder="Enter E-mail" name="email" id="email" required>
+    
+    <label for="height"><b>Height (cm)</b></label>
+    <input type="text" placeholder="Enter Height" name="height" id="height" required>  
+    
+    <label for="weight"><b>Weight (lbs)</b></label>
+    <input type="text" placeholder="Enter Weight" name="weight" id="weight" required> 
+    
+    <label for="dob"><b>Date of Birth</b></label>
+    <br/>
+    <input type="date" placeholder="Enter DOB" name="dob" id="dob" required> 
+    <br/>
+    <br/>
 
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" id="password" required>

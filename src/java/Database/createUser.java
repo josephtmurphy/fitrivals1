@@ -41,12 +41,16 @@ public class createUser extends HttpServlet {
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
             String password = request.getParameter("password");
+            String height = request.getParameter("height");
+            String weight = request.getParameter("weight");
+            String dob = request.getParameter("dob");
+            
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"')");
+            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+dob+"')");
             
             out.println("success");
             
