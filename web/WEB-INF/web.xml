@@ -45,6 +45,10 @@
         <servlet-class>Database.createStrength</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>updateUser</servlet-name>
+        <servlet-class>Database.updateUser</servlet-class>
+    </servlet>    
+    <servlet>
         <servlet-name>newGroupDisplay</servlet-name>
         <servlet-class>Database.newGroupDisplay</servlet-class>
     </servlet>
@@ -64,6 +68,10 @@
         <servlet-name>createUser</servlet-name>
         <url-pattern>/createUser</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateUser</servlet-name>
+        <url-pattern>/updateUser</url-pattern>
+    </servlet-mapping>    
     <servlet-mapping>
         <servlet-name>createGroup</servlet-name>
         <url-pattern>/createGroup</url-pattern>
@@ -115,7 +123,10 @@
     <welcome-file-list> 
         <welcome-file>testdropdown.jsp</welcome-file>
     </welcome-file-list>
-    <session-config>
+    <welcome-file-list> 
+        <welcome-file>userDetails.jsp</welcome-file>
+    </welcome-file-list>    
+    <session-config>        
         <session-timeout>
             30
         </session-timeout>

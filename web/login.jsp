@@ -24,6 +24,10 @@
             <br>${message}
             <br><br>           
             <button type="submit">Login</button>
+            <br/>
+            <br/>
+            <a href="createUser.jsp">Create an account</a>
+            
         </form>
     </div>
 </body>

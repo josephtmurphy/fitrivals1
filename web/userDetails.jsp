@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Drop Down List</title>
 </head>
-<form action="updateDetails">
+<form action="updateUser" method="post">
 <body>
 <%   String blah = request.getParameter("NAME12");
 %>
@@ -34,7 +34,7 @@ pageEncoding="ISO-8859-1"%>
     <br/>
     <br/>
     <label for="username"><b>Username</b></label>
-    <input type="text" name="username" value="<%=rs.getString(3)%>"<%=rs.getString(3)%></input>
+    <input type="text" readonly="readonly" name="username" value="<%=rs.getString(3)%>"<%=rs.getString(3)%></input>
     <br/>
     <br/>
     <label for="fullname"><b>Full Name</b></label>
