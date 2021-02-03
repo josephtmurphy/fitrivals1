@@ -25,7 +25,6 @@ pageEncoding="ISO-8859-1"%>
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
     rs.next();
-    out.println(blah);
 %>
 <p><i>Your details:</i>
     <br/>
@@ -49,8 +48,20 @@ pageEncoding="ISO-8859-1"%>
     <input type="text" name="weight" value="<%=rs.getString(7)%>"<%=rs.getString(7)%></input>
     <br/>
     <br/>
+    <label for="thigh"><b>Thigh (cm)</b></label>
+    <input type="text" name="thigh" value="<%=rs.getString(8)%>"<%=rs.getString(8)%></input>
+    <br/>
+    <br/>
+    <label for="bicep"><b>Bicep (cm)</b></label>
+    <input type="text" name="bicep" value="<%=rs.getString(9)%>"<%=rs.getString(9)%></input>
+    <br/>
+    <br/>
+    <label for="waist"><b>Waist (cm)</b></label>
+    <input type="text" name="waist" value="<%=rs.getString(10)%>"<%=rs.getString(10)%></input>
+    <br/>
+    <br/>    
     <label for="dob"><b>Date of Birth</b></label>
-    <input type="date" name="dob" value="<%=rs.getString(8)%>"<%=rs.getString(8)%></input>
+    <input type="date" name="dob" value="<%=rs.getString(11)%>"<%=rs.getString(11)%></input>    
     <br/>
     <br/>
     <label for="password"><b>Password</b></label>

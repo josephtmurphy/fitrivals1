@@ -36,18 +36,14 @@ public class writeComment extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        //differentiates between group types
-        String groupType = request.getParameter("grouptype1");
+        String username = request.getParameter("name12");
         
-        //DISTANCE if statement
-        
-        if (groupType.equals("Distance")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the writeComment jsp
                 String groupname = request.getParameter("groupname");
-                String name = request.getParameter("name");
+                String name = request.getParameter("name12");
                 String comment = request.getParameter("comment");
                 
                 //connecting to our db
@@ -56,61 +52,7 @@ public class writeComment extends HttpServlet {
                 
                 //SQL syntax to insert the comment into the group's log
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
-                
-                //shows that operation has been successful
-                out.println(name + ", your comment has been recorded in " + groupname + ". Thank you!");
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-        
-        //SCORE if statement
-        
-        if (groupType.equals("Score")) {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                
-                //gets the data from the writeComment jsp
-                String groupname = request.getParameter("groupname");
-                String name = request.getParameter("name");
-                String comment = request.getParameter("comment");
-                
-                //connecting to our db
-                dbcon db = new dbcon();
-                Connection con = db.getCon();
-                
-                //SQL syntax to insert the comment into the group's log
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
-                
-                //shows that operation has been successful
-                out.println(name + ", your comment has been recorded in " + groupname + ". Thank you!");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-        
-        //TIME if statement
-        
-        if (groupType.equals("Time")) {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                
-                //gets the data from the writeComment jsp
-                String groupname = request.getParameter("groupname");
-                String name = request.getParameter("name");
-                String comment = request.getParameter("comment");
-                
-                //connecting to our db
-                dbcon db = new dbcon();
-                Connection con = db.getCon();
-                
-                //SQL syntax to insert the comment into the group's log
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your comment has been recorded in " + groupname + ". Thank you!");
@@ -119,8 +61,7 @@ public class writeComment extends HttpServlet {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

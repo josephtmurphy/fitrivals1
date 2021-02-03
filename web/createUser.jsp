@@ -32,6 +32,15 @@ and open the template in the editor.
     
     <label for="weight"><b>Weight (lbs)</b></label>
     <input type="text" placeholder="Enter Weight" name="weight" id="weight" required> 
+
+    <label for="thigh"><b>Thigh (cm)</b></label>
+    <input type="text" placeholder="Enter Thigh Measurement" name="thigh" id="thigh" required> 
+    
+    <label for="bicep"><b>Bicep (cm)</b></label>
+    <input type="text" placeholder="Enter Bicep Measurement" name="bicep" id="bicep" required> 
+    
+    <label for="waist"><b>Waist (cm)</b></label>
+    <input type="text" placeholder="Enter Waist Measurement" name="waist" id="waist" required>     
     
     <label for="dob"><b>Date of Birth</b></label>
     <br/>

@@ -43,6 +43,9 @@ public class createUser extends HttpServlet {
             String password = request.getParameter("password");
             String height = request.getParameter("height");
             String weight = request.getParameter("weight");
+            String thigh = request.getParameter("thigh");
+            String bicep = request.getParameter("bicep");
+            String waist = request.getParameter("waist");
             String dob = request.getParameter("dob");
             
             
@@ -50,7 +53,7 @@ public class createUser extends HttpServlet {
             Connection con = db.getCon();
             
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+dob+"')");
+            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
             
             out.println("success");
             
