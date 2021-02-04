@@ -54,9 +54,10 @@ public class createScoreGroup extends HttpServlet {
             stmt.executeUpdate("CREATE TABLE S_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("CREATE TABLE s_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
+            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','s_" + groupname + "');");
             
             //SQL syntax to log the groups scoring system
-            stmt.executeUpdate("INSERT INTO scoring_systems (groupname,points_min,points_km) VALUES('" + groupname + "'," + pointspermin + "," + pointsperkm + ");");
+            stmt.executeUpdate("INSERT INTO scoring_systems (groupname,points_min,points_km) VALUES('s_" + groupname + "'," + pointspermin + "," + pointsperkm + ");");
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each kilometre covered is worth " + pointsperkm + " points, and each minute of exercise logged is worth " + pointspermin + " points. Good luck!");

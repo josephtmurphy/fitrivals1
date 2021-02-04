@@ -11,9 +11,6 @@ pageEncoding="ISO-8859-1"%>
 <title>Drop Down List</title>
 </head>
 <body>
-<%   String blah = request.getParameter("NAME12");
-%>
-
 <form action="viewGroups" method="POST">
     <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
     

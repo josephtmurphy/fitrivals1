@@ -39,16 +39,15 @@ public class createCardio extends HttpServlet {
 
         
         //differentiates between the types of group
-        String groupType = request.getParameter("grouptype1");
+        String groupname = request.getParameter("groupname");
         
         //DISTANCE if statement
         
-        if (groupType.equals("Distance")) {
+        if (groupname.startsWith("d")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the createCardio jsp
-                String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
@@ -61,8 +60,8 @@ public class createCardio extends HttpServlet {
                 
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update d_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO d_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
@@ -74,12 +73,11 @@ public class createCardio extends HttpServlet {
         
         //SCORE if statement
         
-        if (groupType.equals("Score")) {
+        if (groupname.startsWith("s")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the logScoreActivity jsp
-                String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
@@ -101,8 +99,8 @@ public class createCardio extends HttpServlet {
                 int combinedScore = minScore + kmScore;
                 
                 //adds the new score into the group, inserts a record into the log
-                stmt.executeUpdate("update s_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + combinedScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + combinedScore + ",'" + comment + "');");
+                stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + combinedScore + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + combinedScore + ",'" + comment + "');");
                 
                 
                 //shows that operation has been successful
@@ -115,12 +113,11 @@ public class createCardio extends HttpServlet {
         
         //TIME if statement
         
-        if (groupType.equals("Time")) {
+        if (groupname.startsWith("t")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the createCardio jsp
-                String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
@@ -133,8 +130,8 @@ public class createCardio extends HttpServlet {
                 
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update t_" + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");

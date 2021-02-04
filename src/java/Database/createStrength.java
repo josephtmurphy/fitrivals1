@@ -39,14 +39,13 @@ public class createStrength extends HttpServlet {
         //SCORE if statement
 
         //differentiates between the types of group
-        String groupType = request.getParameter("grouptype1");
+        String groupname = request.getParameter("groupname");
         
-        if (groupType.equals("Score")) {
+        if (groupname.startsWith("s")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the createCardio jsp
-                String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 String muscleGroup1 = request.getParameter("muscleGroup1");
                 String muscleGroup2 = request.getParameter("muscleGroup2");
@@ -65,12 +64,12 @@ public class createStrength extends HttpServlet {
                 
                 //SQL syntax to create the activity in the log, and update the score within the group
 
-                stmt.executeUpdate("update s_" + groupname + " set time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO s_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
+                stmt.executeUpdate("update " + groupname + " set time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + minScore + " points, has been logged in " + groupname + ". Good work!");
-
+               
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -78,12 +77,11 @@ public class createStrength extends HttpServlet {
         
         //TIME if statement
         
-        if (groupType.equals("Time")) {
+        if (groupname.startsWith("t")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
                 //gets the data from the createCardio jsp
-                String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 String muscleGroup1 = request.getParameter("muscleGroup1");
                 String muscleGroup2 = request.getParameter("muscleGroup2");
@@ -96,8 +94,8 @@ public class createStrength extends HttpServlet {
                 
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("update t_" + groupname + " set time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
+                stmt.executeUpdate("update " + groupname + " set time = time + " + time + " where name = '" + name + "';");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");

@@ -61,13 +61,6 @@ and open the template in the editor.
         
         <br/>          
         
-        <form action="logScoreActivity.jsp">
-        <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
-        <input type="submit" value="Log Score Activity"/>
-        </form> 
-        
-        <br/>        
-        
         <form action="writeComment.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
         <input type="submit" value="Write Comment"/>

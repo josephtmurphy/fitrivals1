@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%><%-- 
-    Document   : createStrength
-    Created on : 04-Dec-2020, 09:22:40
-    Author     : josep
---%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*;" %>
+<%@ page import="Database.dbcon;" %>
+<%@ page import="Session.UserDAO;" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +13,27 @@
     </head>
         <form action="createStrength" method="post">
             <pre>
-            <input type="text" name="groupname" placeholder="Group Name"/>
+<%   
+    try {
+    dbcon db = new dbcon();
+    Connection con = db.getCon();
+    String username = request.getParameter("loggedname");
+    Statement stmt = con.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
+%>
+<p>Select Group:
+<select name="groupname" id="groupname">
+<%
+while(rs.next()) {
+String groupname = rs.getString(3); 
+%>
+<option value="<%=groupname %>"><%=groupname %></option>
+<%
+}
+%>
+</select>
             <br/>
             <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-            <select name="grouptype1" id="grouptype">
-            <option>Score</option>
-            <option>Time</option>
-            </select>
 
             <h3>Muscle Group Worked:</h3>
             <select name="muscleGroup1" id="muscleGroup1">
@@ -45,7 +59,13 @@
             <input type="number" name="time" placeholder="Time (mins)"/>
 
             <input type="text" name="comment" placeholder="Your comment on this activity..."/>
-
+<%
+}
+catch(SQLException sqe)
+{ 
+out.println(sqe);
+}
+%>
             <input type="submit" value="Log Activity"/>
 
             </pre>

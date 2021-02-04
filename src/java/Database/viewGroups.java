@@ -116,7 +116,8 @@ public class viewGroups extends HttpServlet {
             str3 += "</table>";
             out.println(str3);
             
-            out.println("<br/>");            
+            out.println("<br/>");     
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
             con.close();
             
@@ -132,7 +133,7 @@ public class viewGroups extends HttpServlet {
             
             
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select user_id,name,score from s_"+groupname + " ORDER BY score desc;";
+            String sql = "Select user_id,name,score from "+groupname + " ORDER BY score desc;";
             
             //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
@@ -156,7 +157,7 @@ public class viewGroups extends HttpServlet {
             out.println(groupname + " cardio activities");
             //SQL and HTML syntax to create the activity log table
             Statement stmt2 = con.createStatement();
-            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment,log_score from s_"+groupname+"_log WHERE log_distance IS NOT NULL;");
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment,log_score from "+groupname+"_log WHERE log_distance IS NOT NULL;");
             String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Score</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
@@ -174,7 +175,7 @@ public class viewGroups extends HttpServlet {
             out.println(groupname + " strength activities");
             //SQL and HTML syntax to create the activity log table
             Statement stmt4 = con.createStatement();
-            ResultSet rs4 = stmt4.executeQuery("Select name,activity,log_muscle1,log_muscle2,log_time,log_comment,log_score from s_"+groupname+"_log WHERE log_muscle1 IS NOT NULL;");
+            ResultSet rs4 = stmt4.executeQuery("Select name,activity,log_muscle1,log_muscle2,log_time,log_comment,log_score from "+groupname+"_log WHERE log_muscle1 IS NOT NULL;");
             String str4 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Muscles Worked</th><th>Time (mins)</th><th>Score</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
@@ -191,7 +192,7 @@ public class viewGroups extends HttpServlet {
             out.println(groupname + " comments/forum");
             //SQL and HTML syntax to create the comments [FORUM]
             Statement stmt3 = con.createStatement();
-            ResultSet rs3 = stmt3.executeQuery("Select * from s_"+groupname+"_log WHERE activity IS NULL;");
+            ResultSet rs3 = stmt3.executeQuery("Select * from "+groupname+"_log WHERE activity IS NULL;");
             String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
