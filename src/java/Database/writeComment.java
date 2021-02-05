@@ -36,8 +36,6 @@ public class writeComment extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String username = request.getParameter("name12");
-        
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
@@ -56,6 +54,7 @@ public class writeComment extends HttpServlet {
                 
                 //shows that operation has been successful
                 out.println(name + ", your comment has been recorded in " + groupname + ". Thank you!");
+                out.println("<a href=\"homepage.jsp\">Return home</a>");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

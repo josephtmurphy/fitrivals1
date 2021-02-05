@@ -1,9 +1,23 @@
-// Variables
-$red: #c00;
+/*!
+ * Bootstrap v2.3.2
+ *
+ * Copyright 2013 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
 
-// Placeholder selectors
-%transition {
-  transition: all .25s;
+
+.homepagedivs {
+    border: 1px dotted black;
+}
+
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px;
 }
 
 /*Typography*/

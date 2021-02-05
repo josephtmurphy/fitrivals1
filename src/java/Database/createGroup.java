@@ -66,6 +66,7 @@ public class createGroup extends HttpServlet {
                 
                 //shows that operation has been successful
                 out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
+                out.println("<a href=\"homepage.jsp\">Return home</a>");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,6 +97,7 @@ public class createGroup extends HttpServlet {
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +127,7 @@ public class createGroup extends HttpServlet {
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

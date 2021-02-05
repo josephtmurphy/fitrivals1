@@ -69,7 +69,8 @@ public class createStrength extends HttpServlet {
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + minScore + " points, has been logged in " + groupname + ". Good work!");
-               
+                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -99,6 +100,7 @@ public class createStrength extends HttpServlet {
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");
+                out.println("<a href=\"homepage.jsp\">Return home</a>");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

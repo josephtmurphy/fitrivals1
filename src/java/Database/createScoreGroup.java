@@ -61,6 +61,7 @@ public class createScoreGroup extends HttpServlet {
             
             //shows that operation has been successful
             out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each kilometre covered is worth " + pointsperkm + " points, and each minute of exercise logged is worth " + pointspermin + " points. Good luck!");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

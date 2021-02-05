@@ -8,6 +8,19 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <style>
+.homepagedivs {
+    border: 1px dotted black;
+    padding: 10px;
+}
+
+.font1 {
+    font-size: 15px;
+    font-family: tahoma;
+    color: navy;
+    font-weight: bold;
+}
+</style>
         <title>FitRivals - Home</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +32,10 @@ and open the template in the editor.
         <br/>
         <br/>
         <b>Please select an action:</b>
-             
-        <p>Group actions:</p>        
+        
+        <div class="homepagedivs">
+            
+        <p class="font1">Group actions:</p>        
         
         <a href="createGroup.jsp">Create a group</a>
         
@@ -42,10 +57,14 @@ and open the template in the editor.
         <input type="submit" value="View Groups"/>
         </form>          
         
+        </div>
+        
         <br/>
         <br/>
-           
-        <p>Activity actions:</p>        
+        
+        <div class="homepagedivs">
+        
+        <p class="font1">Activity actions:</p>        
           
         <form action="createCardio.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
@@ -68,11 +87,19 @@ and open the template in the editor.
                 
         <br/>     
         
-        <p>Your profile:</p>             
+        </div>
+        
+        <br/>
+        
+        <div class="homepagedivs">
+        
+        <p class="font1">Your profile:</p>             
         
         <form action="userDetails.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
         <input type="submit" value="User Details"/>
+        
+        </div>
         
         <br/>          
         <br/>             

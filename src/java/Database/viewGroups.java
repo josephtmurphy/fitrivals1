@@ -203,7 +203,8 @@ public class viewGroups extends HttpServlet {
             str3 += "</table>";
             out.println(str3);
             
-            out.println("<br/>");            
+            out.println("<br/>");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
             con.close();
             
@@ -289,7 +290,8 @@ public class viewGroups extends HttpServlet {
             str3 += "</table>";
             out.println(str3);
             
-            out.println("<br/>");            
+            out.println("<br/>");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
             con.close();
             

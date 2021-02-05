@@ -64,7 +64,7 @@ public class joinGroup extends HttpServlet {
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
             request.setAttribute(groupType, this);
-            
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,7 +91,7 @@ public class joinGroup extends HttpServlet {
             
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
-
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
            
 
         } catch (SQLException ex) {
@@ -119,7 +119,8 @@ public class joinGroup extends HttpServlet {
             
             //success statement
             out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
-
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

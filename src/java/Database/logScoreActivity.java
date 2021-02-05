@@ -68,7 +68,8 @@ public class logScoreActivity extends HttpServlet {
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + combinedScore + " points. Good work!");
-
+                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
