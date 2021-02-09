@@ -46,7 +46,7 @@ public class userActivities extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         //decides the nature of the group's "goal"
-        String groupType = request.getParameter("grouptype");
+        String username = request.getParameter("loggedname");
         
         //connecting to our db
         dbcon db = new dbcon();
@@ -76,13 +76,127 @@ public class userActivities extends HttpServlet {
             out.println(str);
           
             out.println("<br/>");     
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+        
+        try {            
+                
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select username,groupname,activity,time,distance,comment from all_cardioactivities WHERE username = '"+username+"';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Distance (km)</th><th>Time (min)</th><th>Comment</th></tr>";
+            
+            //prints table
+            int i = 1;
+            out.println("Your cardio activity");
+            while(rs.next()) {
+                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");     
+
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        } 
+        
+        try {            
+                
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select username,groupname,activity,muscles,time,comment from all_strengthactivities WHERE username = '"+username+"';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Muscles Worked</th><th>Time (mins)</th><th>Comment</th></tr>";
+            
+            //prints table
+            int i = 1;
+            out.println("Your strength activity");
+            while(rs.next()) {
+                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        }          
+        
+        try {            
+                          
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "SELECT SUM(distance) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            rs.next();
+            out.println("Your total distance covered: " + rs.getInt(1) + "km.");
+            out.println("<br/>"); 
+            
+            //////////////////////////////////////////////////////////////////////////////////
+            
+            String sql2 = "SELECT SUM(time) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            ResultSet rs2 =  stmt.executeQuery(sql2);
+            rs2.next();
+            out.println("Your total time spent on cardio activity: " + rs2.getInt(1) + " mins.");
+            out.println("<br/>");                
+                      
+            /////////////////////////////////////////////////////////////////////////////////////
+            
+            String sql3 = "SELECT COUNT(time) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            ResultSet rs3 =  stmt.executeQuery(sql3);
+            rs3.next();
+            out.println("Your total cardio sessions: " + rs3.getInt(1) + ".");
+            out.println("<br/>"); 
+            
+            out.println("<br/>"); 
+            
+            /////////////////////////////////////////////////////////////////////////////////////
+            
+            String sql4 = "SELECT SUM(time) FROM all_strengthactivities where username = '" + username + "';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            ResultSet rs4 =  stmt.executeQuery(sql4);
+            rs4.next();
+            out.println("Your total time spent strength training: " + rs4.getInt(1) + " mins.");
+            out.println("<br/>"); 
+            
+            /////////////////////////////////////////////////////////////////////////////////////
+            
+            String sql5 = "SELECT COUNT(time) FROM all_strengthactivities where username = '" + username + "';";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            ResultSet rs5 =  stmt.executeQuery(sql5);
+            rs5.next();
+            out.println("Your total strength training sessions: " + rs5.getInt(1) + ".");
+            out.println("<br/>"); 
+            
+            out.println("<br/>");            
             
             con.close();
             
         } catch(Exception e) {
             System.err.println(e);
-        }
+        }                 
+        
         }
     
 
