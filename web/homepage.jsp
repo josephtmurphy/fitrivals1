@@ -95,9 +95,26 @@ and open the template in the editor.
         
         <p class="font1">Your profile:</p>             
         
-        <form action="userDetails.jsp">
+        <form action="updateAccount.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
-        <input type="submit" value="User Details"/>
+        <input type="submit" value="Account Details"/>
+        </form>
+        
+        <br/>
+        <br/>
+        
+        <form action="updatePhysique.jsp">
+        <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
+        <input type="submit" value="Update Physique"/>
+        </form>
+        
+        <br/>
+        <br/>
+        
+        <form action="userActivities">
+        <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
+        <input type="submit" value="View Physique Updates"/>
+        </form>        
         
         </div>
         

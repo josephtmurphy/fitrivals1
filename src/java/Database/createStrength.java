@@ -66,6 +66,7 @@ public class createStrength extends HttpServlet {
 
                 stmt.executeUpdate("update " + groupname + " set time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
+                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + "','" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + minScore + " points, has been logged in " + groupname + ". Good work!");
@@ -97,6 +98,7 @@ public class createStrength extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
+                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");

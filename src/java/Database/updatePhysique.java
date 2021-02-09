@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class updateUser extends HttpServlet {
+public class updatePhysique extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,32 +37,28 @@ public class updateUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
             String username = request.getParameter("username");
-            String fullname = request.getParameter("fullname");
-            String password = request.getParameter("password");
             String height = request.getParameter("height");
             String weight = request.getParameter("weight");
             String thigh = request.getParameter("thigh");
             String bicep = request.getParameter("bicep");
             String waist = request.getParameter("waist");
-            String dob = request.getParameter("dob");
             
             
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE users SET user_email = '"+email+"', full_name = '"+fullname+"', password = '"+password+"', height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"', dob = '"+dob+"' WHERE username = '"+username+"'");
+            stmt.executeUpdate("UPDATE users SET height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"' WHERE username = '"+username+"'");
+            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
             
             out.println("success");
             out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
-    }
+        }}
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -1,17 +1,18 @@
+package Database;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
 
+import Database.dbcon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,49 +22,69 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class createUser extends HttpServlet {
+public class userActivities extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+     * @param str
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @return
      */
+    
+    //helps to differentiate between comments and activities in the log when they are being printed
+    public static boolean isNullOrEmpty(String str) {
+        if(str != null && !str.isEmpty())
+            return false;
+        return true;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
-            String username = request.getParameter("username");
-            String fullname = request.getParameter("fullname");
-            String password = request.getParameter("password");
-            String height = request.getParameter("height");
-            String weight = request.getParameter("weight");
-            String thigh = request.getParameter("thigh");
-            String bicep = request.getParameter("bicep");
-            String waist = request.getParameter("waist");
-            String dob = request.getParameter("dob");
+        
+        //decides the nature of the group's "goal"
+        String groupType = request.getParameter("grouptype");
+        
+        //connecting to our db
+        dbcon db = new dbcon();
+        Connection con = db.getCon();
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
             
+        
+        try {            
+                
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist from user_physique ORDER BY user_weight asc;";
             
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
-            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
-            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Name</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
             
-            out.println("success");
+            //prints table
+            int i = 1;
+            out.println("Your physique updates");
+            while(rs.next()) {
+                str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");     
             out.println("<a href=\"homepage.jsp\">Return home</a>");
             
-        } catch (SQLException ex) {
-            Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
+            con.close();
+            
+        } catch(Exception e) {
+            System.err.println(e);
         }
-   
-    }
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -74,7 +95,6 @@ public class createUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -88,7 +108,6 @@ public class createUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);

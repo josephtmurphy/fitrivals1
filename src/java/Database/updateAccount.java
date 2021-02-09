@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class createUser extends HttpServlet {
+public class updateAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,8 +53,7 @@ public class createUser extends HttpServlet {
             Connection con = db.getCon();
             
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
-            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
+            stmt.executeUpdate("UPDATE users SET user_email = '"+email+"', full_name = '"+fullname+"', password = '"+password+"', height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"', dob = '"+dob+"' WHERE username = '"+username+"'");
             
             out.println("success");
             out.println("<a href=\"homepage.jsp\">Return home</a>");
@@ -64,7 +63,6 @@ public class createUser extends HttpServlet {
         }
    
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -62,6 +62,7 @@ public class createCardio extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + time + "','" + distance + "','" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
@@ -102,7 +103,7 @@ public class createCardio extends HttpServlet {
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + combinedScore + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + combinedScore + ",'" + comment + "');");
-                
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + combinedScore + " points. Good work!");
@@ -134,6 +135,7 @@ public class createCardio extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
                 out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
