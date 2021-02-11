@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class createScoreGroup extends HttpServlet {
+public class createScoreGroup2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,6 +45,7 @@ public class createScoreGroup extends HttpServlet {
             String run_points = request.getParameter("run_points");
             String cycle_points = request.getParameter("cycle_points");
             String walk_points = request.getParameter("walk_points");
+            String strength_points = request.getParameter("strength_points");
             
             //connecting to our db
             dbcon db = new dbcon();
@@ -52,16 +53,16 @@ public class createScoreGroup extends HttpServlet {
             
             //SQL syntax to create the group's table and inserting its first user.
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("CREATE TABLE DS_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
-            stmt.executeUpdate("CREATE TABLE DS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
-            stmt.executeUpdate("INSERT INTO ds_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','ds_" + groupname + "');");
+            stmt.executeUpdate("CREATE TABLE TS_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
+            stmt.executeUpdate("CREATE TABLE TS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
+            stmt.executeUpdate("INSERT INTO ts_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
+            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','ts_" + groupname + "');");
             
             //SQL syntax to log the groups scoring system
-            stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('ds_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");
+            stmt.executeUpdate("INSERT INTO time_scoring_systems (groupname,run_points,cycle_points,walk_points,strength_points) VALUES('ts_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + "," + strength_points + ");");
             
             //shows that operation has been successful
-            out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each kilometre ran is worth " + run_points + " points, each kilometre cycled is worth " + cycle_points + ", and each kilometre walked is worth " + walk_points + " points. Good luck!");
+            out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each minute spent running is worth " + run_points + " points, each minute spent cycling is worth " + cycle_points + ", each minute spent walking is worth " + walk_points + " points, and each minute spent strength training is worth " + strength_points + ". Good luck!");
             out.println("<a href=\"homepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {

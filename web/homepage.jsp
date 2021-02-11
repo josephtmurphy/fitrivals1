@@ -101,7 +101,6 @@ and open the template in the editor.
         </form>
         
         <br/>
-        <br/>
         
         <form action="updatePhysique.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
@@ -109,11 +108,10 @@ and open the template in the editor.
         </form>
         
         <br/>
-        <br/>
         
         <form action="userActivities">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
-        <input type="submit" value="View Physique Updates"/>
+        <input type="submit" value="Your Activity Summary"/>
         </form>        
         
         </div>

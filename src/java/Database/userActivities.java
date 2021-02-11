@@ -58,7 +58,7 @@ public class userActivities extends HttpServlet {
         try {            
                 
             //SQL statement to get the data from the group's mySQL table
-            String sql = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist from user_physique ORDER BY user_weight asc;";
+            String sql = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist from user_physique WHERE username ='"+username+"' ORDER BY user_weight asc;";
             
             //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
@@ -190,6 +190,7 @@ public class userActivities extends HttpServlet {
             out.println("<br/>"); 
             
             out.println("<br/>");            
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
             
             con.close();
             

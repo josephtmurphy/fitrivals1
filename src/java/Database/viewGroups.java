@@ -59,7 +59,7 @@ public class viewGroups extends HttpServlet {
         
         //DISTANCE if statmement
         
-        if (groupname.startsWith("d")) {
+        if (groupname.startsWith("d_")) {
         try {            
             
             
@@ -125,10 +125,78 @@ public class viewGroups extends HttpServlet {
             System.err.println(e);
         }
         }
+
+        //DISTANCE-SCORE if statmement
         
-        //SCORE if statmement
+        if (groupname.startsWith("ds")) {
+        try {            
+            
+            
+            //SQL statement to get the data from the group's mySQL table
+            String sql = "Select user_id,name,score from "+groupname + " ORDER BY score desc;";
+            
+            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            Statement stmt = con.createStatement();
+            ResultSet rs =  stmt.executeQuery(sql);
+            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Total Score</th></tr>";
+            
+            //prints table
+            int i = 1;
+            out.println("Current standings in "+groupname);
+            while(rs.next()) {
+                str+= "<tr><td>"+i+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td></tr>";
+                i++;
+            }
+            str += "</table>";
+            out.println(str);
+          
+            out.println("<br/>");
+
+            
+            //HTML code to create a table to display the group data [CARDIO ACTIVITY]
+            out.println(groupname + " cardio activities");
+            //SQL and HTML syntax to create the activity log table
+            Statement stmt2 = con.createStatement();
+            ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment,log_score from "+groupname+"_log WHERE log_distance IS NOT NULL;");
+            String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Score</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs2.next()) { 
+                str2 += "<tr><td>"+rs2.getString(1)+"</td><td>"+rs2.getString(2)+"</td><td>"+rs2.getString(3)+"</td><td>"+rs2.getString(4)+"</td><td>"+rs2.getString(6)+"</td><td>"+rs2.getString(5)+"</td></tr>";
+                }
+
+            str2 += "</table>";
+            out.println(str2);
+            
+            out.println("<br/>");           
+           
+            out.println(groupname + " comments/forum");
+            //SQL and HTML syntax to create the comments [FORUM]
+            Statement stmt3 = con.createStatement();
+            ResultSet rs3 = stmt3.executeQuery("Select * from "+groupname+"_log WHERE activity IS NULL;");
+            String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
+            
+            //loop that decides whether data is an activity or a comment, and prints it
+            while(rs3.next()) { 
+                str3 += "<tr><td>"+rs3.getString(2)+"</td><td>"+rs3.getString(9)+"</td></tr>";
+                }
+
+            str3 += "</table>";
+            out.println(str3);
+            
+            out.println("<br/>");
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            
+            con.close();
+            
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+        }
         
-        if (groupname.startsWith("s")) {
+        //TIME-SCORE if statmement
+        
+        if (groupname.startsWith("ts")) {
         try {            
             
             

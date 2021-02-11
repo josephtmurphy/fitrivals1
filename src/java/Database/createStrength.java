@@ -41,7 +41,7 @@ public class createStrength extends HttpServlet {
         //differentiates between the types of group
         String groupname = request.getParameter("groupname");
         
-        if (groupname.startsWith("s")) {
+        if (groupname.startsWith("ts")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
@@ -58,7 +58,7 @@ public class createStrength extends HttpServlet {
 
                 //SQL syntax to call on the scoring system outlined by the user who created the group
                 Statement stmt = con.createStatement();
-                ResultSet rs =  stmt.executeQuery("Select points_min,points_km from scoring_systems where groupname = '" + groupname + "';"); 
+                ResultSet rs =  stmt.executeQuery("Select strength_points from time_scoring_systems where groupname = '" + groupname + "';"); 
                 rs.next();
                 int minScore = time * rs.getInt(1);               
                 
@@ -75,11 +75,11 @@ public class createStrength extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
+        }         
         
         //TIME if statement
         
-        if (groupname.startsWith("t")) {
+        if (groupname.startsWith("t_")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
