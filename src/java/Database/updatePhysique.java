@@ -37,6 +37,8 @@ public class updatePhysique extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            //retrieves parameters from jps
             String username = request.getParameter("username");
             String height = request.getParameter("height");
             String weight = request.getParameter("weight");
@@ -44,10 +46,11 @@ public class updatePhysique extends HttpServlet {
             String bicep = request.getParameter("bicep");
             String waist = request.getParameter("waist");
             
-            
+            //db connection
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //updates user table to current values, logs record of change into separate physique table
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE users SET height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"' WHERE username = '"+username+"'");
             stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");

@@ -15,9 +15,11 @@ pageEncoding="ISO-8859-1"%>
 <%   String blah = request.getParameter("NAME12");
 %>
 
+<%--obtains username to handle session--%>
     <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
     
 <%   
+    //connect to db, sql statement to call relevant physqiue data from users SQL table
     try {
     dbcon db = new dbcon();
     Connection con = db.getCon();
@@ -26,6 +28,7 @@ pageEncoding="ISO-8859-1"%>
     ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
     rs.next();
 %>
+<%--Shows all relevant information--%>
 <p><i>Your details:</i>
     <br/>
     <label for="username"><b>Username</b></label>
@@ -59,7 +62,8 @@ catch(SQLException sqe)
 out.println(sqe);
 }
 %>
-        <input type="submit" value="Update"/>
+<%--applies changes and activates updatePhysique servlet--%>       
+<input type="submit" value="Update"/>
 </body>
 </form>
 </html>

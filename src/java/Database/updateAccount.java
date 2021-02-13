@@ -37,6 +37,8 @@ public class updateAccount extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            //obtains relevant data from updateAccount.jsp
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
@@ -48,10 +50,11 @@ public class updateAccount extends HttpServlet {
             String waist = request.getParameter("waist");
             String dob = request.getParameter("dob");
             
-            
+            //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //update SQL statement that will make the changes outlined from the jsp
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE users SET user_email = '"+email+"', full_name = '"+fullname+"', password = '"+password+"', height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"', dob = '"+dob+"' WHERE username = '"+username+"'");
             

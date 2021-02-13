@@ -15,6 +15,7 @@
     <body>
         <form action="createScoreGroup" method="post">
             <pre>
+            <%--insert the values you want your group to weigh towards different activities--%>
             <h3>Score Group - Distance</h3>
             <input type="text" name="groupname" placeholder="Group Name"/>
             <br/>

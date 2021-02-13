@@ -15,9 +15,11 @@ pageEncoding="ISO-8859-1"%>
 <%   String blah = request.getParameter("NAME12");
 %>
 
+<%--Fetches username to handle session--%>
     <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
     
 <%   
+    //establishes connection to SQL database and fetches relevant user information
     try {
     dbcon db = new dbcon();
     Connection con = db.getCon();
@@ -26,6 +28,7 @@ pageEncoding="ISO-8859-1"%>
     ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
     rs.next();
 %>
+<%--Fetches and displays user's account details, makes them available to edit--%>
 <p><i>Your details:</i>
     <br/>
     <label for="email"><b>E-mail</b></label>
@@ -47,7 +50,7 @@ pageEncoding="ISO-8859-1"%>
     <label for="password"><b>Password</b></label>
     <input type="text" name="password" value="<%=rs.getString(5)%>"<%=rs.getString(5)%></input>
 </p>
-
+<%--submit button allows you to save changes by activating updateAccount servlet--%>
 <%
 }
 catch(SQLException sqe)

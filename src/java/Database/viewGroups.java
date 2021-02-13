@@ -131,6 +131,20 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("ds")) {
         try {            
             
+            //selects details of group's scoring system
+            String scoring = "Select groupname,run_points,cycle_points,walk_points from distance_scoring_systems WHERE groupname = '"+groupname+"';";
+            
+            Statement scoreStmt = con.createStatement();
+            ResultSet scoreRs = scoreStmt.executeQuery(scoring);
+            String scoreString = "<table border=1><tr><th>Group Name</th><th>Points per km Ran</th><th>Points per km Cycled</th><th>Points per km Walked</th></tr>";
+            
+            scoreRs.next();
+            //creates table which acts as a key/legend for the group's scorecard
+            scoreString+= "<tr><td>"+scoreRs.getString(1)+"</td><td>"+scoreRs.getString(2)+"</td><td>"+scoreRs.getString(3)+"</td><td>"+scoreRs.getString(4)+"</td></tr>";
+            scoreString += "</table>";      
+            
+            out.println(scoreString);
+            out.println("<br/>");
             
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,score from "+groupname + " ORDER BY score desc;";
@@ -199,6 +213,20 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("ts")) {
         try {            
             
+            //selects details of group's scoring system
+            String scoring = "Select groupname,run_points,cycle_points,walk_points,strength_points from time_scoring_systems WHERE groupname = '"+groupname+"';";
+            
+            Statement scoreStmt = con.createStatement();
+            ResultSet scoreRs = scoreStmt.executeQuery(scoring);
+            String scoreString = "<table border=1><tr><th>Group Name</th><th>Points per min Ran</th><th>Points per min Cycled</th><th>Points per min Walked</th><th>Points per min Strength</th></tr>";
+            
+            scoreRs.next();
+            //creates table which acts as a key/legend for the group's scorecard
+            scoreString+= "<tr><td>"+scoreRs.getString(1)+"</td><td>"+scoreRs.getString(2)+"</td><td>"+scoreRs.getString(3)+"</td><td>"+scoreRs.getString(4)+"</td><td>"+scoreRs.getString(5)+"</td></tr>";
+            scoreString += "</table>";      
+            
+            out.println(scoreString);
+            out.println("<br/>");            
             
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,score from "+groupname + " ORDER BY score desc;";

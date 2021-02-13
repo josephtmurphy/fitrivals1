@@ -52,6 +52,7 @@ public class createScoreGroup2 extends HttpServlet {
             Connection con = db.getCon();
             
             //SQL syntax to create the group's table and inserting its first user.
+            //also contains syntax to create a log for the table which contains a record of each activity, and a record of the user being in the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("CREATE TABLE TS_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
             stmt.executeUpdate("CREATE TABLE TS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");

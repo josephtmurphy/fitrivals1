@@ -45,7 +45,7 @@ public class userActivities extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        //decides the nature of the group's "goal"
+        //gets the logged username to handle session
         String username = request.getParameter("loggedname");
         
         //connecting to our db
@@ -60,17 +60,15 @@ public class userActivities extends HttpServlet {
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist from user_physique WHERE username ='"+username+"' ORDER BY user_weight asc;";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to create a table to display the users physique logs/updates
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>Name</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
             
-            //prints table
-            int i = 1;
+            //prints table of physique updates
             out.println("Your physique updates");
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
-                i++;
             }
             str += "</table>";
             out.println(str);
@@ -84,20 +82,18 @@ public class userActivities extends HttpServlet {
         
         try {            
                 
-            //SQL statement to get the data from the group's mySQL table
+            //SQL statement to get the user's activity data
             String sql = "Select username,groupname,activity,time,distance,comment from all_cardioactivities WHERE username = '"+username+"';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to create a table to display the activity data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Distance (km)</th><th>Time (min)</th><th>Comment</th></tr>";
             
             //prints table
-            int i = 1;
             out.println("Your cardio activity");
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td></tr>";
-                i++;
             }
             str += "</table>";
             out.println(str);
@@ -111,20 +107,18 @@ public class userActivities extends HttpServlet {
         
         try {            
                 
-            //SQL statement to get the data from the group's mySQL table
+            //SQL statement to get the data from the users activity table
             String sql = "Select username,groupname,activity,muscles,time,comment from all_strengthactivities WHERE username = '"+username+"';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to create a table to display the users strength activity data
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             String str = "<table border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Muscles Worked</th><th>Time (mins)</th><th>Comment</th></tr>";
             
             //prints table
-            int i = 1;
             out.println("Your strength activity");
             while(rs.next()) {
                 str+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
-                i++;
             }
             str += "</table>";
             out.println(str);
@@ -137,10 +131,10 @@ public class userActivities extends HttpServlet {
         
         try {            
                           
-            //SQL statement to get the data from the group's mySQL table
+            //SQL statement to get the sum of the distance that the user has covered in their activities
             String sql = "SELECT SUM(distance) FROM all_cardioactivities where username = '" + username + "';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //prints line with total distance
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             rs.next();
@@ -149,9 +143,10 @@ public class userActivities extends HttpServlet {
             
             //////////////////////////////////////////////////////////////////////////////////
             
+            //calculates total time spent performing cardio activities
             String sql2 = "SELECT SUM(time) FROM all_cardioactivities where username = '" + username + "';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //prints line with total time
             ResultSet rs2 =  stmt.executeQuery(sql2);
             rs2.next();
             out.println("Your total time spent on cardio activity: " + rs2.getInt(1) + " mins.");
@@ -159,9 +154,10 @@ public class userActivities extends HttpServlet {
                       
             /////////////////////////////////////////////////////////////////////////////////////
             
+            //selects total number of cardio activities logged with the application
             String sql3 = "SELECT COUNT(time) FROM all_cardioactivities where username = '" + username + "';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to print a line which says the total number of activities logged with the application
             ResultSet rs3 =  stmt.executeQuery(sql3);
             rs3.next();
             out.println("Your total cardio sessions: " + rs3.getInt(1) + ".");
@@ -171,9 +167,10 @@ public class userActivities extends HttpServlet {
             
             /////////////////////////////////////////////////////////////////////////////////////
             
+            //selects total amount of time spent on strength activities
             String sql4 = "SELECT SUM(time) FROM all_strengthactivities where username = '" + username + "';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to output line with total time spent on strength activities
             ResultSet rs4 =  stmt.executeQuery(sql4);
             rs4.next();
             out.println("Your total time spent strength training: " + rs4.getInt(1) + " mins.");
@@ -181,9 +178,10 @@ public class userActivities extends HttpServlet {
             
             /////////////////////////////////////////////////////////////////////////////////////
             
+            //selects total amount of strength activities logged
             String sql5 = "SELECT COUNT(time) FROM all_strengthactivities where username = '" + username + "';";
             
-            //1. HTML code to create a table to display the group data [LEADERBOARD]
+            //1. HTML code to output a line describing total amount of strength activities logged
             ResultSet rs5 =  stmt.executeQuery(sql5);
             rs5.next();
             out.println("Your total strength training sessions: " + rs5.getInt(1) + ".");
