@@ -61,7 +61,11 @@ public class viewGroups extends HttpServlet {
         
         if (groupname.startsWith("d_")) {
         try {            
-            
+          
+        String cssTag="<link href=\"css/homePage_css.css\" rel=\"stylesheet\">";
+        out.println("<html>");
+        out.println("<head><title>Title Name</title>"+cssTag+"</head>");
+        out.println("<body>");            
             
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,distance from "+groupname + " ORDER BY distance desc;";
@@ -69,7 +73,7 @@ public class viewGroups extends HttpServlet {
             //1. HTML code to create a table to display the group data [LEADERBOARD]
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
-            String str = "<table border=1><tr><th>Position</th><th>Name</th><th>Total Distance (km)</th></tr>";
+            String str = "<table id=\"groups\" border=1><tr><th>Position</th><th>Name</th><th>Total Distance (km)</th></tr>";
             
             //prints table
             int i = 1;
@@ -89,7 +93,7 @@ public class viewGroups extends HttpServlet {
             //SQL and HTML syntax to create the activity log table
             Statement stmt2 = con.createStatement();
             ResultSet rs2 = stmt2.executeQuery("Select name,activity,log_distance,log_time,log_comment from "+groupname+"_log WHERE activity IS NOT NULL;");
-            String str2 = "<table border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Comment</th></tr>";
+            String str2 = "<table id=\"groups\" border=1><tr><th>Name</th><th>Activity</th><th>Distance (km)</th><th>Time (mins)</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
             while(rs2.next()) { 
@@ -106,7 +110,7 @@ public class viewGroups extends HttpServlet {
             //SQL and HTML syntax to create the comments [FORUM]
             Statement stmt3 = con.createStatement();
             ResultSet rs3 = stmt3.executeQuery("Select * from "+groupname+"_log WHERE activity IS NULL;");
-            String str3 = "<table border=1><tr><th>Name</th><th>Comment</th></tr>";
+            String str3 = "<table id=\"groups\" border=1><tr><th>Name</th><th>Comment</th></tr>";
             
             //loop that decides whether data is an activity or a comment, and prints it
             while(rs3.next()) { 
