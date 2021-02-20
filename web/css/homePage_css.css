@@ -32,10 +32,6 @@ li a:hover {
   background-color: #111;
 }
 
-a {
-  display: block;
-  padding: 8px;
-}
 
 .homepagedivs {
     border: 1px dotted black;
@@ -50,15 +46,24 @@ a {
     font-family: times;
     color: navy;
     font-weight: bold;
+    text-align: center;
+}
+
+.font2 {
+    font-size: 20px;
+    font-family: times;
+    color: navy;
+    font-weight: bold;
 }
 
 #groups {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#groups td, #customers th {
+#groups td, #groups th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -68,11 +73,19 @@ a {
 #groups tr:hover {background-color: #ddd;}
 
 #groups th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: purple;
   color: white;
+}
+
+.heading {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: purple;
+    font-family: Tahoma, sans-serif;
 }
 
 .container,

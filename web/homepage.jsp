@@ -18,13 +18,13 @@ and open the template in the editor.
         
         <ul>
             <li><a href="default.asp">Home</a></li>
-            <li><a href="news.asp">Groups</a></li>
-            <li><a href="contact.asp">Blog</a></li>
+            <li><a href="submitBlog.jsp">Write Blog</a></li>
+            <li><a href="blogHome.jsp">Blog</a></li>
             <li><a href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a></li>
         </ul>
         
         <br/>
-        
+      
         <h2>FitRivals Home</h2>
         <input type="text" name="loggedname" value="Welcome ${user.username}" readonly="readonly"/>
         <br/>
@@ -35,20 +35,17 @@ and open the template in the editor.
             
         <p class="font1">Group actions:</p>        
         
-        <a href="createGroup.jsp" class="button1" type="submit" value="Create Group"/>
+        <a href="createGroup.jsp">Create Group</a>
         
         <br/>
-        <br/>
         
-        <a href="createScoreGroup.jsp" class="button1" type="submit" value="Create Score Group"/>
+        <a href="createScoreGroup.jsp">Create Score Group</a>
         
-        <br/>
         <br/>        
         
-        <a href="joinGroup.jsp" class="button1" type="submit" value="Join Group"/>
+        <a href="joinGroup.jsp">Join Group</a>
         
-        <br/>
-        <br/>          
+        <br/>       
         
         <form action="testdropdown.jsp">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>

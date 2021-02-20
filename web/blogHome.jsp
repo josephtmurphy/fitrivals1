@@ -4,6 +4,11 @@
     Author     : josep
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Database.dbcon"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,45 +20,48 @@
     </head>
     <body>
 <div class="header">
-  <h2>Blog Name</h2>
+  <h2>FitRivals Community Blog</h2>
 </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-    </div>
-  </div>
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
-</div>
+<%   
+    //establishes connection to SQL database and fetches relevant user information
+    try {
+    dbcon db = new dbcon();
+    Connection con = db.getCon();
+    Statement stmt = con.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM blog_submissions;"); 
+%>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+<%     
+    
+    while(rs.next()) {
+        String str = "<div class=\"row\">"
+            + "<div class=\"leftcolumn\">"
+            + "<div class=\"card\">";
+        
+        str+= "<h2>"+rs.getString(3)+"</h2><h5>"+rs.getString(2)+"</h5><p>"+rs.getString(4)+"</p>";
+
+        str += "</div>"
+                + "</div>"
+                + "</div>";
+    out.println(str);
+    }
+        
+            out.println("<br/>");     
+            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            
+            con.close();
+        
+%>
+
+
+<%
+    
+} catch(SQLException sqe)
+{ 
+out.println(sqe);
+}
+%>
+
     </body>
 </html>
