@@ -38,16 +38,18 @@ public class submitBlog extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String username = request.getParameter("name");
+            String blog_type = request.getParameter("blog_type");
             String blog_title = request.getParameter("blog_title");
             String blog_content = request.getParameter("blog_content");
-
+            String youtube_url = request.getParameter("youtube_url");
+            
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
             //update SQL statement that will make the changes outlined from the jsp
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_title, blog_content) VALUES('"+username+"','"+blog_title+"','"+blog_content+"');");
+            stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url) VALUES('"+username+"','"+blog_type+"','"+blog_title+"','"+blog_content+"','"+youtube_url+"');");
             
             out.println("success");
             out.println("<a href=\"homepage.jsp\">Return home</a>");        

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : blogHome
-    Created on : 16-Feb-2021, 16:10:40
+    Document   : videosHome
+    Created on : 22-Feb-2021, 15:30:36
     Author     : josep
 --%>
 
@@ -20,7 +20,7 @@
     </head>
     <body>
 <div class="header">
-  <h2>FitRivals Community Blog</h2>
+  <h2>FitRivals - PLANS AND VIDEOS</h2>
 </div>
 
 <%   
@@ -29,16 +29,16 @@
     dbcon db = new dbcon();
     Connection con = db.getCon();
     Statement stmt = con.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM blog_submissions WHERE blog_type = 'Personal Blog Post';"); 
-%>
-
+    ResultSet rs = stmt.executeQuery("SELECT * FROM blog_submissions WHERE blog_type = 'YouTube Video';"); 
+%>        
+        
 <%     
     while(rs.next()) {
         String str = "<div class=\"row\">"
             + "<div class=\"leftcolumn\">"
             + "<div class=\"card\">";
         
-        str+= "<h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5><p>"+rs.getString(5)+"</p>";
+        str+= "<h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5>"+rs.getString(6)+"<p>"+rs.getString(5)+"</p>";
 
         str += "</div>"
                 + "</div>"
@@ -51,7 +51,7 @@
             
             con.close();
 %>
-
+        
 
 <%
     
@@ -61,5 +61,8 @@ out.println(sqe);
 }
 %>
 
+<div class="footer">
+  <h2>Footer</h2>
+</div>
     </body>
 </html>

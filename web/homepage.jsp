@@ -16,12 +16,23 @@ and open the template in the editor.
     
     <body>
         
-        <ul>
-            <li><a href="default.asp">Home</a></li>
-            <li><a href="submitBlog.jsp">Write Blog</a></li>
-            <li><a href="blogHome.jsp">Blog</a></li>
-            <li><a href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a></li>
-        </ul>
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <div class="dropdown">
+    <button class="dropbtn">Blog
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="videosHome.jsp">Plans & Videos</a>
+      <a href="blogHome.jsp">FitRivals Blog</a>
+      <a href="submitBlog.jsp">Submit a Blog Post</a>
+    </div>
+  </div>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
         
         <br/>
       
