@@ -62,12 +62,23 @@ public class userActivities extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");            
             
-        out.println("        <ul>\n" +
-"            <li><a href=\"default.asp\">Home</a></li>\n" +
-"            <li><a href=\"news.asp\">Groups</a></li>\n" +
-"            <li><a href=\"contact.asp\">Blog</a></li>\n" +
-"            <li><a href=\"<%=request.getContextPath()%>/UserLogoutServlet\">Logout</a></li>\n" +
-"        </ul>");
+                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\">Home</a>\n" +
+"  <a href=\"#news\">News</a>\n" +
+"  <a href=\"#contact\">Contact</a>\n" +
+"  <div class=\"dropdown\">\n" +
+"    <button class=\"dropbtn\" >Blog\n" +
+"      <i class=\"fa fa-caret-down\"></i>\n" +
+"    </button>\n" +
+"    <div class=\"dropdown-content\">\n" +
+"      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
+"      <a href=\"blogHome.jsp\" class=\"active\">FitRivals Blog</a>\n" +
+"      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"  <a href=\"#about\">About</a>\n" +
+"  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+"</div>");
         
         out.println("<br/>");            
             
@@ -88,8 +99,16 @@ public class userActivities extends HttpServlet {
             out.println(str);
           
             out.println("<br/>");     
-            
-            
+        
+        String sqlweight = "SELECT (SELECT MAX(user_weight) FROM user_physique WHERE username ='" +username+"') - (SELECT MIN(user_weight) FROM user_physique"
+                + " WHERE username ='"+username+"');";
+
+            //1. HTML code to output line with total time spent on strength activities
+            ResultSet rs4 =  stmt.executeQuery(sqlweight);
+            rs4.next();
+            out.println("<p class=\"useractivitybody\">Your total weight lost: " + rs4.getInt(1) + " pounds.</p>");
+            out.println("<br/>"); 
+    
         } catch(Exception e) {
             System.err.println(e);
         }
@@ -114,6 +133,38 @@ public class userActivities extends HttpServlet {
           
             out.println("<br/>");     
 
+            //SQL statement to get the sum of the distance that the user has covered in their activities
+            String sql0 = "SELECT SUM(distance) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //prints line with total distance
+            ResultSet rs0 =  stmt.executeQuery(sql0);
+            rs0.next();
+            out.println("<p class=\"useractivitybody\">Your total distance covered: " + rs0.getInt(1) + "km.</p>");
+            out.println("<br/>"); 
+            
+            //////////////////////////////////////////////////////////////////////////////////
+            
+            //calculates total time spent performing cardio activities
+            String sql2 = "SELECT SUM(time) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //prints line with total time
+            ResultSet rs2 =  stmt.executeQuery(sql2);
+            rs2.next();
+            out.println("<p class=\"useractivitybody\">Your total time spent on cardio activity: " + rs2.getInt(1) + " mins.</p>");
+            out.println("<br/>");                
+                      
+            /////////////////////////////////////////////////////////////////////////////////////
+            
+            //selects total number of cardio activities logged with the application
+            String sql3 = "SELECT COUNT(time) FROM all_cardioactivities where username = '" + username + "';";
+            
+            //1. HTML code to print a line which says the total number of activities logged with the application
+            ResultSet rs3 =  stmt.executeQuery(sql3);
+            rs3.next();
+            out.println("<p class=\"useractivitybody\">Your total cardio sessions: " + rs3.getInt(1) + ".</p>");
+            out.println("<br/>"); 
+            
+            out.println("<br/>"); 
             
         } catch(Exception e) {
             System.err.println(e);
@@ -144,42 +195,9 @@ public class userActivities extends HttpServlet {
         }          
         
         try {            
-                          
-            //SQL statement to get the sum of the distance that the user has covered in their activities
-            String sql = "SELECT SUM(distance) FROM all_cardioactivities where username = '" + username + "';";
-            
-            //prints line with total distance
-            Statement stmt = con.createStatement();
-            ResultSet rs =  stmt.executeQuery(sql);
-            rs.next();
-            out.println("Your total distance covered: " + rs.getInt(1) + "km.");
-            out.println("<br/>"); 
-            
-            //////////////////////////////////////////////////////////////////////////////////
-            
-            //calculates total time spent performing cardio activities
-            String sql2 = "SELECT SUM(time) FROM all_cardioactivities where username = '" + username + "';";
-            
-            //prints line with total time
-            ResultSet rs2 =  stmt.executeQuery(sql2);
-            rs2.next();
-            out.println("Your total time spent on cardio activity: " + rs2.getInt(1) + " mins.");
-            out.println("<br/>");                
-                      
-            /////////////////////////////////////////////////////////////////////////////////////
-            
-            //selects total number of cardio activities logged with the application
-            String sql3 = "SELECT COUNT(time) FROM all_cardioactivities where username = '" + username + "';";
-            
-            //1. HTML code to print a line which says the total number of activities logged with the application
-            ResultSet rs3 =  stmt.executeQuery(sql3);
-            rs3.next();
-            out.println("Your total cardio sessions: " + rs3.getInt(1) + ".");
-            out.println("<br/>"); 
-            
-            out.println("<br/>"); 
             
             /////////////////////////////////////////////////////////////////////////////////////
+                        Statement stmt = con.createStatement();
             
             //selects total amount of time spent on strength activities
             String sql4 = "SELECT SUM(time) FROM all_strengthactivities where username = '" + username + "';";
@@ -187,7 +205,7 @@ public class userActivities extends HttpServlet {
             //1. HTML code to output line with total time spent on strength activities
             ResultSet rs4 =  stmt.executeQuery(sql4);
             rs4.next();
-            out.println("Your total time spent strength training: " + rs4.getInt(1) + " mins.");
+            out.println("<p class=\"useractivitybody\">Your total time spent strength training: " + rs4.getInt(1) + " mins.</p>");
             out.println("<br/>"); 
             
             /////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +216,7 @@ public class userActivities extends HttpServlet {
             //1. HTML code to output a line describing total amount of strength activities logged
             ResultSet rs5 =  stmt.executeQuery(sql5);
             rs5.next();
-            out.println("Your total strength training sessions: " + rs5.getInt(1) + ".");
+            out.println("<p class=\"useractivitybody\">Your total strength training sessions: " + rs5.getInt(1) + ".</p>");
             out.println("<br/>"); 
             
             out.println("<br/>");            

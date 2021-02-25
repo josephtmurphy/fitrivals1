@@ -171,6 +171,30 @@
   color: white;
 }
 
+#groupskey {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#groupskey td, #groupskey th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#groupskey tr:nth-child(even){background-color: #f2f2f2;}
+
+#groupskey tr:hover {background-color: #ddd;}
+
+#groupskey th {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+  background-color: navy;
+  color: white;
+}
+
 #summary {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -203,11 +227,28 @@
     font-family: Tahoma, sans-serif;
 }
 
+.headingkey {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: navy;
+    font-family: Tahoma, sans-serif;
+}
+
 .useractivityheading {
     text-align: center;
     font-size: 17px;
     font-weight: bold;
     color: darkorange;
+    font-family: Tahoma, sans-serif;
+    text-decoration: underline overline;
+}
+
+.useractivitybody {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: brown;
     font-family: Tahoma, sans-serif;
 }
 

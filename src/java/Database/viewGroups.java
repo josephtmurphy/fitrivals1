@@ -67,12 +67,23 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");            
             
-        out.println("        <ul>\n" +
-"            <li><a href=\"default.asp\">Home</a></li>\n" +
-"            <li><a href=\"news.asp\">Groups</a></li>\n" +
-"            <li><a href=\"contact.asp\">Blog</a></li>\n" +
-"            <li><a href=\"<%=request.getContextPath()%>/UserLogoutServlet\">Logout</a></li>\n" +
-"        </ul>");
+        out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
+"  <a href=\"#news\">News</a>\n" +
+"  <a href=\"#contact\">Contact</a>\n" +
+"  <div class=\"dropdown\">\n" +
+"    <button class=\"dropbtn\">Blog\n" +
+"      <i class=\"fa fa-caret-down\"></i>\n" +
+"    </button>\n" +
+"    <div class=\"dropdown-content\">\n" +
+"      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
+"      <a href=\"blogHome.jsp\">FitRivals Blog</a>\n" +
+"      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"  <a href=\"#about\">About</a>\n" +
+"  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+"</div>");
         
         out.println("<br/>");
         
@@ -149,12 +160,31 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");              
             
+                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
+"  <a href=\"#news\">News</a>\n" +
+"  <a href=\"#contact\">Contact</a>\n" +
+"  <div class=\"dropdown\">\n" +
+"    <button class=\"dropbtn\">Blog\n" +
+"      <i class=\"fa fa-caret-down\"></i>\n" +
+"    </button>\n" +
+"    <div class=\"dropdown-content\">\n" +
+"      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
+"      <a href=\"blogHome.jsp\">FitRivals Blog</a>\n" +
+"      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"  <a href=\"#about\">About</a>\n" +
+"  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+"</div>");
+        
             //selects details of group's scoring system
             String scoring = "Select groupname,run_points,cycle_points,walk_points from distance_scoring_systems WHERE groupname = '"+groupname+"';";
             
+            out.println("<p class=\"headingkey\">"+groupname+": key/legend</p>");
             Statement scoreStmt = con.createStatement();
             ResultSet scoreRs = scoreStmt.executeQuery(scoring);
-            String scoreString = "<table id=\"groups\" border=1><tr><th>Group Name</th><th>Points per km Ran</th><th>Points per km Cycled</th><th>Points per km Walked</th></tr>";
+            String scoreString = "<table id=\"groupskey\" border=1><tr><th>Group Name</th><th>Points per km Ran</th><th>Points per km Cycled</th><th>Points per km Walked</th></tr>";
             
             scoreRs.next();
             //creates table which acts as a key/legend for the group's scorecard
@@ -235,13 +265,32 @@ public class viewGroups extends HttpServlet {
         out.println("<html>");
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");  
-            
+           
+                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
+"  <a href=\"#news\">News</a>\n" +
+"  <a href=\"#contact\">Contact</a>\n" +
+"  <div class=\"dropdown\">\n" +
+"    <button class=\"dropbtn\">Blog\n" +
+"      <i class=\"fa fa-caret-down\"></i>\n" +
+"    </button>\n" +
+"    <div class=\"dropdown-content\">\n" +
+"      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
+"      <a href=\"blogHome.jsp\">FitRivals Blog</a>\n" +
+"      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"  <a href=\"#about\">About</a>\n" +
+"  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+"</div>");
+        
             //selects details of group's scoring system
             String scoring = "Select groupname,run_points,cycle_points,walk_points,strength_points from time_scoring_systems WHERE groupname = '"+groupname+"';";
             
+            out.println("<p class=\"headingkey\">"+groupname+": key/legend</p>");
             Statement scoreStmt = con.createStatement();
             ResultSet scoreRs = scoreStmt.executeQuery(scoring);
-            String scoreString = "<table id=\"groups\" border=1><tr><th>Group Name</th><th>Points per min Ran</th><th>Points per min Cycled</th><th>Points per min Walked</th><th>Points per min Strength</th></tr>";
+            String scoreString = "<table id=\"groupskey\" border=1><tr><th>Group Name</th><th>Points per min Ran</th><th>Points per min Cycled</th><th>Points per min Walked</th><th>Points per min Strength</th></tr>";
             
             scoreRs.next();
             //creates table which acts as a key/legend for the group's scorecard
@@ -342,6 +391,24 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");  
             
+                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
+"  <a href=\"#news\">News</a>\n" +
+"  <a href=\"#contact\">Contact</a>\n" +
+"  <div class=\"dropdown\">\n" +
+"    <button class=\"dropbtn\">Blog\n" +
+"      <i class=\"fa fa-caret-down\"></i>\n" +
+"    </button>\n" +
+"    <div class=\"dropdown-content\">\n" +
+"      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
+"      <a href=\"blogHome.jsp\">FitRivals Blog</a>\n" +
+"      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"  <a href=\"#about\">About</a>\n" +
+"  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+"</div>");
+        
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,time from "+groupname + " ORDER BY time desc;";
             
