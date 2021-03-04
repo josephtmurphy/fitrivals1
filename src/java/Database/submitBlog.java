@@ -36,7 +36,8 @@ public class submitBlog extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            
+            //gets the variables from submitBlog jsp
             String username = request.getParameter("name");
             String blog_type = request.getParameter("blog_type");
             String blog_title = request.getParameter("blog_title");
@@ -47,7 +48,7 @@ public class submitBlog extends HttpServlet {
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
-            //update SQL statement that will make the changes outlined from the jsp
+            //SQL statement that will add blog post to the table
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url) VALUES('"+username+"','"+blog_type+"','"+blog_title+"','"+blog_content+"','"+youtube_url+"');");
             

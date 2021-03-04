@@ -14,6 +14,28 @@ pageEncoding="ISO-8859-1"%>
     </head>
         
 <body>
+
+<%--Navigation bar--%>
+<div class="fixed">
+<div class="navbar" id="myTopnav">
+  <a href="homepage.jsp" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <div class="dropdown">
+    <button class="dropbtn">Blog
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="videosHome.jsp">Plans & Videos</a>
+      <a href="blogHome.jsp">FitRivals Blog</a>
+      <a href="submitBlog.jsp">Submit a Blog Post</a>
+    </div>
+  </div>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+</div>
+     
 <div class="topnav" id="myTopnav">
   <a href="homepage.jsp" class="active">Home</a>
   <a href="#news">News</a>

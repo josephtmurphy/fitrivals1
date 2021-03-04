@@ -19,8 +19,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-<div class="topnav" id="myTopnav">
+
+<%--Navigation bar--%>
+<div class="fixed">
+<div class="navbar" id="myTopnav">
   <a href="homepage.jsp" class="active">Home</a>
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
@@ -37,12 +39,13 @@
   <a href="#about">About</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
-
-<br/>        
-        
-<div class="header">
-  <h2>FitRivals Community Blog</h2>
 </div>
+
+    <br/>        
+        
+    <div class="header">
+        <h2>FitRivals Community Blog</h2>
+    </div>
 
 <%   
     //establishes connection to SQL database and fetches relevant user information   
@@ -55,6 +58,8 @@
 
 <%     
     while(rs.next()) {
+        
+        //prints the HTML code to display a blog made up of details from the SQL database
         out.println("<form action=\"votingSystem\" method=\"post\">");
         String str = "<div class=\"row\">"
             + "<div class=\"leftcolumn\">"
@@ -62,21 +67,25 @@
         
         str+= "<input type=\"text\" name=\"post_id\" value="+rs.getInt(1)+" readonly=\"readonly\"/><h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5><p>"+rs.getString(5)+"</p><p>Community Score: "+rs.getInt(7)+".</p>";
                     %>
-            <input hidden type="text" name="name" value="${user.username}" readonly="readonly"/>
+                    
+        <%--session handling--%> 
+        <input hidden type="text" name="name" value="${user.username}" readonly="readonly"/>
+        
             <%
         str += "</div>"
                 + "</div>"
                 + "</div>";
-    out.println(str);
-            out.println("<input type=\"submit\" name=\"upvote\" value=\"Upvote\"/>");
+    
+        out.println(str);
+        out.println("<input type=\"submit\" name=\"upvote\" value=\"Upvote\"/>");
         out.println("<input type=\"submit\" name=\"downvote\" value=\"Downvote\"/>");
-    out.println("</form>");        
+        out.println("</form>");        
     }
         
-            out.println("<br/>");     
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+        out.println("<br/>");     
+        out.println("<a href=\"homepage.jsp\">Return home</a>");
       
-            con.close();
+        con.close();
 %>
 
 

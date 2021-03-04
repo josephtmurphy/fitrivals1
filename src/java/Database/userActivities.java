@@ -62,23 +62,26 @@ public class userActivities extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");            
             
-                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
-"  <a href=\"homepage.jsp\">Home</a>\n" +
+        out.println("<%--Navigation bar--%>\n" +
+"<div class=\"fixed\">\n" +
+"<div class=\"navbar\" id=\"myTopnav\">\n" +
+"  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
 "  <a href=\"#news\">News</a>\n" +
 "  <a href=\"#contact\">Contact</a>\n" +
 "  <div class=\"dropdown\">\n" +
-"    <button class=\"dropbtn\" >Blog\n" +
+"    <button class=\"dropbtn\">Blog\n" +
 "      <i class=\"fa fa-caret-down\"></i>\n" +
 "    </button>\n" +
 "    <div class=\"dropdown-content\">\n" +
 "      <a href=\"videosHome.jsp\">Plans & Videos</a>\n" +
-"      <a href=\"blogHome.jsp\" class=\"active\">FitRivals Blog</a>\n" +
+"      <a href=\"blogHome.jsp\">FitRivals Blog</a>\n" +
 "      <a href=\"submitBlog.jsp\">Submit a Blog Post</a>\n" +
 "    </div>\n" +
 "  </div>\n" +
 "  <a href=\"#about\">About</a>\n" +
 "  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
-"</div>");
+"</div>\n" +
+"</div>\n");
         
         out.println("<br/>");            
             

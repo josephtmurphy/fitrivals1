@@ -67,7 +67,9 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");            
             
-        out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+        out.println("<%--Navigation bar--%>\n" +
+"<div class=\"fixed\">\n" +
+"<div class=\"navbar\" id=\"myTopnav\">\n" +
 "  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
 "  <a href=\"#news\">News</a>\n" +
 "  <a href=\"#contact\">Contact</a>\n" +
@@ -83,7 +85,8 @@ public class viewGroups extends HttpServlet {
 "  </div>\n" +
 "  <a href=\"#about\">About</a>\n" +
 "  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
-"</div>");
+"</div>\n" +
+"</div>\n");
         
         out.println("<br/>");
         
@@ -160,7 +163,9 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");              
             
-                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+        out.println("<%--Navigation bar--%>\n" +
+"<div class=\"fixed\">\n" +
+"<div class=\"navbar\" id=\"myTopnav\">\n" +
 "  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
 "  <a href=\"#news\">News</a>\n" +
 "  <a href=\"#contact\">Contact</a>\n" +
@@ -176,7 +181,8 @@ public class viewGroups extends HttpServlet {
 "  </div>\n" +
 "  <a href=\"#about\">About</a>\n" +
 "  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
-"</div>");
+"</div>\n" +
+"</div>\n");
         
             //selects details of group's scoring system
             String scoring = "Select groupname,run_points,cycle_points,walk_points from distance_scoring_systems WHERE groupname = '"+groupname+"';";
@@ -266,7 +272,9 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");  
            
-                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+        out.println("<%--Navigation bar--%>\n" +
+"<div class=\"fixed\">\n" +
+"<div class=\"navbar\" id=\"myTopnav\">\n" +
 "  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
 "  <a href=\"#news\">News</a>\n" +
 "  <a href=\"#contact\">Contact</a>\n" +
@@ -282,7 +290,8 @@ public class viewGroups extends HttpServlet {
 "  </div>\n" +
 "  <a href=\"#about\">About</a>\n" +
 "  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
-"</div>");
+"</div>\n" +
+"</div>\n");
         
             //selects details of group's scoring system
             String scoring = "Select groupname,run_points,cycle_points,walk_points,strength_points from time_scoring_systems WHERE groupname = '"+groupname+"';";
@@ -391,7 +400,9 @@ public class viewGroups extends HttpServlet {
         out.println("<head><title>Title Name</title>"+cssTag+"</head>");
         out.println("<body>");  
             
-                out.println("<div class=\"topnav\" id=\"myTopnav\">\n" +
+        out.println("<%--Navigation bar--%>\n" +
+"<div class=\"fixed\">\n" +
+"<div class=\"navbar\" id=\"myTopnav\">\n" +
 "  <a href=\"homepage.jsp\" class=\"active\">Home</a>\n" +
 "  <a href=\"#news\">News</a>\n" +
 "  <a href=\"#contact\">Contact</a>\n" +
@@ -407,7 +418,8 @@ public class viewGroups extends HttpServlet {
 "  </div>\n" +
 "  <a href=\"#about\">About</a>\n" +
 "  <a href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
-"</div>");
+"</div>\n" +
+"</div>\n");
         
             //SQL statement to get the data from the group's mySQL table
             String sql = "Select user_id,name,time from "+groupname + " ORDER BY time desc;";

@@ -15,9 +15,11 @@ and open the template in the editor.
     </head>
     
     <body>
-        
-<div class="topnav" id="myTopnav">
-  <a href="#home" class="active">Home</a>
+                
+<%--Navigation bar--%>
+<div class="fixed">
+<div class="navbar" id="myTopnav">
+  <a href="homepage.jsp" class="active">Home</a>
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
   <div class="dropdown">
@@ -30,12 +32,12 @@ and open the template in the editor.
       <a href="submitBlog.jsp">Submit a Blog Post</a>
     </div>
   </div>
-  <a href="#about">About</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
+    </div>
         
         <br/>
-      
+        <br/>
+        
         <h2>FitRivals Home</h2>
         <input type="text" name="loggedname" value="Welcome ${user.username}" readonly="readonly"/>
         <br/>

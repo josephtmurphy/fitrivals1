@@ -13,6 +13,28 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+
+<%--Navigation bar--%>
+<div class="fixed">
+<div class="navbar" id="myTopnav">
+  <a href="homepage.jsp" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <div class="dropdown">
+    <button class="dropbtn">Blog
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="videosHome.jsp">Plans & Videos</a>
+      <a href="blogHome.jsp">FitRivals Blog</a>
+      <a href="submitBlog.jsp">Submit a Blog Post</a>
+    </div>
+  </div>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+</div>
+         
         <h2>Create a group</h2>
         <p>Here, you can create your own FitRivals group.</p>
         <p>Just enter a name for the group, your own name/nickname within the group, and the focus of the group.</p>

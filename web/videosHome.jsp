@@ -20,7 +20,9 @@
     </head>
     <body>
         
-<div class="topnav" id="myTopnav">
+<%--Navigation bar--%>
+<div class="fixed">
+<div class="navbar" id="myTopnav">
   <a href="homepage.jsp" class="active">Home</a>
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
@@ -37,6 +39,7 @@
   <a href="#about">About</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
+    </div>
 
 <br/>        
         
@@ -54,23 +57,31 @@
 %>        
         
 <%     
+    //prints all the video type entries from user submissions
     while(rs.next()) {
         out.println("<form action=\"votingSystem\" method=\"post\">");
+        //begins to create a HTML string which will form the basis for the video blog
         String str = "<div class=\"row\">"
             + "<div class=\"leftcolumn\">"
             + "<div class=\"card\">";
         
-        str+= "<input type=\"text\" name=\"post_id\" value="+rs.getInt(1)+" readonly=\"readonly\"/><h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5>"+rs.getString(6)+"<p>"+rs.getString(5)+"</p><p>Community Score: "+rs.getInt(7)+".</p>";
+        //result set items are the items from the SQL table containing blog submissions
+        str+= "<input hidden type=\"text\" name=\"post_id\" value="+rs.getInt(1)+" readonly=\"readonly\"/><h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5>"+rs.getString(6)+"<p>"+rs.getString(5)+"</p><p>Community Score: "+rs.getInt(7)+".</p>";
                     %>
+                    
+            <%--this is here for session handling--%>
             <input hidden type="text" name="name" value="${user.username}" readonly="readonly"/>
+            
             <%
         str += "</div>"
                 + "</div>"
                 + "</div>";
-    out.println(str);
-                out.println("<input type=\"submit\" name=\"upvote\" value=\"Upvote\"/>");
+        out.println(str);
+        
+        //upvote and downvote icons
+        out.println("<input type=\"submit\" name=\"upvote\" value=\"Upvote\"/>");
         out.println("<input type=\"submit\" name=\"downvote\" value=\"Downvote\"/>");
-    out.println("</form>");        
+        out.println("</form>");        
     }
     
         

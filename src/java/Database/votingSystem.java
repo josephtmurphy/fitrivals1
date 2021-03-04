@@ -37,37 +37,46 @@ public class votingSystem extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
       
-      String post_id = request.getParameter("post_id");
-      String username = request.getParameter("name");
+        //gets variables from the jsp
+        String post_id = request.getParameter("post_id");
+        String username = request.getParameter("name");
       
-                  //db connection
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
+        //db connection
+        dbcon db = new dbcon();
+        Connection con = db.getCon();
     
     if (request.getParameter("upvote") != null) {
         //upvote button is clicked
-            //updates user table to current values, logs record of change into separate physique table
-            Statement stmt = con.createStatement();
+        Statement stmt = con.createStatement();
+            
+            //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
             stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
-            + "SELECT "+post_id+",'"+username+"',1 "
-            + "FROM DUAL "
-            + "WHERE NOT EXISTS (SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = 1)");   
+                + "SELECT "+post_id+",'"+username+"',1 "
+                + "FROM DUAL "
+                + "WHERE NOT EXISTS "
+                + "(SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = 1)");   
+            
+            //updates the score on the post so it can be reflected in the jsp
+            
             stmt.executeUpdate("update blog_submissions set score = "
-            + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
+                + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
             //success statement
             out.println(username +", you upvoted this post.");
             out.println("<a href=\"blogHome.jsp\">Return to blog</a>");             
             
     } else if (request.getParameter("downvote") != null) {
           //downvote button is clicked
-            //updates user table to current values, logs record of change into separate physique table
-            Statement stmt = con.createStatement();
+          Statement stmt = con.createStatement();
+            
+            //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
             stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
-            + "SELECT "+post_id+",'"+username+"',-1 "
-            + "FROM DUAL "
-            + "WHERE NOT EXISTS (SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = -1)");   
+                + "SELECT "+post_id+",'"+username+"',-1 "
+                + "FROM DUAL "
+                + "WHERE NOT EXISTS (SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = -1)");   
+            //updates the score on the post so it can be reflected in the jsp
+            
             stmt.executeUpdate("update blog_submissions set score = "
-            + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
+                + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
             //success statement
             out.println(username +", you downvoted this post.");
             out.println("<a href=\"blogHome.jsp\">Return to blog</a>");              
