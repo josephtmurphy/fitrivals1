@@ -37,7 +37,6 @@
         </div>        
     </head>
 
-    <body>
         <div id="allgroups">
         <br/>
         <div id="create" class="groupdiv">
@@ -46,67 +45,18 @@
             <h2>Create a group here:</h2>
             <label for="groupname"><b>Group Name:</b></label>
             <input type="text" name="groupname" placeholder="Group Name"/>
-            <br/>
             <label for="name"><b>Username:</b></label>
-            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-            
+            <input type="text" name="name" value="${user.username}" readonly="readonly"/>      
             <label for="grouptype"><b>Group Type:</b></label>
             <select name="grouptype1" id="grouptype">
             <option>Distance</option>
             <option>Time</option>
             </select>
-
             <input type="submit" value="Create Group"/>
-
             </pre>
         </form>            
         </div>
-            
-        <div id="score" class="groupdiv">
-                        <h2>Create a "score" group here:</h2>
-            <div class="dscore">
-        <form action="createScoreGroup" method="post">
-            <pre>
-            <%--insert the values you want your group to weigh towards different activities--%>
-            <h3>Score Group - Distance</h3>
-            <input type="text" name="groupname" placeholder="Group Name"/>
-            <br/>
-            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-            <br/>
-            <input type="number" name="run_points" placeholder="Points per KM Ran"/>
-            <br/>
-            <input type="number" name="cycle_points" placeholder="Points per KM Cycled"/>
-            <br/>
-            <input type="number" name="walk_points" placeholder="Points per KM Walked"/>
-            <br/>
-            <input type="submit" value="Create Group"/>
-            <br/>
-            </pre>
-        </form>
-            </div>
-            
-            <div class="dscore">
-        <form action="createScoreGroup2" method="post">
-            <pre>
-            <h3>Score Group - Time</h3>
-            <input type="text" name="groupname" placeholder="Group Name"/>
-            <br/>
-            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-            <br/>
-            <input type="number" name="run_points" placeholder="Points per minute Ran"/>
-            <br/>
-            <input type="number" name="cycle_points" placeholder="Points per minute Cycled"/>
-            <br/>
-            <input type="number" name="walk_points" placeholder="Points per minute Walked"/>
-            <br/>
-            <input type="number" name="strength_points" placeholder="Points per minute Strength"/>
-            <br/>
-            <input type="submit" value="Create Group"/>
-
-            </pre>
-        </form>            
-            </div>
-        </div>            
+               
             
         <div id="join" class="groupdiv">
         <form action="joinGroup" method="post">
@@ -114,17 +64,13 @@
             <h2>Join a group here:</h2>
             <label for="groupname"><b>Group Name:</b></label>
             <input type="text" name="groupname" placeholder="Group Name"/>
-            <br/>
             <label for="name"><b>Username:</b></label>
             <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-            <br/>
-
             <label for="grouptype"><b>Group Type:</b></label>
             <select name="grouptype1" id="grouptype">
             <option>Distance</option>
             <option>Time</option>
             </select>
-
             <input type="submit" value="Join"/>
             </pre>
         </form>                
@@ -133,9 +79,8 @@
         <div id="view" class="groupdiv">
         <form action="viewGroups" method="POST">
             <pre>
-            <h2>View the standings in your groups here:</h2>
+            <h2>View your groups here:</h2>
             <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
-    
 <%   
     try {
     dbcon db = new dbcon();
@@ -167,5 +112,49 @@ out.println(sqe);
             </div>
         </form>                
         </div>
+        <div id="score" class="biggroupdiv">
+                        <h2>Create a "score" group here:</h2>
+            <div class="dscore">
+        <form action="createScoreGroup" method="post">
+            <pre>
+            <%--insert the values you want your group to weigh towards different activities--%>
+            <h3>Score Group - Distance</h3>
+            <input type="text" name="groupname" placeholder="Group Name"/>
+            <br/>
+            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
+            <br/>
+            <input type="number" name="run_points" placeholder="Points per KM Ran"/>
+            <br/>
+            <input type="number" name="cycle_points" placeholder="Points per KM Cycled"/>
+            <br/>
+            <input type="number" name="walk_points" placeholder="Points per KM Walked"/>
+            <br/>
+            <input type="submit" value="Create Group"/>
+            <br/>
+            </pre>
+        </form>
+            </div>            
+            <div class="dscore">
+        <form action="createScoreGroup2" method="post">
+            <pre>
+            <h3>Score Group - Time</h3>
+            <input type="text" name="groupname" placeholder="Group Name"/>
+            <br/>
+            <input type="text" name="name" value="${user.username}" readonly="readonly"/>
+            <br/>
+            <input type="number" name="run_points" placeholder="Points per minute Ran"/>
+            <br/>
+            <input type="number" name="cycle_points" placeholder="Points per minute Cycled"/>
+            <br/>
+            <input type="number" name="walk_points" placeholder="Points per minute Walked"/>
+            <br/>
+            <input type="number" name="strength_points" placeholder="Points per minute Strength"/>
+            <br/>
+            <input type="submit" value="Create Group"/>
+            </pre>
+        </form>            
+            </div>
+        </div>                    
+            
     </body>
 </html>

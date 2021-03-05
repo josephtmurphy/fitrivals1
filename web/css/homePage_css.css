@@ -16,31 +16,59 @@
     text-align: center;
     margin-bottom: 10px;
     margin-top: 10px;
+    float: left;
+    width: 365px;
+    height: 450px;
+    display: inline-block; 
+   
+}
+
+.biggroupdiv {
+    border: 3px solid darkred;
+    font-family: "Arial", Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    float: left;
+    width: 1111px;
+    height: 450px;
+   
+}
+
+.activitydiv {
+    border: 3px solid darkgreen;
+    font-family: "Arial", Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    float: left;
+    width: 365px;
+    height: 500px;
+    display: inline-block;
 }
 
 .dscore {
     display: inline-block;
-    border: 1px solid;
+    border: 2px solid green;
     margin: 15px;
     padding: 10px;
     text-align: center;
+    width: 250px;
+    height: 350px;
 }
 
 #allgroups h2 {
-    color: darkred;
+    color: darkblue;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 20px;
     font-family: 'Trebuchet MS', sans-serif;
-    line-height: 0px;
-}
-
-#allgroups h3 {
-    color: purple;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: 'Trebuchet MS', sans-serif;
-    line-height: 0px;
-    margin-top: 0px; 
+    display: block;
+    margin : 0 auto;
+    margin-top: 10px;
 }
 
 #allgroups submit {
@@ -49,7 +77,50 @@
     font-size: 15px;
     font-family: 'Trebuchet MS', sans-serif;
     line-height: 0px;
-    margin-top: 0px; 
+    margin-top: 0px;     
+}
+
+#allgroups h3 {
+    color: purple;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Trebuchet MS', sans-serif;
+    line-height: 0px;
+    margin-top: 5px;
+}
+
+#allgroups input[type="text"] {
+    display: block;
+    margin : 0 auto;
+    line-height: 0px;
+    margin-top: 0px;
+}
+
+#allgroups select {
+    display: block;
+    margin : 0 auto;
+    line-height: 0px;
+    margin-top: 0px;    
+}
+
+#allgroups input[type="number"] {
+    display: block;
+    margin : 0 auto;
+    line-height: 0px;
+    margin-top: 0px;    
+}
+
+#allgroups input[type="submit"] {
+    display: block;
+    margin : 0 auto;
+    line-height: 0px;
+    margin-top: 0px;    
+}
+
+#allgroups label {
+    display: block;
+    margin: 0 auto;
+    line-height: 0px;
 }
 
 /* Navbar container */
@@ -132,6 +203,7 @@
 body {
     margin-left: 20px;
     margin-top: 20px;
+    background-image: url("images/orange.jpg");
 }
 
 .homepagedivs {

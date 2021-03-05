@@ -36,11 +36,12 @@
         </div>
         </div>        
     </head>
-
+    
     <body>
-        <div id="allactivities">
+        <div id="allgroups">
         <br/>
-        <div id="cardio" class="groupdiv">
+        <div style="background-image: url('images/runninggroup.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;" id="cardio" class="activitydiv">
+            <h2>Log a cardio training session here:</h2>
         <form action="createCardio" method="post">
             <pre>
         <%   
@@ -50,48 +51,48 @@
     String username = request.getParameter("loggedname");
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
-        %>
-        <p>Select Group:
-        <select name="groupname" id="groupname">
-        <%
-    while(rs.next()) {
-    String groupname = rs.getString(3); 
-        %>
-        <option value="<%=groupname %>"><%=groupname %></option>
-        <%
+        %>   
+<label for="groupname"><b>Group name:</b></label>
+<select name="groupname" id="groupname">
+<%
+while(rs.next()) {
+String groupname = rs.getString(3); 
+%>
+<option value="<%=groupname %>"><%=groupname %></option>
+<%
 }
-        %>
-        </select>
-            <br/>
+%>
+</select>       
+            <label for="name">Username:</label>
             <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-
-            <h2>Activity Details:</h2>
+            <label for="activityType">Activity Type:</label>
             <select name="activityType" id="activitytype">
             <option>Run</option>
             <option>Walk</option>
             <option>Cycle</option>
-            </select>
-
-            <input type="number" name="distance" placeholder="Distance (km)"/>
-            
+            </select>          
+            <label for="distance">Distance (km):</label>
+            <input type="number" name="distance" placeholder="Distance (km)"/>          
+            <label for="time">Time (mins):</label>
             <input type="number" name="time" placeholder="Time (mins)"/>
-
-            <input type="text" name="comment" placeholder="Your comment on this activity..."/>
-
+            <label for="comment">Your comment on this activity:</label>
+            <input type="text" name="comment" placeholder="Your comment..."/>
             <input type="submit" value="Log Activity"/>
+
 <%
-}
-catch(SQLException sqe)
-{ 
-out.println(sqe);
-}
+    }
+        catch(SQLException sqe)
+    { 
+        out.println(sqe);
+    }
 %>
+            
             </pre>
         </form>       
         </div>
             
-        <div id="score" class="groupdiv">
-                        <h2>Create a "score" group here:</h2>
+        <div style="background-image: url('images/gymgroup.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;" id="strength" class="activitydiv">
+                        <h2>Log a strength training session here:</h2>
         <form action="createStrength" method="post">
             <pre>
 <%   
@@ -102,7 +103,7 @@ out.println(sqe);
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
 %>
-<p>Select Group:
+<label for="groupname">Group Name:</label>
 <select name="groupname" id="groupname">
 <%
 while(rs.next()) {
@@ -113,10 +114,9 @@ String groupname = rs.getString(3);
 }
 %>
 </select>
-            <br/>
+            <label for="name">Username:</label>
             <input type="text" name="name" value="${user.username}" readonly="readonly"/>
-
-            <h3>Muscle Group Worked:</h3>
+            <label for="muscleGroup1">Muscle Group Worked:</label>
             <select name="muscleGroup1" id="muscleGroup1">
             <option>Arms</option>
             <option>Back</option>
@@ -125,8 +125,7 @@ String groupname = rs.getString(3);
             <option>Shoulders</option>
             <option>Full Body</option>
             </select>
-
-            <h3>Secondary Muscle Group Worked:</h3>
+            <label for="muscleGroup2">Secondary Muscle Group Worked:</label>
             <select name="muscleGroup2" id="muscleGroup2">
             <option></option>
             <option>Arms</option>
@@ -134,28 +133,24 @@ String groupname = rs.getString(3);
             <option>Chest</option>
             <option>Legs</option>
             <option>Shoulders</option>
-            </select>
-            
-            <h3>Activity Details</h3>
-            <input type="number" name="time" placeholder="Time (mins)"/>
-
-            <input type="text" name="comment" placeholder="Your comment on this activity..."/>
-<%
-}
+            </select>      
+            <label for="time"><b>Time (mins):</b></label>
+            <input type="number" name="time" placeholder="Time (mins)"/>      
+            <label for="comment"><b>Your comment on this activity:</b></label>
+            <input type="text" name="comment" placeholder="Your comment..."/>
+            <input type="submit" value="Log Activity"/>
+<%}
 catch(SQLException sqe)
 { 
 out.println(sqe);
-}
-%>
-            <input type="submit" value="Log Activity"/>
-
+} %>
             </pre>
         </form>
         </div>            
             
-        <div id="join" class="groupdiv">
+        <div style="background-image: url('images/encouragement.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;" id="comment" class="activitydiv">
+            <h2>Write a comment in a group here:</h2>
         <form action="writeComment" method="post">
-        <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
             <pre>
 <%   
     try {
@@ -164,10 +159,8 @@ out.println(sqe);
     String username = request.getParameter("loggedname");
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
-%>
-            <br/>
-
-<p>Select Group:
+%>     
+<label for="groupname"><b>Group name:</b></label>
 <select name="groupname" id="groupname">
 <%
 while(rs.next()) {
@@ -177,9 +170,12 @@ String groupname = rs.getString(3);
 <%
 }
 %>
-</select>
-            
+</select>          
+            <label for="name12">Username:</label>
+            <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
+            <label for="comment"><b>Your comment:</b></label>
             <input type="text" name="comment" placeholder="Your comment..."/>
+            <input type="submit" value="Post Comment"/>
 <%
 }
 catch(SQLException sqe)
@@ -187,48 +183,13 @@ catch(SQLException sqe)
 out.println(sqe);
 }
 %>            
-            <input type="submit" value="Post Comment"/>
-
+            
             </pre>
         </form>     
         </div>
-            
-        <div id="view" class="groupdiv">
-        <form action="viewGroups" method="POST">
-            <pre>
-            <h2>View the standings in your groups here:</h2>
-            <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
     
-<%   
-    try {
-    dbcon db = new dbcon();
-    Connection con = db.getCon();
-    String username = request.getParameter("loggedname");
-    Statement stmt = con.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
-%>
-            <label for="groupname"><b>Select Group:</b></label>
-            <select name="groupname" id="groupname">
-<%
-while(rs.next()) {
-String groupname = rs.getString(3); 
-%>
-            <option value="<%=groupname %>"><%=groupname %></option>
-<%
-}
-%>
-            </select>
-<%
-}
-catch(SQLException sqe)
-{ 
-out.println(sqe);
-}
-%>
-            <input type="submit" value="View"/>
-            </pre>
-            </div>
-        </form>                
-        </div>
+        
+    
+        
     </body>
 </html>
