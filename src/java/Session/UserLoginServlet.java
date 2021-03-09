@@ -46,7 +46,7 @@ public class UserLoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                destPage = "homepage.jsp";
+                destPage = "index_1.html";
             } else {
                 String message = "Invalid email/password";
                 request.setAttribute("message", message);

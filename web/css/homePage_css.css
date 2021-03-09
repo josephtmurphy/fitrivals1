@@ -62,13 +62,14 @@
 }
 
 #allgroups h2 {
-    color: darkblue;
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 20px;
     font-family: 'Trebuchet MS', sans-serif;
     display: block;
     margin : 0 auto;
     margin-top: 10px;
+    text-shadow: 2px 2px #000000;
 }
 
 #allgroups submit {

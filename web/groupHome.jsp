@@ -39,7 +39,7 @@
 
         <div id="allgroups">
         <br/>
-        <div id="create" class="groupdiv">
+        <div id="create" class="groupdiv" style="background-color: lightblue;">
         <form action="createGroup" method="post">
             <pre>
             <h2>Create a group here:</h2>
@@ -58,7 +58,7 @@
         </div>
                
             
-        <div id="join" class="groupdiv">
+        <div id="join" class="groupdiv" style="background-color: pink;">
         <form action="joinGroup" method="post">
             <pre>
             <h2>Join a group here:</h2>
@@ -76,7 +76,7 @@
         </form>                
         </div>
             
-        <div id="view" class="groupdiv">
+        <div id="view" class="groupdiv" style="background-color: yellowgreen;">
         <form action="viewGroups" method="POST">
             <pre>
             <h2>View your groups here:</h2>
@@ -112,7 +112,7 @@ out.println(sqe);
             </div>
         </form>                
         </div>
-        <div id="score" class="biggroupdiv">
+        <div id="score" class="biggroupdiv" style="background-color: blueviolet;">
                         <h2>Create a "score" group here:</h2>
             <div class="dscore">
         <form action="createScoreGroup" method="post">

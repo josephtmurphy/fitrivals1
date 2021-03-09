@@ -144,7 +144,7 @@ public class viewGroups extends HttpServlet {
             out.println(str3);
             
             out.println("<br/>");     
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"welcomeHome.jsp\">Return home</a>");
             
             con.close();
             
@@ -253,7 +253,7 @@ public class viewGroups extends HttpServlet {
             out.println(str3);
             
             out.println("<br/>");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"welcomeHome.jsp\">Return home</a>");
             
             con.close();
             
@@ -381,7 +381,7 @@ public class viewGroups extends HttpServlet {
             out.println(str3);
             
             out.println("<br/>");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"welcomeHome.jsp\">Return home</a>");
             
             con.close();
             
@@ -493,7 +493,7 @@ public class viewGroups extends HttpServlet {
             out.println(str3);
             
             out.println("<br/>");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"welcomeHome.jsp\">Return home</a>");
             
             con.close();
             
