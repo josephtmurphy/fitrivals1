@@ -44,6 +44,7 @@
             <h2>Log a cardio training session here:</h2>
         <form action="createCardio" method="post">
             <pre>
+            <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
         <%   
     try {
     dbcon db = new dbcon();

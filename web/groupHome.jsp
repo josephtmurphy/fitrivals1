@@ -52,7 +52,7 @@
             <option>Distance</option>
             <option>Time</option>
             </select>
-            <input type="submit" value="Create Group"/>
+            <a class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit">Create Group</a>
             </pre>
         </form>            
         </div>
