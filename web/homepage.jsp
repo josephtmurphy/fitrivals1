@@ -119,7 +119,7 @@ and open the template in the editor.
         
         <br/>
         
-        <form action="userActivities">
+        <form action="useractivities1">
         <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
         <input class="button3" type="submit" value="Your Activity Summary"/>
         </form>        

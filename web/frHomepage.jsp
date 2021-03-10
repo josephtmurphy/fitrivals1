@@ -1,5 +1,5 @@
 <%-- 
-    Document   : testnewstuff
+    Document   : frHomepage
     Created on : 09-Mar-2021, 14:12:11
     Author     : josep
 --%>
@@ -98,6 +98,7 @@
                         <p class="text-muted mb-0">Our upvote/downvote system leaves it to you to decide which posts get seen!</p>
                     </div>
                 </div>
+                <a class="btn btn-light btn-xl js-scroll-trigger" role="button" href="blogHome.jsp">Take me to Blog!</a>
             </div>
         </div>
     </section>
@@ -145,18 +146,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 text-center mx-auto">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <h2 class="section-heading">All About You!</h2>
                     <hr class="my-4">
-                    <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                    <p class="mb-5">You can also view some of your own statistics! You can update body composition and view your updates, as well as a dashboard of your own logged sessions.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 text-center ml-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                    <p>123-456-6789</p>
+                <div class="col-lg-4 text-center ml-auto"><i class="fa fa-bar-chart fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
+                    <p><a href="updatePhysique.jsp">Update your physical stats</a></p>
                 </div>
-                <div class="col-lg-4 text-center mr-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
-                    <p><a href="mailto:your-email@your-domain.com">email@example.com</a></p>
+                <div class="col-lg-4 text-center mr-auto"><i class="fa fa-dashboard fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                    <p><a href="updateAccount.jsp">View a log of your workout activity and body updates</a></p>
                 </div>
+                <div class="col-lg-4 text-center mr-auto"><i class="fa fa-cogs fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                    <p><a href="updateAccount.jsp">Your account information</a></p>
+                </div>                
             </div>
         </div>
     </section>

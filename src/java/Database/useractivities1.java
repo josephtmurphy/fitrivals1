@@ -1,12 +1,10 @@
-package Database;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Database;
 
-import Database.dbcon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -24,29 +22,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class userActivities extends HttpServlet {
+public class useractivities1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param str
      * @param request servlet request
      * @param response servlet response
-     * @return
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
-    
-    //helps to differentiate between comments and activities in the log when they are being printed
-    public static boolean isNullOrEmpty(String str) {
-        if(str != null && !str.isEmpty())
-            return false;
-        return true;
-    }
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         //gets the logged username to handle session
         String username = request.getParameter("loggedname");
         
@@ -81,7 +70,7 @@ public class userActivities extends HttpServlet {
 "                </ul>\n" +
 "            </div>\n" +
 "        </div>\n" +
-"    </nav>    <header class=\"text-center text-white\" style=\"background-color: hotpink;\">\n" +
+"    </nav>    <header class=\"text-center text-white\" style=\"background-color: lightseagreen;\">\n" +
 "        <div class=\"container my-auto\">\n" +
 "            <div class=\"row\">\n" +
 "                <div class=\"col-lg-10 mx-auto\">\n";          
@@ -92,7 +81,7 @@ public class userActivities extends HttpServlet {
             //1. HTML code to create a table to display the users physique logs/updates
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql1);
-            String str1 = "<p class=\"useractivityheading\">Your physique updates</p><table id=\"summary\" border=1><tr><th>Name</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
+            String str1 = "<br/><br/><br/><h1 class=\"text-uppercase\"><strong>Your physique updates</strong></h1><table id=\"summary\" border=1><tr><th>Name</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
             
             //prints table of physique updates
             while(rs.next()) {
@@ -117,7 +106,7 @@ public class userActivities extends HttpServlet {
             
             //1. HTML code to create a table to display the activity data
             ResultSet rs2 =  stmt.executeQuery(sql2);
-            String str3 = "<p class=\"useractivityheading\">Your cardio activity</p><table id=\"summary\" border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Distance (km)</th><th>Time (min)</th><th>Comment</th></tr>";
+            String str3 = "<h1 class=\"text-uppercase\"><strong>Your cardio activity</strong></h1><table id=\"summary\" border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Distance (km)</th><th>Time (min)</th><th>Comment</th></tr>";
             
             //prints table
             while(rs2.next()) {
@@ -160,7 +149,7 @@ public class userActivities extends HttpServlet {
             
             //1. HTML code to create a table to display the users strength activity data
             ResultSet rs8 =  stmt.executeQuery(sql8);
-            String str7 = "<p class=\"useractivityheading\">Your strength activity</p><table id=\"summary\" border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Muscles Worked</th><th>Time (mins)</th><th>Comment</th></tr>";
+            String str7 = "<h1 class=\"text-uppercase\"><strong>Your strength activity</strong></h1><table id=\"summary\" border=1><tr><th>Name</th><th>Group</th><th>Activity Type</th><th>Muscles Worked</th><th>Time (mins)</th><th>Comment</th></tr>";
             
             //prints table
             while(rs8.next()) {
@@ -214,9 +203,8 @@ public class userActivities extends HttpServlet {
         
        } catch (SQLException ex) {
             Logger.getLogger(useractivities1.class.getName()).log(Level.SEVERE, null, ex);
-        }           
-
-}
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -227,6 +215,7 @@ public class userActivities extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -240,6 +229,7 @@ public class userActivities extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
