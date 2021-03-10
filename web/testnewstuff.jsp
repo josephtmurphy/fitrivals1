@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -25,35 +26,40 @@
         <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Groups</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Activity</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <header class="text-center text-white d-flex masthead" style="background-image:url('assets/img/header.jpg');">
+    <header class="text-center text-white d-flex masthead" style="background-image:url('assets/img/header12.jpeg');">
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase"><strong>Your Favorite Source of Free Bootstrap Themes</strong></h1>
+                    <h1 class="text-uppercase"><strong>Welcome to FitRivals!</strong></h1>
                     <hr>
                 </div>
             </div>
             <div class="col-lg-8 mx-auto">
-                <p class="text-faded mb-5">We can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Find Out More</a>
+                <p class="text-faded mb-5">Our goal is to help you stay motivated and consistent with your exercise by creating an atmosphere of camarederie, competition and community.</p>
+                <input type="text" name="loggedname" value="${user.username}" hidden readonly="readonly"/><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Find Out More</a>
             </div>
         </div>
     </header>
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
+                <form action="groupHomepage.jsp">
                 <div class="col offset-lg-8 text-center mx-auto">
-                    <h2 class="text-white section-heading">We've got what you need!</h2>
+                    <h2 class="text-white section-heading">Better together!</h2>
                     <hr class="light my-4">
-                    <p class="text-faded mb-4">Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes are open source, free to download, and easy to use. No strings attached!</p><a class="btn btn-light btn-xl js-scroll-trigger" role="button" href="#services">Get Started!</a>
+                    <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
+                    <input type="submit" value="Go"/>
+                    <p class="text-faded mb-4">Our application thrives off the group dynamic. Here, you can access multiple group activities: whether you want to create, join, or view the standings in a group, you can do it here!</p><a class="btn btn-light btn-xl js-scroll-trigger" role="button" href="groupHome.jsp">Take me to Groups!</a>
                 </div>
+                </form>
             </div>
         </div>
     </section>
@@ -61,7 +67,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">FitRivals Community</h2>
                     <hr class="my-4">
                 </div>
             </div>
@@ -69,89 +75,70 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-diamond fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">Sturdy Templates</h3>
-                        <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-globe fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">Our Community</h3>
+                        <p class="text-muted mb-0">We want to cultivate community across all users, not just within private groups.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">Ready to Ship</h3>
-                        <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-pencil fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">FitRivals Blog</h3>
+                        <p class="text-muted mb-0">Have any helpful tips or stories that you think are worth sharing? Share them with the FitRivals blog!</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
-                        <h3 class="mb-3">Up to Date</h3>
-                        <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-video-camera fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+                        <h3 class="mb-3">Videos Hub</h3>
+                        <p class="text-muted mb-0">We offer a video hub for YouTube clips that are informational, motivational, or even personal vlogs.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
-                        <h3 class="mb-3">Made with Love</h3>
-                        <p class="text-muted mb-0">You have to make your websites with love these days!</p>
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-thumbs-up fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+                        <h3 class="mb-3">User Moderated</h3>
+                        <p class="text-muted mb-0">Our upvote/downvote system leaves it to you to decide which posts get seen!</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section id="portfolio" class="p-0">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters popup-gallery">
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/1.jpg"><img class="img-fluid" src="assets/img/thumbnails/1.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/2.jpg"><img class="img-fluid" src="assets/img/thumbnails/2.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/3.jpg"><img class="img-fluid" src="assets/img/thumbnails/3.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/4.jpg"><img class="img-fluid" src="assets/img/thumbnails/4.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/5.jpg"><img class="img-fluid" src="assets/img/thumbnails/5.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/fullsize/6.jpg"><img class="img-fluid" src="assets/img/thumbnails/6.jpg">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Category</span></div>
-                                <div class="project-name"><span>Project Name</span></div>
-                            </div>
-                        </div>
-                    </a></div>
             </div>
         </div>
     </section>
     <section class="text-white bg-dark">
+        <form action="activityHomepage.jsp">
         <div class="container text-center">
-            <h2 class="mb-4">Lorem Ipsum!</h2><a class="btn btn-light btn-xl sr-button" role="button" data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" href="#">Download Now!</a>
+            <h2 class="mb-4">Want to log a session?</h2>
+            <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
+            <p>Do it here!</p><a class="btn btn-light btn-xl sr-button" role="button" data-aos="zoom-in" data-aos-duration="400" data-aos-once="true">Log a Workout</a>
+            <input type="submit" value="Go"/>
+        </div>
+        </form>
+    </section>    
+    <section id="portfolio" class="p-0">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters popup-gallery">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="images/runninggroup.jpg"><img class="img-fluid" src="images/runninggroup.jpg" style="height: 300px; width: 100%;">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded"><span>Cardio</span></div>
+                                <div class="project-name"><span>Log a Cardio Activity</span></div>
+                            </div>
+                        </div>
+                    </a></div>
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="images/gymgroup.jpg"><img class="img-fluid" src="images/gymgroup.jpg" style="height: 300px; width: 100%;">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded"><span>Strength</span></div>
+                                <div class="project-name"><span>Log a Strength Activity</span></div>
+                            </div>
+                        </div>
+                    </a></div>
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="images/encouragement.jpg"><img class="img-fluid" alt="comment" src="images/encouragement.jpg" style="height: 300px; width: 100%;">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded"><span>Comments</span></div>
+                                <div class="project-name"><span>Write a Comment</span></div>
+                            </div>
+                        </div>
+                    </a></div>
+            </div>
         </div>
     </section>
     <section id="contact">

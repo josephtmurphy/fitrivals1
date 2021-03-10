@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -211,10 +212,9 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + minScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
-                
-                }         
+                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
+                out.println("<a href=\"homepage.jsp\">Return home</a>");                
+                }
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

@@ -27,7 +27,7 @@
 
 <body id="page-top">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="testnewstuff.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Groups</a></li>
@@ -59,7 +59,7 @@
                     <h2 class="text-white section-heading">Cardio Workouts</h2>         
                     <hr class="light my-4">
                     <p class="text-faded mb-4">Select the group you wish to write the activity to, and then enter a distance (km), time (minutes), and a comment to be displayed in your group.</p>
-                    <form action="createCardio">        
+                    <form action="createCardio">
         <%   
     try {
     dbcon db = new dbcon();
@@ -81,8 +81,8 @@ String groupname = rs.getString(3);
 </select>    
                         <br/>
                         <br/>
-            <label for="username">Username:</label>
-            <input type="text" value="${user.username}" readonly/>
+            <label for="name">Username:</label>
+            <input type="text" name="name" value="${user.username}" readonly/>
                         <br/>
                         <br/>
             <label for="activityType">Activity Type:</label>
@@ -106,6 +106,7 @@ String groupname = rs.getString(3);
                         <br/>
                         <br/>            
                         <a class="btn btn-light btn-xl js-scroll-trigger" role="button" tyepe="submit">Log Activity</a>
+                        <input type="submit" value="go"/>
                         <%
     }
         catch(SQLException sqe)
@@ -241,7 +242,8 @@ out.println(sqe);
             <br/>
             <br/>          
             <a class="btn btn-light btn-xl sr-button" role="button" data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" href="activityHome.jsp">View Group</a>
-        </form>
+        <input type="submit" value="go"/>
+            </form>
         </div>
     </section>    
     <section id="contact">

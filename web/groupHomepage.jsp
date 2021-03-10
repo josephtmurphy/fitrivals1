@@ -60,11 +60,11 @@
                     <p class="text-faded mb-4">To create a group, entire your desired group name below, and then select what criteria you want it to be ranked by (i.e., total distance covered, total time spent on activities).</p>
                     <form action="createGroup">
                         <label class="text-faded mb-4" for="groupname">Group name:</label>
-                        <input type="text" placeholder="groupname"/>
+                        <input type="text" name="groupname" placeholder="groupname"/>
                         <br/>
                         <br/>
                         <label class="text-faded mb-4" for="username">Username:</label>
-                        <input type="text" value="username" readonly/>
+                        <input type="text" name="name" value="${user.username}" readonly/>
                         <br/>
                         <br/>
                         <label class="text-faded mb-4" for="grouptype1">Group type:</label>
@@ -75,6 +75,7 @@
                         <br/>
                         <br/>
                         <a class="btn btn-light btn-xl js-scroll-trigger" role="button" tyepe="submit">Create Group</a>
+                        <input type="submit" value="go"/>
                     </form>
             
                 </div>
@@ -118,6 +119,7 @@
         <div class="container text-center">
             <i class="fa fa-users fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
             <h2 class="mb-4">View your Groups</h2>
+            <form action="viewGroups">
             <p>To see the current standings in your groups, select a group from the dropdown below!</p>
                         <input type="text" hidden name="name12" value="${user.username}" readonly="readonly"/>
 <%   
@@ -150,6 +152,8 @@ out.println(sqe);
             <br/>
             <br/>
             <a class="btn btn-light btn-xl sr-button" role="button" data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" href="activityHome.jsp">View Group</a>
+            <input type="submit" value="go"/>
+        </form>
         </div>
     </section>    
     <section id="contact">
