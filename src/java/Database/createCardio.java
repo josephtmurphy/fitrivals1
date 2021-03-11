@@ -5,6 +5,7 @@
  */
 package Database;
 
+import Session.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,10 +14,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,6 +51,8 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
                 int distance = Integer.parseInt(request.getParameter("distance"));
@@ -63,15 +68,15 @@ public class createCardio extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + time + "','" + distance + "','" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + time + "','" + distance + "','" + comment + "');");               
                 
-                //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         } 
         
         //SCORE if statement
@@ -106,13 +111,15 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + kmScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
                 }
                 
                 if (activityType.startsWith("C")) {
                 //ties the logged activity in with the scoring system 
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 rs.next();
                 int kmScore = distance * rs.getInt(2);                
                 
@@ -122,13 +129,15 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + kmScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
                 }
                                 
                 if (activityType.startsWith("W")) {
                 //ties the logged activity in with the scoring system 
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 rs.next();               
                 int kmScore = distance * rs.getInt(3);
                 
@@ -138,8 +147,8 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + kmScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
                 }                
                 
@@ -153,6 +162,8 @@ public class createCardio extends HttpServlet {
         if (groupname.startsWith("ts")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the logScoreActivity jsp
                 String name = request.getParameter("name");
@@ -180,13 +191,16 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + minScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
                 }
                 
                 if (activityType.startsWith("C")) {
                 //ties the logged activity in with the scoring system 
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 rs.next();
                 int minScore = time * rs.getInt(2);                
                 
@@ -196,13 +210,16 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". This activity scored a total of " + minScore + " points. Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
                 }
                                 
                 if (activityType.startsWith("W")) {
                 //ties the logged activity in with the scoring system 
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 rs.next();
                 int minScore = time * rs.getInt(3);                
                 
@@ -212,8 +229,8 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");                
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);               
                 }
                 
             } catch (SQLException ex) {
@@ -226,6 +243,8 @@ public class createCardio extends HttpServlet {
         if (groupname.startsWith("t_")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
@@ -245,8 +264,8 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your " + activityType + " has been logged in " + groupname + ". Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

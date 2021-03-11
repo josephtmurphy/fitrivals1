@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class writeComment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+            
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
@@ -43,6 +44,8 @@ public class writeComment extends HttpServlet {
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name12");
                 String comment = request.getParameter("comment");
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //connecting to our db
                 dbcon db = new dbcon();
@@ -53,8 +56,8 @@ public class writeComment extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your comment has been recorded in " + groupname + ". Thank you!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +46,8 @@ public class createStrength extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
                 String muscleGroup1 = request.getParameter("muscleGroup1");
@@ -69,8 +72,8 @@ public class createStrength extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + "','" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + minScore + " points, has been logged in " + groupname + ". Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,6 +85,8 @@ public class createStrength extends HttpServlet {
         if (groupname.startsWith("t_")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
+                
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
@@ -101,8 +106,8 @@ public class createStrength extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
                 
                 //shows that operation has been successful
-                out.println(name + ", your gym session, where you trained your " + muscleGroup1 + " and " + muscleGroup2 + " for a total of " + time + " minutes, has been logged in " + groupname + ". Good work!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

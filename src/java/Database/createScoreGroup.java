@@ -5,17 +5,22 @@
  */
 package Database;
 
+import Session.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,21 +40,23 @@ public class createScoreGroup extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+
+        String groupname = request.getParameter("groupname");
+        
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
             
-            //gets the data from the createScoreGroup html file
-            String groupname = request.getParameter("groupname");            
+            out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");    
+                
             String name = request.getParameter("name");
             String run_points = request.getParameter("run_points");
             String cycle_points = request.getParameter("cycle_points");
             String walk_points = request.getParameter("walk_points");
-            
+
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
-            
+
             //SQL syntax to create the group's table and inserting its first user.
             //also contains syntax to create a log for the table which contains a record of each activity, and a record of the user being in the group
             Statement stmt = con.createStatement();
@@ -57,17 +64,16 @@ public class createScoreGroup extends HttpServlet {
             stmt.executeUpdate("CREATE TABLE DS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO ds_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','ds_" + groupname + "');");
-            
+
             //SQL syntax to log the groups scoring system
-            stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('ds_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");
-            
-            //shows that operation has been successful
-            out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each kilometre ran is worth " + run_points + " points, each kilometre cycled is worth " + cycle_points + ", and each kilometre walked is worth " + walk_points + " points. Good luck!");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('ds_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");               
+                
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

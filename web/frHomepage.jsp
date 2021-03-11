@@ -153,7 +153,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 text-center ml-auto"><i class="fa fa-bar-chart fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                    <p><a href="updatePhysique.jsp">Update your physical stats</a></p>
+                 <form action="useractivities1">
+        <input hidden type="text" name="loggedname" value="${user.username}" readonly="readonly"/>
+        <input type="submit" value="Your Activity Summary"/>
+        </form>
                 </div>
                 <div class="col-lg-4 text-center mr-auto"><i class="fa fa-dashboard fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
                     <p><a href="updateAccount.jsp">View a log of your workout activity and body updates</a></p>

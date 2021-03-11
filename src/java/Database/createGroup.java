@@ -5,21 +5,23 @@
  */
 package Database;
 
-import Database.dbcon;
-import Database.login;
+import Session.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Session.User;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -53,6 +55,8 @@ public class createGroup extends HttpServlet {
                 String groupname = request.getParameter("groupname");
                 String name = request.getParameter("name");
                 
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 //connecting to our db
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
@@ -65,8 +69,8 @@ public class createGroup extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
                 
                 //shows that operation has been successful
-                out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Good luck!");
-                out.println("<a href=\"homepage.jsp\">Return home</a>");
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request,response);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

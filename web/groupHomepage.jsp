@@ -82,6 +82,41 @@
             </div>
         </div>
     </section>
+    <section style="background-color: lightseagreen;" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col offset-lg-8 text-center mx-auto">
+                    <i class="fa fa-plus fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                    <h2 class="text-white section-heading">Create A "Score" Group</h2>
+                    <hr class="light my-4">
+                    <p class="text-faded mb-4">To create a group, entire your desired group name below, and then select what criteria you want it to be ranked by (i.e., total distance covered, total time spent on activities).</p>
+                    <form action="createScoreGroup">
+                        <label for="groupname">Group name:</label>
+                        <input type="text" name="groupname" placeholder="groupname"/>
+                        <br/>
+                        <br/>
+                        <label for="username">Username:</label>
+                        <input type="text" name="name" value="${user.username}" readonly/>
+                        <br/>
+                        <br/>
+                        <label for="run_points">Points per KM ran:</label>
+                        <input type="number" name="run_points" placeholder="Points per KM ran"/>
+                        <br/>
+                        <label for="cycle_points">Points per KM cycled:</label>
+                        <input type="number" name="cycle_points" placeholder="Points per KM cycled"/>
+                        <br/>
+                        <label for="walk_points">Points per KM walked:</label>
+                        <input type="number" name="walk_points" placeholder="Points per KM walked"/>
+                        <br/>
+                        <br/>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" role="button" tyepe="submit">Join Group</a>
+                        <input type="submit" value="go"/>
+                    </form>
+            
+                </div>
+            </div>
+        </div>
+    </section>                        
     <section id="services">
         <div class="container">
             <div class="row">
@@ -96,7 +131,7 @@
                         <br/>
                         <br/>
                         <label for="username">Username:</label>
-                        <input type="text" value="username" readonly/>
+                        <input type="text" value="${user.username}" readonly/>
                         <br/>
                         <br/>
                         <label for="grouptype1">Group type:</label>
