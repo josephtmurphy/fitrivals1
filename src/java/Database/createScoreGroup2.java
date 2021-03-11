@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,8 +64,8 @@ public class createScoreGroup2 extends HttpServlet {
             stmt.executeUpdate("INSERT INTO time_scoring_systems (groupname,run_points,cycle_points,walk_points,strength_points) VALUES('ts_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + "," + strength_points + ");");
             
             //shows that operation has been successful
-            out.println("New group '"+groupname+"' has been successfully created, and "+name+" is the first member. Each minute spent running is worth " + run_points + " points, each minute spent cycling is worth " + cycle_points + ", each minute spent walking is worth " + walk_points + " points, and each minute spent strength training is worth " + strength_points + ". Good luck!");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            RequestDispatcher rd = request.getRequestDispatcher("groupHomepage.jsp");
+            rd.forward(request,response);
             
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
