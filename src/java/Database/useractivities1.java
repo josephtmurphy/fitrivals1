@@ -194,7 +194,7 @@ public class useractivities1 extends HttpServlet {
             String str = strA + str1 + str2 + str3 + str4 + str5 + str6 + str7 + str8 + str9 + str10 + str11;
             out.println(str);
                
-            out.println("<a href=\"welcomeHome.jsp\">Return home</a>");
+            out.println("<a href=\"frHomepage.jsp\">Return home</a>");
             
             out.println("</body>");
             out.println("</div>");

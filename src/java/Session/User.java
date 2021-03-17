@@ -9,6 +9,9 @@ package Session;
  *
  * @author josep
  */
+//most session code retrieved from https://www.codejava.net/java-ee/servlet/how-to-use-session-in-java-web-application,
+//and https://www.codejava.net/coding/how-to-code-login-and-logout-with-java-servlet-jsp-and-mysql
+
 public class User {
     private int id;
     private String email;
@@ -56,7 +59,5 @@ public class User {
     public void setPassword(String newPassword) {
         this.password = newPassword;
     }        
-    
-// getters and setters are not shown for brevity   
      
 }

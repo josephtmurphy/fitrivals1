@@ -31,7 +31,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Groups</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Activity</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="activityHomepage.jsp">Activities</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                     </ul>
                 </div>

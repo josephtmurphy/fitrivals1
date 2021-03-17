@@ -23,7 +23,7 @@
 <%--Navigation bar--%>
 <div class="fixed">
 <div class="navbar" id="myTopnav">
-  <a href="homepage.jsp" class="active">Home</a>
+  <a href="frHomepage.jsp">Home</a>
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
   <div class="dropdown">
@@ -31,7 +31,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="videosHome.jsp">Plans & Videos</a>
+      <a href="videosHome.jsp" class="active">Plans & Videos</a>
       <a href="blogHome.jsp">FitRivals Blog</a>
       <a href="submitBlog.jsp">Submit a Blog Post</a>
     </div>

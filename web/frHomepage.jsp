@@ -98,8 +98,10 @@
                             <p class="text-muted mb-0">Our upvote/downvote system leaves it to you to decide which posts get seen!</p>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-light btn-xl js-scroll-trigger" role="button" href="blogHome.jsp" value="Take me to Blog!"/>
                 </div>
+                    <form action="blogHome.jsp">
+                    <input type="submit" class="btn btn-light btn-xl js-scroll-trigger" role="button" value="Take me to Blog!"/>
+                    </form>                
             </div>
         </section>
         <section class="text-white bg-dark">

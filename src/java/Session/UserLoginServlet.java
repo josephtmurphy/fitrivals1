@@ -16,14 +16,15 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
- 
+
 public class UserLoginServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
- 
+
     public UserLoginServlet() {
         super();
     }
- 
+
     /**
      *
      * @param request
@@ -31,18 +32,21 @@ public class UserLoginServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
+    //most session code retrieved from https://www.codejava.net/java-ee/servlet/how-to-use-session-in-java-web-application
+    //and https://www.codejava.net/coding/how-to-code-login-and-logout-with-java-servlet-jsp-and-mysql
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-         
+
         UserDAO userDAO = new UserDAO();
-         
+        
+        //checks user credentials before granting access to program
         try {
             User user = userDAO.checkLogin(email, password);
             String destPage = "login.jsp";
-             
+
             if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
@@ -51,23 +55,23 @@ public class UserLoginServlet extends HttpServlet {
                 String message = "Invalid email/password";
                 request.setAttribute("message", message);
             }
-             
+
             RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
             dispatcher.forward(request, response);
-             
+
         } catch (SQLException | ClassNotFoundException ex) {
             throw new ServletException(ex);
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-    @Override
-
-
-    /**
+     * @Override
+     *
+     *
+     * /**
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
@@ -75,8 +79,6 @@ public class UserLoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
-
     /**
      * Returns a short description of the servlet.
      *
@@ -84,5 +86,5 @@ public class UserLoginServlet extends HttpServlet {
      */
     public String getServletInfo() {
         return "Short description";
-}// </editor-fold>
+    }// </editor-fold>
 }

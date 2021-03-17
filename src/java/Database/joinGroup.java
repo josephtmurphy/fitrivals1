@@ -39,93 +39,90 @@ public class joinGroup extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         //decides the nature of the group's "goal"
         String groupType = request.getParameter("grouptype");
-                
+
+        //gets the data from the joinGroup html file
+        String groupname = request.getParameter("groupname");
+        String name = request.getParameter("name");
+
         //DISTANCE if statement
-
         if (groupType.equals("Distance")) {
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            //gets the data from the joinGroup html file
-            String groupname = request.getParameter("groupname");
-            String name = request.getParameter("name");
-            
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
-            
-            //SQL statement to enter a new user in to the group
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,time,score) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
-            
-            //success statement
-            out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
-            request.setAttribute(groupType, this);
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            }
-        
-        //SCORE if statement
-        
-        if (groupType.equals("Score")) {
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            //gets the data from the joinGroup html file
-            String groupname = request.getParameter("groupname");
-            String name = request.getParameter("name");            
-            
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
-            
-            //SQL statement to enter a new user in to the group
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','s_" + groupname + "');");
-            
-            //success statement
-            out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
-           
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
 
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+
+                dbcon db = new dbcon();
+                Connection con = db.getCon();
+
+                //SQL statement to enter a new user in to the group
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,time,score) VALUES('" + name + "',0,0,0);");
+                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
+
+                //landing page - displays group after session is logged
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+        }
+
+        //SCORE if statement
+        if (groupType.equals("Score")) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+
+                dbcon db = new dbcon();
+                Connection con = db.getCon();
+
+                //SQL statement to enter a new user in to the group
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
+                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','s_" + groupname + "');");
+
+                //landing page - displays group after session is logged
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
         //TIME if statement
-        
         if (groupType.equals("Time")) {
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            //gets the data from the joinGroup html file
-            String groupname = request.getParameter("groupname");
-            String name = request.getParameter("name");            
-            
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
-            
-            //SQL statement to enter a new user in to the group
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-            stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','t_" + groupname + "');");
-            
-            //success statement
-            out.println(name +", you have been successfully added to "+groupname+". Return to the homepage, click View Groups, and search this group to see your progress.");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+
+                dbcon db = new dbcon();
+                Connection con = db.getCon();
+
+                //SQL statement to enter a new user in to the group
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
+                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','t_" + groupname + "');");
+
+                //landing page - displays group after session is logged
+                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+                rd.forward(request, response);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

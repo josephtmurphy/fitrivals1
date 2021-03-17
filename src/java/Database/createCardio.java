@@ -41,6 +41,7 @@ public class createCardio extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        //servlet calling code - https://stackoverflow.com/questions/20947806/how-can-i-call-from-one-servlet-file-to-another-servlet-file
         
         //differentiates between the types of group
         String groupname = request.getParameter("groupname");
@@ -51,6 +52,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
@@ -70,6 +72,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + time + "','" + distance + "','" + comment + "');");               
                 
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
@@ -101,7 +104,10 @@ public class createCardio extends HttpServlet {
                 ResultSet rs =  stmt.executeQuery("Select run_points,cycle_points,walk_points from distance_scoring_systems where groupname = '" + groupname + "';");
                 
                 if (activityType.startsWith("R")) {
-                //ties the logged activity in with the scoring system 
+                
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+                
                 rs.next();
                 int kmScore = distance * rs.getInt(1);                
                 
@@ -110,16 +116,18 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
                 }
                 
                 if (activityType.startsWith("C")) {
-                //ties the logged activity in with the scoring system 
+                
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
+                //ties the logged activity in with the scoring system 
                 rs.next();
                 int kmScore = distance * rs.getInt(2);                
                 
@@ -128,14 +136,15 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
                 }
                                 
                 if (activityType.startsWith("W")) {
-                //ties the logged activity in with the scoring system 
+                
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 rs.next();               
@@ -146,7 +155,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
@@ -163,6 +172,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the logScoreActivity jsp
@@ -181,6 +191,10 @@ public class createCardio extends HttpServlet {
                 ResultSet rs =  stmt.executeQuery("Select run_points,cycle_points,walk_points from time_scoring_systems where groupname = '" + groupname + "';");
                 
                 if (activityType.startsWith("R")) {
+                
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");                    
+                    
                 //ties the logged activity in with the scoring system 
                 rs.next();
                 int minScore = time * rs.getInt(1);                
@@ -190,7 +204,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
@@ -199,6 +213,7 @@ public class createCardio extends HttpServlet {
                 if (activityType.startsWith("C")) {
                 //ties the logged activity in with the scoring system 
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 rs.next();
@@ -209,7 +224,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
@@ -228,7 +243,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);               
                 }
@@ -244,6 +259,7 @@ public class createCardio extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
@@ -263,7 +279,7 @@ public class createCardio extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
                 stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 

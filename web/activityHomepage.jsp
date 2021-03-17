@@ -59,14 +59,14 @@
                         <h2 class="text-white section-heading">Cardio Workouts</h2>         
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Select the group you wish to write the activity to, and then enter a distance (km), time (minutes), and a comment to be displayed in your group.</p>
-                        <form action="createCardio">
+                        
                             <%
                                 try {
                                     dbcon db = new dbcon();
                                     Connection con = db.getCon();
                                     String username = request.getParameter("loggedname");
                                     Statement stmt = con.createStatement();
-                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
+                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';"); 
                             %>   
                             <label for="groupname">Group name:</label>
                             <select name="groupname" id="groupname">
@@ -111,7 +111,7 @@
                                     out.println(sqe);
                                 }
                             %>
-                        </form>
+                        
 
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                                     Connection con = db.getCon();
                                     String username = request.getParameter("loggedname");
                                     Statement stmt = con.createStatement();
-                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
+                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE groupname LIKE 't%' AND username = '" + username + "';");
                             %>
                             <label for="groupname">Group Name:</label>
                             <select name="groupname" id="groupname">
@@ -148,7 +148,7 @@
                             <br/>
                             <br/>
                             <label for="username">Username:</label>
-                            <input type="text" value="${user.username}" readonly/>
+                            <input type="text" name="name" value="${user.username}" readonly/>
                             <br/>
                             <br/>
                             <label for="muscleGroup1">Muscle Group Worked:</label>

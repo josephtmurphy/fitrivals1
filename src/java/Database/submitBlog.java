@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,25 +37,26 @@ public class submitBlog extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             //gets the variables from submitBlog jsp
             String username = request.getParameter("name");
             String blog_type = request.getParameter("blog_type");
             String blog_title = request.getParameter("blog_title");
             String blog_content = request.getParameter("blog_content");
             String youtube_url = request.getParameter("youtube_url");
-            
+
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
-            
+
             //SQL statement that will add blog post to the table
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url) VALUES('"+username+"','"+blog_type+"','"+blog_title+"','"+blog_content+"','"+youtube_url+"');");
-            
-            out.println("success");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");        
-            
+            stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url) VALUES('" + username + "','" + blog_type + "','" + blog_title + "','" + blog_content + "','" + youtube_url + "');");
+
+            //landing page - displays group after session is logged
+            RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
+            rd.forward(request,response);
+
         } catch (SQLException ex) {
             Logger.getLogger(submitBlog.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -32,7 +32,7 @@ public class viewGroups extends HttpServlet {
      * @param response servlet response
      * @return
      */
-    //helps to differentiate between comments and activities in the log when they are being printed
+    //helps to differentiate between comments and activities in the log when they are being printed, taken from https://www.programiz.com/java-programming/examples/string-empty-null
     public static boolean isNullOrEmpty(String str) {
         if (str != null && !str.isEmpty()) {
             return false;
@@ -43,9 +43,6 @@ public class viewGroups extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        //decides the nature of the group's "goal"
-        String groupType = request.getParameter("grouptype");
 
         //connecting to our db
         dbcon db = new dbcon();
@@ -60,6 +57,7 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("d_")) {
             try {
 
+                //applies bootstrap css
                 String cssTag = "<link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic\">\n"
@@ -71,6 +69,7 @@ public class viewGroups extends HttpServlet {
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 
+                //prints nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
@@ -138,6 +137,7 @@ public class viewGroups extends HttpServlet {
                         + "\"        </div>\\n\" +\n"
                         + "\"    </header>\"";
 
+                //prints javascript tags
                 String str5 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                         + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
                         + "    <script src=\"assets/js/bs-init.js\"></script>"
@@ -145,10 +145,12 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js\"></script>"
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
-
+                
+                //puts all strings together (e.g. navbar, leaderboard, activity summary, comments) before printing
                 String str = str0 + str1 + str2 + str3 + str4 + str5;
                 out.println(str);
 
+                //option to return home
                 out.println("<a href=\"frHomepage.jsp\">Return home</a>");
 
                 out.println("</body>");
@@ -165,6 +167,7 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("ds")) {
             try {
 
+                //prints css
                 String cssTag = "<link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic\">\n"
@@ -176,6 +179,7 @@ public class viewGroups extends HttpServlet {
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 
+                //prints the nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
@@ -195,6 +199,7 @@ public class viewGroups extends HttpServlet {
                 //selects details of group's scoring system
                 String scoring = "Select groupname,run_points,cycle_points,walk_points from distance_scoring_systems WHERE groupname = '" + groupname + "';";
 
+                //selects key/legend summarising the groups scoring system
                 Statement scoreStmt = con.createStatement();
                 ResultSet scoreRs = scoreStmt.executeQuery(scoring);
                 String scoreString = "<br/><br/><br/><h1 class=\"text-uppercase\"><strong>" + groupname + ": key/legend</strong></h1><table id=\"groupskey\" border=1><tr><th>Group Name</th><th>Points per km Ran</th><th>Points per km Cycled</th><th>Points per km Walked</th></tr>";
@@ -249,7 +254,8 @@ public class viewGroups extends HttpServlet {
                         = "                </div>" + "            </div>\\n\" +"
                         + "\"        </div>\n\" +"
                         + "\"    </header>\"";
-
+                
+                //prints javascript code
                 String str5 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                         + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
                         + "    <script src=\"assets/js/bs-init.js\"></script>"
@@ -257,10 +263,12 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js\"></script>"
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
-
+                
+                //combines all the strings of HTML (nav bar, key, leaderboard, activity summary, comments) and prints
                 String str = str0 + scoreString + str1 + str2 + str3 + str4 + str5;
                 out.println(str);
-
+                
+                //return to homepage
                 out.println("<a href=\"frHomepage.jsp\">Return home</a>");
 
                 out.println("</body>");
@@ -277,6 +285,7 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("ts")) {
             try {
 
+                //calls bootstrap css
                 String cssTag = "<link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic\">\n"
@@ -287,7 +296,8 @@ public class viewGroups extends HttpServlet {
                 out.println("<head><title>Title Name</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
-
+                
+                //prints nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
@@ -307,6 +317,7 @@ public class viewGroups extends HttpServlet {
                 //selects details of group's scoring system
                 String scoring = "Select groupname,run_points,cycle_points,walk_points,strength_points from time_scoring_systems WHERE groupname = '" + groupname + "';";
 
+                //selects scoring system from db
                 Statement scoreStmt = con.createStatement();
                 ResultSet scoreRs = scoreStmt.executeQuery(scoring);
                 String scoreString = "<br/><br/><br/><h1 class=\"text-uppercase\"><strong>" + groupname + ": key/legend</strong></h1><table id=\"groupskey\" border=1><tr><th>Group Name</th><th>Points per min Ran</th><th>Points per min Cycled</th><th>Points per min Walked</th><th>Points per min Strength</th></tr>";
@@ -375,6 +386,7 @@ public class viewGroups extends HttpServlet {
                         + "\"        </div>\\n\" +\n"
                         + "\"    </header>\"";
 
+                //javascript code
                 String str6 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                         + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
                         + "    <script src=\"assets/js/bs-init.js\"></script>"
@@ -383,9 +395,11 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
 
+                //combines all strings of different tables/ html syntax and prints 
                 String str = str0 + scoreString + str1 + str2 + str3 + str4 + str5 + str6;
                 out.println(str);
 
+                //return home
                 out.println("<a href=\"frHomepage.jsp\">Return home</a>");
 
                 out.println("</body>");
@@ -402,6 +416,7 @@ public class viewGroups extends HttpServlet {
         if (groupname.startsWith("t_")) {
             try {
 
+                //calls bootstrap css
                 String cssTag = "<link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic\">\n"
@@ -413,6 +428,7 @@ public class viewGroups extends HttpServlet {
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 
+                //navbar code
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
@@ -488,6 +504,7 @@ public class viewGroups extends HttpServlet {
                         + "\"        </div>\\n\" +\n"
                         + "\"    </header>\"";
 
+                //javascript code
                 String str6 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                         + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
                         + "    <script src=\"assets/js/bs-init.js\"></script>"
@@ -496,9 +513,11 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
 
+                //combines all strings and html syntax before printing
                 String str = str0 + str1 + str2 + str3 + str4 + str5 + str6;
                 out.println(str);
 
+                //return home
                 out.println("<a href=\"frHomepage.jsp\">Return home</a>");
 
                 out.println("</body>");

@@ -37,20 +37,12 @@
         <servlet-class>Database.createScoreGroup</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>logScoreActivity</servlet-name>
-        <servlet-class>Database.logScoreActivity</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>createStrength</servlet-name>
         <servlet-class>Database.createStrength</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updateAccount</servlet-name>
         <servlet-class>Database.updateAccount</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>newGroupDisplay</servlet-name>
-        <servlet-class>Database.newGroupDisplay</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserLoginServlet</servlet-name>
@@ -121,16 +113,8 @@
         <url-pattern>/createScoreGroup</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>logScoreActivity</servlet-name>
-        <url-pattern>/logScoreActivity</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>createStrength</servlet-name>
         <url-pattern>/createStrength</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>newGroupDisplay</servlet-name>
-        <url-pattern>/newGroupDisplay</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>

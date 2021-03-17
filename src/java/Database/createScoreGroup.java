@@ -41,12 +41,14 @@ public class createScoreGroup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        //gets data from jsp
         String loggedname = request.getParameter("name");
         String groupname = "ds_" + request.getParameter("groupname");
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
+            //session handling
             out.println("<input hidden type=\"text\" name=\"loggedname\" value=\"" + loggedname + "\" readonly=\"readonly\"/>");
             
             //gets the data from the createCardio jsp
@@ -70,6 +72,7 @@ public class createScoreGroup extends HttpServlet {
             //SQL syntax to log the groups scoring system
             stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");            
 
+            //redirects to view group
             RequestDispatcher rd = request.getRequestDispatcher("groupHomepage.jsp");
             rd.forward(request,response);
                 

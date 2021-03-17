@@ -37,15 +37,15 @@ public class createStrength extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //SCORE if statement
-
         //differentiates between the types of group
         String groupname = request.getParameter("groupname");
-        
+               
+        //"time: score" if statement
         if (groupname.startsWith("ts")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
@@ -71,7 +71,7 @@ public class createStrength extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
                 stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + "','" + comment + "');");
                 
-                //shows that operation has been successful
+                //redirect to view group page
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 
@@ -80,12 +80,12 @@ public class createStrength extends HttpServlet {
             }
         }         
         
-        //TIME if statement
-        
+        //"time" if statement       
         if (groupname.startsWith("t_")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //gets the data from the createCardio jsp
@@ -105,7 +105,7 @@ public class createStrength extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
                 stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
                 
-                //shows that operation has been successful
+                //redirects to view group
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 

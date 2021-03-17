@@ -59,7 +59,7 @@ public class updateAccount extends HttpServlet {
             stmt.executeUpdate("UPDATE users SET user_email = '"+email+"', full_name = '"+fullname+"', password = '"+password+"', height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"', dob = '"+dob+"' WHERE username = '"+username+"'");
             
             out.println("success");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"frHomepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);

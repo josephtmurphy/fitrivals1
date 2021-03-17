@@ -36,13 +36,15 @@ public class createScoreGroup2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           
+        
+            //get data from jsp
+            String groupname = request.getParameter("groupname");            
+            String name = request.getParameter("name");        
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            //gets the data from the createScoreGroup html file
-            String groupname = request.getParameter("groupname");            
-            String name = request.getParameter("name");
+            //gets the data from the jsp file
             String run_points = request.getParameter("run_points");
             String cycle_points = request.getParameter("cycle_points");
             String walk_points = request.getParameter("walk_points");

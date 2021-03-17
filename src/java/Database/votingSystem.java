@@ -45,6 +45,7 @@ public class votingSystem extends HttpServlet {
         dbcon db = new dbcon();
         Connection con = db.getCon();
     
+    //decides that the action was an upvote
     if (request.getParameter("upvote") != null) {
         //upvote button is clicked
         Statement stmt = con.createStatement();
@@ -64,6 +65,7 @@ public class votingSystem extends HttpServlet {
             out.println(username +", you upvoted this post.");
             out.println("<a href=\"blogHome.jsp\">Return to blog</a>");             
             
+    //decides that the action was a downvote        
     } else if (request.getParameter("downvote") != null) {
           //downvote button is clicked
           Statement stmt = con.createStatement();

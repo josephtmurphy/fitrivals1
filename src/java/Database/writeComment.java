@@ -45,6 +45,7 @@ public class writeComment extends HttpServlet {
                 String name = request.getParameter("name12");
                 String comment = request.getParameter("comment");
                 
+                //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
                 
                 //connecting to our db
@@ -55,7 +56,7 @@ public class writeComment extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,log_comment) VALUES('" + name + "','" + comment +"');");
                 
-                //shows that operation has been successful
+                //redirects to get to group page
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
                 rd.forward(request,response);
                 

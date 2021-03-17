@@ -37,6 +37,8 @@ public class createUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            //get data from create user jsp
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
@@ -48,10 +50,11 @@ public class createUser extends HttpServlet {
             String waist = request.getParameter("waist");
             String dob = request.getParameter("dob");
             
-            
+            //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
             
+            //inserts record of user into SQL tables
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
             stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");

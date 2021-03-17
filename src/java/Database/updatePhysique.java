@@ -59,7 +59,7 @@ public class updatePhysique extends HttpServlet {
             stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
             
             out.println("success");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<a href=\"frHomepage.jsp\">Return home</a>");
             
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);

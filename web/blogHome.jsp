@@ -65,7 +65,7 @@
             + "<div class=\"leftcolumn\">"
             + "<div class=\"card\">";
         
-        str+= "<input type=\"text\" name=\"post_id\" value="+rs.getInt(1)+" readonly=\"readonly\"/><h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5><p>"+rs.getString(5)+"</p><p>Community Score: "+rs.getInt(7)+".</p>";
+        str+= "<input type=\"text\" hidden name=\"post_id\" value="+rs.getInt(1)+" readonly=\"readonly\"/><h2>"+rs.getString(4)+"</h2><h5>"+rs.getString(3)+"</h5><p>"+rs.getString(5)+"</p><p>Community Score: "+rs.getInt(7)+".</p>";
                     %>
                     
         <%--session handling--%> 
