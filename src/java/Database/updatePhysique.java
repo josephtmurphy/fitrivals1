@@ -40,6 +40,7 @@ public class updatePhysique extends HttpServlet {
             
             //retrieves parameters from jps
             String username = request.getParameter("username");
+            String date = request.getParameter("date");
             String height = request.getParameter("height");
             String weight = request.getParameter("weight");
             String thigh = request.getParameter("thigh");
@@ -56,10 +57,17 @@ public class updatePhysique extends HttpServlet {
                     + "thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"' "
                             + "WHERE username = '"+username+"'");
             
-            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
+            stmt.executeUpdate("INSERT INTO user_physique (username,date,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+date+"',"+height+",'"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
             
-            out.println("success");
-            out.println("<a href=\"frHomepage.jsp\">Return home</a>");
+            out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
+            out.println("<form action=\"updatePhysique.jsp\">");
+            out.println("Success!");
+            out.println("<br/>");
+            //session handling
+            out.println("<input hidden type=\"text\" name=\"loggedname\" value=\"" + username + "\" readonly=\"readonly\"/>");            
+            out.println("<input type=\"submit\" value=\"Return\"/>");
+            out.println("</form");
+            out.println("</div");
             
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);

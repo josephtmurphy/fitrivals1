@@ -47,8 +47,6 @@ public class joinGroup extends HttpServlet {
         String groupname = request.getParameter("groupname");
         String name = request.getParameter("name");
 
-        //DISTANCE if statement
-        if (groupType.equals("Distance")) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
 
@@ -60,8 +58,8 @@ public class joinGroup extends HttpServlet {
 
                 //SQL statement to enter a new user in to the group
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,time,score) VALUES('" + name + "',0,0,0);");
-                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "(name,distance,time,score) VALUES('" + name + "',0,0,0);");
+                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','" + groupname + "');");
 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -69,58 +67,8 @@ public class joinGroup extends HttpServlet {
 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        //SCORE if statement
-        if (groupType.equals("Score")) {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-
-                //session handling
-                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
-
-                dbcon db = new dbcon();
-                Connection con = db.getCon();
-
-                //SQL statement to enter a new user in to the group
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO s_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','s_" + groupname + "');");
-
-                //landing page - displays group after session is logged
-                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
-                rd.forward(request, response);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        //TIME if statement
-        if (groupType.equals("Time")) {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-
-                //session handling
-                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
-
-                dbcon db = new dbcon();
-                Connection con = db.getCon();
-
-                //SQL statement to enter a new user in to the group
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
-                stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','t_" + groupname + "');");
-
-                //landing page - displays group after session is logged
-                RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
-                rd.forward(request, response);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+            }        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

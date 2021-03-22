@@ -50,6 +50,7 @@ public class createStrength extends HttpServlet {
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 String muscleGroup1 = request.getParameter("muscleGroup1");
                 String muscleGroup2 = request.getParameter("muscleGroup2");
                 int time = Integer.parseInt(request.getParameter("time"));
@@ -68,8 +69,8 @@ public class createStrength extends HttpServlet {
                 //SQL syntax to create the activity in the log, and update the score within the group
 
                 stmt.executeUpdate("update " + groupname + " set time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
-                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + "','" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_muscle1,log_muscle2,log_time,log_score,log_comment) VALUES('" + name + "','" + "Strength" + "','" + date + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + "," + minScore + ",'" + comment + "');");          
+                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,date,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "','" + date + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + "','" + comment + "');");
                 
                 //redirect to view group page
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -90,6 +91,7 @@ public class createStrength extends HttpServlet {
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 String muscleGroup1 = request.getParameter("muscleGroup1");
                 String muscleGroup2 = request.getParameter("muscleGroup2");
                 int time = Integer.parseInt(request.getParameter("time"));
@@ -102,8 +104,8 @@ public class createStrength extends HttpServlet {
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "strength" + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
-                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "'," + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "Strength" + "','" + date + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');"); 
+                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,date,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "','" + date + "','" + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
                 
                 //redirects to view group
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");

@@ -36,39 +36,45 @@ public class createScoreGroup2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-            //get data from jsp
-            String groupname = request.getParameter("groupname");            
-            String name = request.getParameter("name");        
-        
+
+        //get data from jsp
+        String groupname = request.getParameter("groupname");
+        String name = request.getParameter("name");
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             //gets the data from the jsp file
             String run_points = request.getParameter("run_points");
             String cycle_points = request.getParameter("cycle_points");
             String walk_points = request.getParameter("walk_points");
             String strength_points = request.getParameter("strength_points");
-            
+
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
-            
+
             //SQL syntax to create the group's table and inserting its first user.
             //also contains syntax to create a log for the table which contains a record of each activity, and a record of the user being in the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("CREATE TABLE TS_" + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
-            stmt.executeUpdate("CREATE TABLE TS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
+            stmt.executeUpdate("CREATE TABLE TS_" + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), date date, log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO ts_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','ts_" + groupname + "');");
-            
+
             //SQL syntax to log the groups scoring system
             stmt.executeUpdate("INSERT INTO time_scoring_systems (groupname,run_points,cycle_points,walk_points,strength_points) VALUES('ts_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + "," + strength_points + ");");
-            
-            //shows that operation has been successful
-            RequestDispatcher rd = request.getRequestDispatcher("groupHomepage.jsp");
-            rd.forward(request,response);
-            
+
+            out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
+            out.println("<form action=\"viewGroups\">");
+            out.println("Success!");
+            out.println("<br/>");
+            //session handling
+            out.println("<input hidden type=\"text\" name=\"groupname\" value=\"ts_" + groupname + "\" readonly=\"readonly\"/>");
+            out.println("<input type=\"submit\" value=\"View Group\"/>");
+            out.println("</form");
+            out.println("</div");
+
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

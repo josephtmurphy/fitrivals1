@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
-    <form action="updateUser" method="post">
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -31,13 +30,15 @@
                 </div>
             </div>
         </nav>
-
-            <%   String blah = request.getParameter("NAME12");
-            %>
-
+        <div style="background-color: palegreen; padding: 10px; padding-left: 50px;">
+            <form action="updateAccount" method="post">
             <%--Fetches username to handle session--%>
-            <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
-
+        <br/>
+        <br/>
+        <%--obtains username to handle session--%>
+        <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
+        <br/>
+        <br/>
             <%
                 //establishes connection to SQL database and fetches relevant user information
                 try {
@@ -49,6 +50,7 @@
                     rs.next();
             %>
             <%--Fetches and displays user's account details, makes them available to edit--%>
+            <p><i>Enter your desired changes to your account information in the boxes below, and click "update" to save.</i></p>
             <p><i>Your details:</i>
                 <br/>
                 <label for="email"><b>E-mail</b></label>
@@ -77,7 +79,9 @@
                 }
             %>
             <input type="submit" value="Update"/>
-            
+            <br/>
+            <br/>
+            <br/>
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.min.js"></script>
             <script src="assets/js/bs-init.js"></script>
@@ -87,4 +91,5 @@
             <script src="assets/js/creative.js"></script>
         </body>
     </form>
+            </div>
 </html>

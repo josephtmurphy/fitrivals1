@@ -47,10 +47,10 @@ public class createScoreGroup extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             //session handling
             out.println("<input hidden type=\"text\" name=\"loggedname\" value=\"" + loggedname + "\" readonly=\"readonly\"/>");
-            
+
             //gets the data from the createCardio jsp
             String name = request.getParameter("name");
             String run_points = request.getParameter("run_points");
@@ -65,17 +65,23 @@ public class createScoreGroup extends HttpServlet {
             //also contains syntax to create a log for the table which contains a record of each activity, and a record of the user being in the group
             Statement stmt = con.createStatement();
             stmt.executeUpdate("CREATE TABLE " + groupname + "(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), distance int, score int, time int, PRIMARY KEY(user_id));");
-            stmt.executeUpdate("CREATE TABLE " + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
+            stmt.executeUpdate("CREATE TABLE " + groupname + "_log(user_id int NOT NULL AUTO_INCREMENT, name varchar(35), activity varchar(35), date date, log_distance int, log_time int, log_score int, log_muscle1 varchar(10), log_muscle2 varchar(10), log_comment text, PRIMARY KEY(user_id));");
             stmt.executeUpdate("INSERT INTO " + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
             stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','" + groupname + "');");
-            
-            //SQL syntax to log the groups scoring system
-            stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");            
 
-            //redirects to view group
-            RequestDispatcher rd = request.getRequestDispatcher("groupHomepage.jsp");
-            rd.forward(request,response);
-                
+            //SQL syntax to log the groups scoring system
+            stmt.executeUpdate("INSERT INTO distance_scoring_systems (groupname,run_points,cycle_points,walk_points) VALUES('" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + ");");
+
+            out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
+            out.println("<form action=\"viewGroups\">");
+            out.println("Success!");
+            out.println("<br/>");
+            //session handling
+            out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
+            out.println("<input type=\"submit\" value=\"View Group\"/>");
+            out.println("</form");
+            out.println("</div");
+
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

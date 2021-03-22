@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,29 +44,32 @@ public class updateAccount extends HttpServlet {
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
             String password = request.getParameter("password");
-            String height = request.getParameter("height");
-            String weight = request.getParameter("weight");
-            String thigh = request.getParameter("thigh");
-            String bicep = request.getParameter("bicep");
-            String waist = request.getParameter("waist");
             String dob = request.getParameter("dob");
             
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
-            
+
             //update SQL statement that will make the changes outlined from the jsp
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE users SET user_email = '"+email+"', full_name = '"+fullname+"', password = '"+password+"', height = '"+height+"', weight = '"+weight+"', thigh = '"+thigh+"', bicep = '"+bicep+"', waist = '"+waist+"', dob = '"+dob+"' WHERE username = '"+username+"'");
-            
-            out.println("success");
-            out.println("<a href=\"frHomepage.jsp\">Return home</a>");
-            
+            stmt.executeUpdate("UPDATE users SET user_email = '" + email + "', full_name = '" + fullname + "', password = '" + password + "', dob = '" + dob + "' WHERE username = '" + username + "'");
+
+            out.println("<div style=\"background-color: palegreen; padding: 10px; padding-left: 50px;\">");
+            out.println("<form action=\"updatePhysique.jsp\">");
+            out.println("Success!");
+            out.println("<br/>");
+            //session handling
+            out.println("<input hidden type=\"text\" name=\"loggedname\" value=\"" + username + "\" readonly=\"readonly\"/>");            
+            out.println("<input type=\"submit\" value=\"Return\"/>");
+            out.println("</form");
+            out.println("</div");
+
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

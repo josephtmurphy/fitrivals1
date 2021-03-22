@@ -59,14 +59,14 @@
                         <h2 class="text-white section-heading">Cardio Workouts</h2>         
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Select the group you wish to write the activity to, and then enter a distance (km), time (minutes), and a comment to be displayed in your group.</p>
-                        
+                        <form action="createCardio">
                             <%
                                 try {
                                     dbcon db = new dbcon();
                                     Connection con = db.getCon();
                                     String username = request.getParameter("loggedname");
                                     Statement stmt = con.createStatement();
-                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';"); 
+                                    ResultSet rs = stmt.executeQuery("SELECT * FROM group_members WHERE username = '" + username + "';");
                             %>   
                             <label for="groupname">Group name:</label>
                             <select name="groupname" id="groupname">
@@ -87,10 +87,16 @@
                             <br/>
                             <label for="activityType">Activity Type:</label>
                             <select name="activityType" id="activitytype">
+                            <br/>
+                            <br/>
                                 <option>Run</option>
                                 <option>Walk</option>
                                 <option>Cycle</option>
-                            </select>        
+                            </select> 
+                            <br/>
+                            <br/>
+                            <label for="date">Date:</label>
+                            <input type="date" placeholder="Enter DOB" name="date" id="date"> 
                             <br/>
                             <br/>
                             <label for="distance">Distance (km):</label>
@@ -111,7 +117,7 @@
                                     out.println(sqe);
                                 }
                             %>
-                        
+                        </form>
 
                     </div>
                 </div>
@@ -160,6 +166,10 @@
                                 <option>Shoulders</option>
                                 <option>Full Body</option>
                             </select>
+                            <br/>
+                            <br/>
+                            <label for="date">Date:</label>
+                            <input type="date" placeholder="Enter DOB" name="date" id="date"> 
                             <br/>
                             <br/>
                             <label for="muscleGroup2">Secondary Muscle Group Worked:</label>

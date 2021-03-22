@@ -57,6 +57,7 @@ public class createCardio extends HttpServlet {
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
@@ -69,8 +70,8 @@ public class createCardio extends HttpServlet {
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + time + "','" + distance + "','" + comment + "');");               
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities(username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");               
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -90,6 +91,7 @@ public class createCardio extends HttpServlet {
                 
                 //gets the data from the logScoreActivity jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
@@ -113,8 +115,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + kmScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -133,8 +135,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + kmScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -152,8 +154,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + kmScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + kmScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -177,6 +179,7 @@ public class createCardio extends HttpServlet {
                 
                 //gets the data from the logScoreActivity jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
@@ -201,8 +204,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -221,8 +224,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -240,8 +243,8 @@ public class createCardio extends HttpServlet {
                 
                 //adds the new score into the group, inserts a record into the log
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + ", score = score + " + minScore + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_score,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + "," + minScore + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
@@ -264,6 +267,7 @@ public class createCardio extends HttpServlet {
                 
                 //gets the data from the createCardio jsp
                 String name = request.getParameter("name");
+                String date = request.getParameter("date");
                 int distance = Integer.parseInt(request.getParameter("distance"));
                 int time = Integer.parseInt(request.getParameter("time"));
                 String comment = request.getParameter("comment");
@@ -276,8 +280,8 @@ public class createCardio extends HttpServlet {
                 //SQL syntax to create the activity in the log, and update the score within the group
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
-                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "'," + distance + "," + time + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
                 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");

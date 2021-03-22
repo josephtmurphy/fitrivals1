@@ -76,16 +76,16 @@ public class useractivities1 extends HttpServlet {
 "                <div class=\"col-lg-10 mx-auto\">\n";          
             
             //SQL statement to get the data from the group's mySQL table
-            String sql1 = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist from user_physique WHERE username ='"+username+"' ORDER BY user_weight asc;";
+            String sql1 = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist,date from user_physique WHERE username ='"+username+"' ORDER BY user_weight asc;";
             
             //1. HTML code to create a table to display the users physique logs/updates
             Statement stmt = con.createStatement();
             ResultSet rs =  stmt.executeQuery(sql1);
-            String str1 = "<br/><br/><br/><h1 class=\"text-uppercase\"><strong>Your physique updates</strong></h1><table id=\"summary\" border=1><tr><th>Name</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
+            String str1 = "<br/><br/><br/><h1 class=\"text-uppercase\"><strong>Your physique updates</strong></h1><table id=\"summary\" border=1><tr><th>Name</th><th>Date</th><th>Height (cm)</th><th>Weight (lbs)</th><th>Thigh (cm)</th><th>Bicep (cm)</th><th>Waist (cm)</th></tr>";
             
             //prints table of physique updates
             while(rs.next()) {
-                str1+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
+                str1+= "<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(7)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(5)+"</td><td>"+rs.getString(6)+"</td></tr>";
             }
             str1 += "</table>";     
         

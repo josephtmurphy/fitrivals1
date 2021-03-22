@@ -23,7 +23,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
-
+    
+    <%--nav bar--%>
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -37,6 +38,8 @@
                 </div>
             </div>
         </nav>
+        
+        <%--header with background image, retrieved from bootstrap studio sample programs--%>
         <header class="text-center text-white d-flex masthead" style="background-image:url('images/gymgroup2.jpg');">
             <div class="container my-auto">
                 <div class="row">
@@ -50,6 +53,8 @@
                 </div>
             </div>
         </header>
+        
+        <%--create a group syntax--%>
         <section class="bg-primary" id="about">
             <div class="container">
                 <div class="row">
@@ -81,6 +86,8 @@
                 </div>
             </div>
         </section>
+                            
+        <%--create a "distance" score group--%>
         <section style="background-color: lightseagreen;" id="about">
             <div class="container">
                 <div class="row">
@@ -114,7 +121,9 @@
                     </div>
                 </div>
             </div>
-        </section>           
+        </section>
+                            
+        <%--header with background image, retrieved from bootstrap studio sample programs--%>                    
         <section style="background-color: orchid;" id="about">
             <div class="container">
                 <div class="row">
@@ -152,7 +161,8 @@
                     </div>
                 </div>
             </div>
-        </section>                                   
+        </section>                          
+        <%--join group syntax--%>                    
         <section id="services">
             <div class="container">
                 <div class="row">
@@ -161,20 +171,13 @@
                         <h2 class="text-black section-heading">Join A Group</h2>
                         <hr class="my-4">
                         <p class="mb-5">To join a group, enter the name of the group you wish to join below, and then select what criteria which it is ranked by (i.e., total distance covered, total time spent on activities).</p>
-                        <form action="createGroup">
+                        <form action="joinGroup">
                             <label for="groupname">Group name:</label>
-                            <input type="text" id="groupname" placeholder="groupname"/>
+                            <input type="text" name="groupname" id="groupname" placeholder="groupname"/>
                             <br/>
                             <br/>
                             <label for="username">Username:</label>
-                            <input type="text" value="${user.username}" readonly/>
-                            <br/>
-                            <br/>
-                            <label for="grouptype1">Group type:</label>
-                            <select name="grouptype1" id="grouptype">
-                                <option>Distance</option>
-                                <option>Time</option>
-                            </select>
+                            <input type="text" name="name" value="${user.username}" readonly/>
                             <br/>
                             <br/>
                             <input class="btn btn-dark btn-xl js-scroll-trigger" role="button" type="submit" value="Join Group"/>
@@ -186,6 +189,8 @@
 
             </div>
         </section>
+                            
+        <%--view groups syntax--%>                    
         <section class="text-white bg-dark">
             <div class="container text-center">
                 <i class="fa fa-users fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
