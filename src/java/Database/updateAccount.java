@@ -55,7 +55,7 @@ public class updateAccount extends HttpServlet {
             stmt.executeUpdate("UPDATE users SET user_email = '" + email + "', full_name = '" + fullname + "', password = '" + password + "', dob = '" + dob + "' WHERE username = '" + username + "'");
 
             out.println("<div style=\"background-color: palegreen; padding: 10px; padding-left: 50px;\">");
-            out.println("<form action=\"updatePhysique.jsp\">");
+            out.println("<form action=\"updateAccount.jsp\">");
             out.println("Success!");
             out.println("<br/>");
             //session handling

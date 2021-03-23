@@ -16,7 +16,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Home - Brand</title>
+        <title>FitRivals - Activities</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
@@ -38,6 +38,7 @@
                 </div>
             </div>
         </nav>
+        
         <header class="text-center text-white d-flex masthead" style="background-image:url('images/cardiobackground2.jpg');">
             <div class="container my-auto">
                 <div class="row">

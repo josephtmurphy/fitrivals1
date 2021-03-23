@@ -65,7 +65,7 @@ public class viewGroups extends HttpServlet {
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css\">";
                 out.println("<html>");
-                out.println("<head><title>Title Name</title>" + cssTag + "</head>");
+                out.println("<head><title>View " + groupname + "</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 
@@ -175,7 +175,7 @@ public class viewGroups extends HttpServlet {
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css\">";
                 out.println("<html>");
-                out.println("<head><title>Title Name</title>" + cssTag + "</head>");
+                out.println("<head><title>View " + groupname + "</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 
@@ -293,7 +293,7 @@ public class viewGroups extends HttpServlet {
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css\">";
                 out.println("<html>");
-                out.println("<head><title>Title Name</title>" + cssTag + "</head>");
+                out.println("<head><title>View " + groupname + "</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
                 
@@ -424,7 +424,7 @@ public class viewGroups extends HttpServlet {
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\">\n"
                         + "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css\">";
                 out.println("<html>");
-                out.println("<head><title>Title Name</title>" + cssTag + "</head>");
+                out.println("<head><title>View " + groupname + "</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
 

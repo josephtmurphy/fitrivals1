@@ -55,7 +55,7 @@ public class useractivities1 extends HttpServlet {
 "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css\">\n" +
 "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css\">";
         out.println("<html>");
-        out.println("<head><title>Title Name</title>"+cssTag+"</head>");
+        out.println("<head><title>Your Activity</title>"+cssTag+"</head>");
         out.println("<div style=\"backgroundcolor: hotpink;\"");
         out.println("<body style=\"backgroundcolor: hotpink;\">");            
                     
@@ -122,7 +122,7 @@ public class useractivities1 extends HttpServlet {
             //prints line with total distance
             ResultSet rs0 =  stmt.executeQuery(sql0);
             rs0.next();
-            String str4 = "<p class=\"useractivitybody\">Your total distance covered: " + rs0.getInt(1) + "km.</p>";
+            String str4 = "<br/><p class=\"useractivitybody\">Your total distance covered: " + rs0.getInt(1) + "km.</p>";
 
             //////////////////////////////////////////////////////////////////////////////////
             
@@ -165,7 +165,7 @@ public class useractivities1 extends HttpServlet {
             //1. HTML code to output line with total time spent on strength activities
             ResultSet rs4 =  stmt.executeQuery(sql4);
             rs4.next();
-            String str8 = "<p class=\"useractivitybody\">Your total time spent strength training: " + rs4.getInt(1) + " mins.</p>";
+            String str8 = "<br/><p class=\"useractivitybody\">Your total time spent strength training: " + rs4.getInt(1) + " mins.</p>";
             
             /////////////////////////////////////////////////////////////////////////////////////
             
