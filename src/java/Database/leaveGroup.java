@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josep
  */
-public class submitBlog extends HttpServlet {
+public class leaveGroup extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +36,34 @@ public class submitBlog extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
 
-            //gets the variables from submitBlog jsp
-            String username = request.getParameter("name");
-            String blog_type = request.getParameter("blog_type");
-            String blog_title = request.getParameter("blog_title");
-            String blog_content = request.getParameter("blog_content");
-            String youtube_url = request.getParameter("youtube_url");
+        //gets the data from the joinGroup html file
+        String groupname = request.getParameter("groupname");
+        String name = request.getParameter("name");
 
-            //connecting to our db
-            dbcon db = new dbcon();
-            Connection con = db.getCon();
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
 
-            //SQL statement that will add blog post to the table
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url, score) VALUES('" + username + "','" + blog_type + "','" + blog_title + "','" + blog_content + "','" + youtube_url + "',0);");
+                //session handling
+                out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
 
-            //landing page - displays group after session is logged
-            out.println("success");
-            out.println("<a href=\"blogHome.jsp\">View blog</a>");
+                dbcon db = new dbcon();
+                Connection con = db.getCon();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(submitBlog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                //SQL statement to enter a new user in to the group
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("DELETE FROM " + groupname + " WHERE NAME = '" + name + "';");
+                stmt.executeUpdate("DELETE FROM group_members WHERE USERNAME = '" + name + "' AND GROUPNAME = '" + groupname + "';");
+
+                //landing page - displays group after session is logged
+                out.println("Success");
+                out.println("<br/>");
+                out.println("<a href=\"frHomepage.jsp\">Return home</a>");
+                        
+
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

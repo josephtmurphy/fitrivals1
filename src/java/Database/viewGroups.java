@@ -52,6 +52,7 @@ public class viewGroups extends HttpServlet {
 
         //gets the data from the viewGroup html file
         String groupname = request.getParameter("groupname");
+        String username = request.getParameter("name12");
 
         //DISTANCE if statmement
         if (groupname.startsWith("d_")) {
@@ -73,12 +74,13 @@ public class viewGroups extends HttpServlet {
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
-                        + "                <ul class=\"navbar-nav ml-auto\">\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#about\">Groups</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#services\">Blog</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#portfolio\">Activity</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#contact\">Contact</a></li>\n"
-                        + "                </ul>\n"
+                        + "<ul class=\"navbar-nav ml-auto\">\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#blog\">Blog</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#activity\">Activity</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#myaccount\">My Account</a></li>\n"
+                        + "                        <li class=\"nav-item\"><form action=\"UserLogoutServlet\"><input type=\"submit\" style=\"  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem\" value=\"LOG OUT\"></button></form></li>\n"
+                        + "                    </ul>"
                         + "            </div>\n"
                         + "        </div>\n"
                         + "    </nav>    <header class=\"text-center text-white\" style=\"background-color: hotpink;\">\n"
@@ -126,16 +128,22 @@ public class viewGroups extends HttpServlet {
 
                 //loop that decides whether data is an activity or a comment, and prints it
                 while (rs3.next()) {
-                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(6) + "</td></tr>";
+                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(7) + "</td></tr>";
                 }
 
                 str3 += "</table>";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+                String strLeave = "<form action=\"leaveGroup\">"
+                        + "<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>"
+                        + "<input hidden type=\"text\" name=\"name\" value=\"" + username + "\" readonly=\"readonly\"/>"
+                        + "<br/><input type=\"submit\" value=\"Leave Group\"/>"
+                        + "</form>";
+
                 String str4
-                        = "                </div>\n" + "            </div>\\n\" +\n"
-                        + "\"        </div>\\n\" +\n"
-                        + "\"    </header>\"";
+                        = "               <br/><br/><br/> </div>" + "            </div>"
+                        + "        </div>"
+                        + "    </header>";
 
                 //prints javascript tags
                 String str5 = "    <script src=\"assets/js/jquery.min.js\"></script>"
@@ -145,9 +153,9 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js\"></script>"
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
-                
+
                 //puts all strings together (e.g. navbar, leaderboard, activity summary, comments) before printing
-                String str = str0 + str1 + str2 + str3 + str4 + str5;
+                String str = str0 + str1 + str2 + str3 + strLeave + str4 + str5;
                 out.println(str);
 
                 //option to return home
@@ -183,12 +191,13 @@ public class viewGroups extends HttpServlet {
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
-                        + "                <ul class=\"navbar-nav ml-auto\">\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#about\">Groups</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#services\">Blog</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#portfolio\">Activity</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#contact\">Contact</a></li>\n"
-                        + "                </ul>\n"
+                        + "<ul class=\"navbar-nav ml-auto\">\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#blog\">Blog</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#activity\">Activity</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#myaccount\">My Account</a></li>\n"
+                        + "                        <li class=\"nav-item\"><form action=\"UserLogoutServlet\"><input type=\"submit\" style=\"  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem\" value=\"LOG OUT\"></button></form></li>\n"
+                        + "                    </ul>"
                         + "            </div>\n"
                         + "        </div>\n"
                         + "    </nav>    <header class=\"text-center text-white\" style=\"background-color: hotpink;\">\n"
@@ -245,16 +254,22 @@ public class viewGroups extends HttpServlet {
 
                 //loop that decides whether data is an activity or a comment, and prints it
                 while (rs3.next()) {
-                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(9) + "</td></tr>";
+                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(10) + "</td></tr>";
                 }
 
                 str3 += "</table>";
 
+                String strLeave = "<form action=\"leaveGroup\">"
+                        + "<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>"
+                        + "<input hidden type=\"text\" name=\"name\" value=\"" + username + "\" readonly=\"readonly\"/>"
+                        + "<br/><input type=\"submit\" value=\"Leave Group\"/>"
+                        + "</form>";
+
                 String str4
-                        = "                </div>" + "            </div>\\n\" +"
-                        + "\"        </div>\n\" +"
-                        + "\"    </header>\"";
-                
+                        = "               <br/><br/><br/> </div>" + "            </div>"
+                        + "        </div>"
+                        + "    </header>";
+
                 //prints javascript code
                 String str5 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                         + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
@@ -263,11 +278,11 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js\"></script>"
                         + "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js\"></script>"
                         + "    <script src=\"assets/js/creative.js\"></script>";
-                
+
                 //combines all the strings of HTML (nav bar, key, leaderboard, activity summary, comments) and prints
-                String str = str0 + scoreString + str1 + str2 + str3 + str4 + str5;
+                String str = str0 + scoreString + str1 + str2 + str3 + strLeave + str4 + str5;
                 out.println(str);
-                
+
                 //return to homepage
                 out.println("<a href=\"frHomepage.jsp\">Return home</a>");
 
@@ -296,17 +311,18 @@ public class viewGroups extends HttpServlet {
                 out.println("<head><title>View " + groupname + "</title>" + cssTag + "</head>");
                 out.println("<div style=\"backgroundcolor: hotpink;\"");
                 out.println("<body style=\"backgroundcolor: hotpink;\">");
-                
+
                 //prints nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
-                        + "                <ul class=\"navbar-nav ml-auto\">\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#about\">Groups</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#services\">Blog</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#portfolio\">Activity</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#contact\">Contact</a></li>\n"
-                        + "                </ul>\n"
+                        + "<ul class=\"navbar-nav ml-auto\">\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#blog\">Blog</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#activity\">Activity</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#myaccount\">My Account</a></li>\n"
+                        + "                        <li class=\"nav-item\"><form action=\"UserLogoutServlet\"><input type=\"submit\" style=\"  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem\" value=\"LOG OUT\"></button></form></li>\n"
+                        + "                    </ul>"
                         + "            </div>\n"
                         + "        </div>\n"
                         + "    </nav>    <header class=\"text-center text-white\" style=\"background-color: hotpink;\">\n"
@@ -376,15 +392,21 @@ public class viewGroups extends HttpServlet {
 
                 //loop that decides whether data is an activity or a comment, and prints it
                 while (rs3.next()) {
-                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(9) + "</td></tr>";
+                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(10) + "</td></tr>";
                 }
 
                 str3 += "</table>";
 
+                String strLeave = "<form action=\"leaveGroup\">"
+                        + "<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>"
+                        + "<input hidden type=\"text\" name=\"name\" value=\"" + username + "\" readonly=\"readonly\"/>"
+                        + "<br/><input type=\"submit\" value=\"Leave Group\"/>"
+                        + "</form>";
+
                 String str5
-                        = "                </div>\n" + "            </div>\\n\" +\n"
-                        + "\"        </div>\\n\" +\n"
-                        + "\"    </header>\"";
+                        = "               <br/><br/><br/> </div>" + "            </div>"
+                        + "        </div>"
+                        + "    </header>";
 
                 //javascript code
                 String str6 = "    <script src=\"assets/js/jquery.min.js\"></script>"
@@ -396,7 +418,7 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"assets/js/creative.js\"></script>";
 
                 //combines all strings of different tables/ html syntax and prints 
-                String str = str0 + scoreString + str1 + str2 + str3 + str4 + str5 + str6;
+                String str = str0 + scoreString + str1 + str2 + str3 + str4 + strLeave + str5 + str6;
                 out.println(str);
 
                 //return home
@@ -432,12 +454,13 @@ public class viewGroups extends HttpServlet {
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                         + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
-                        + "                <ul class=\"navbar-nav ml-auto\">\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#about\">Groups</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#services\">Blog</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#portfolio\">Activity</a></li>\n"
-                        + "                    <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"#contact\">Contact</a></li>\n"
-                        + "                </ul>\n"
+                        + "<ul class=\"navbar-nav ml-auto\">\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#blog\">Blog</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#activity\">Activity</a></li>\n"
+                        + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#myaccount\">My Account</a></li>\n"
+                        + "                        <li class=\"nav-item\"><form action=\"UserLogoutServlet\"><input type=\"submit\" style=\"  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem\" value=\"LOG OUT\"></button></form></li>\n"
+                        + "                    </ul>"
                         + "            </div>\n"
                         + "        </div>\n"
                         + "    </nav>    <header class=\"text-center text-white\" style=\"background-color: hotpink;\">\n"
@@ -494,15 +517,21 @@ public class viewGroups extends HttpServlet {
 
                 //loop that decides whether data is an activity or a comment, and prints it
                 while (rs3.next()) {
-                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(9) + "</td></tr>";
+                    str3 += "<tr><td>" + rs3.getString(2) + "</td><td>" + rs3.getString(10) + "</td></tr>";
                 }
 
                 str3 += "</table>";
 
+                String strLeave = "<form action=\"leaveGroup\">"
+                        + "<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>"
+                        + "<input hidden type=\"text\" name=\"name\" value=\"" + username + "\" readonly=\"readonly\"/>"
+                        + "<br/><input type=\"submit\" value=\"Leave Group\"/>"
+                        + "</form>";
+
                 String str5
-                        = "                </div>\n" + "            </div>\\n\" +\n"
-                        + "\"        </div>\\n\" +\n"
-                        + "\"    </header>\"";
+                        = "               <br/><br/><br/> </div>" + "            </div>"
+                        + "        </div>"
+                        + "    </header>";
 
                 //javascript code
                 String str6 = "    <script src=\"assets/js/jquery.min.js\"></script>"
@@ -514,7 +543,7 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"assets/js/creative.js\"></script>";
 
                 //combines all strings and html syntax before printing
-                String str = str0 + str1 + str2 + str4 + str3 + str5 + str6;
+                String str = str0 + str1 + str2 + str4 + str3 + strLeave + str5 + str6;
                 out.println(str);
 
                 //return home

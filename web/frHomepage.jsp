@@ -23,13 +23,14 @@
 
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-            <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+            <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">FitRivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Groups</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Activity</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#groups">Groups</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#blog">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#activity">Activity</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#myaccount">My Account</a></li>
+                        <li class="nav-item"><form action="UserLogoutServlet"><input type="submit" style="  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem" value="LOG OUT"></button></form></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +49,7 @@
                 </div>
             </div>
         </header>
-        <section class="bg-primary" id="about">
+        <section class="bg-primary" id="groups">
             <div class="container">
                 <div class="row">
                     <form action="groupHomepage.jsp">
@@ -63,7 +64,7 @@
                 </div>
             </div>
         </section>
-        <section id="services">
+        <section id="blog">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -84,12 +85,18 @@
                         <div class="mx-auto service-box mt-5"><i class="fa fa-pencil fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
                             <h3 class="mb-3">FitRivals Blog</h3>
                             <p class="text-muted mb-0">Have any helpful tips or stories that you think are worth sharing? Share them with the FitRivals blog!</p>
+                            <br/><form action="blogHome.jsp">
+                    <input type="submit" class="btn btn-light btn-xl js-scroll-trigger" role="button" value="Go to Blog!"/>
+                    </form>  
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 text-center">
                         <div class="mx-auto service-box mt-5"><i class="fa fa-video-camera fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
                             <h3 class="mb-3">Videos Hub</h3>
                             <p class="text-muted mb-0">We offer a video hub for YouTube clips that are informational, motivational, or even personal vlogs.</p>
+                            <br/><form action="videosHome.jsp">
+                    <input type="submit" class="btn btn-light btn-xl js-scroll-trigger" role="button" value="Go to Video Blog!"/>
+                    </form>  
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 text-center">
@@ -99,12 +106,9 @@
                         </div>
                     </div>
                 </div>
-                    <form action="blogHome.jsp">
-                    <input type="submit" class="btn btn-light btn-xl js-scroll-trigger" role="button" value="Take me to Blog!"/>
-                    </form>                
             </div>
         </section>
-        <section class="text-white bg-dark">
+        <section id="activity" class="text-white bg-dark">
             <form action="activityHomepage.jsp">
                 <div class="container text-center">
                     <i class="fa fa-heartbeat fa-4x white mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
@@ -144,7 +148,7 @@
                 </div>
             </div>
         </section>
-        <section id="contact">
+        <section id="myaccount">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 text-center mx-auto">
