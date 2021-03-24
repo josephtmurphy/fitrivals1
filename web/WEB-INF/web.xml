@@ -17,10 +17,6 @@
         <servlet-class>Database.createGroup</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>tester</servlet-name>
-        <servlet-class>Database.tester</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>viewGroups</servlet-name>
         <servlet-class>Database.viewGroups</servlet-class>
     </servlet>
@@ -95,10 +91,6 @@
     <servlet-mapping>
         <servlet-name>joinGroup</servlet-name>
         <url-pattern>/joinGroup</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>tester</servlet-name>
-        <url-pattern>/tester</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>viewGroups</servlet-name>

@@ -59,7 +59,7 @@ public class useractivities1 extends HttpServlet {
             out.println("<body style=\"backgroundcolor: hotpink;\">");
 
             String strA = "    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
-                    + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
+                    + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                     + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
                     + "<ul class=\"navbar-nav ml-auto\">\n"
                     + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
@@ -76,7 +76,7 @@ public class useractivities1 extends HttpServlet {
                     + "                <div class=\"col-lg-10 mx-auto\">\n";
 
             //SQL statement to get the data from the group's mySQL table
-            String sql1 = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist,date from user_physique WHERE username ='" + username + "' ORDER BY user_weight asc;";
+            String sql1 = "Select username,user_height,user_weight,user_thigh,user_bicep,user_waist,date,physique_id from user_physique WHERE username ='" + username + "' ORDER BY physique_id asc;";
 
             //1. HTML code to create a table to display the users physique logs/updates
             Statement stmt = con.createStatement();
@@ -96,7 +96,7 @@ public class useractivities1 extends HttpServlet {
             //1. HTML code to output line with total time spent on strength activities
             ResultSet rsS = stmt.executeQuery(sqlweight);
             rsS.next();
-            String str2 = "<p class=\"useractivitybody\">Your total weight lost: " + rsS.getInt(1) + " pounds.</p>";
+            String str2 = "<br/><p class=\"useractivitybody\">Your total weight lost: " + rsS.getInt(1) + " pounds.</p>";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////              
             //SQL statement to get the user's activity data

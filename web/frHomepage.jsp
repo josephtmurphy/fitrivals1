@@ -30,7 +30,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#blog">Blog</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#activity">Activity</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#myaccount">My Account</a></li>
-                        <li class="nav-item"><form action="UserLogoutServlet"><input type="submit" style="  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem" value="LOG OUT"></button></form></li>
+                        <li class="nav-item"><form action="UserLogoutServlet"><input type="submit" style="  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem;" value="LOG OUT"></button></form></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-8 mx-auto">
                     <p class="text-faded mb-5">Our goal is to help you stay motivated and consistent with your exercise by creating an atmosphere of camarederie, competition and community.</p>
-                    <input type="text" name="loggedname" value="${user.username}" hidden readonly="readonly"/><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Find Out More</a>
+                    <input type="text" name="loggedname" value="${user.username}" hidden readonly="readonly"/><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#groups">Get Started</a>
                 </div>
             </div>
         </header>

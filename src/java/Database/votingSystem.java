@@ -36,56 +36,68 @@ public class votingSystem extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-      
-        //gets variables from the jsp
-        String post_id = request.getParameter("post_id");
-        String username = request.getParameter("name");
-      
-        //db connection
-        dbcon db = new dbcon();
-        Connection con = db.getCon();
-    
-    //decides that the action was an upvote
-    if (request.getParameter("upvote") != null) {
-        //upvote button is clicked
-        Statement stmt = con.createStatement();
-            
-            //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
-            stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
-                + "SELECT "+post_id+",'"+username+"',1 "
-                + "FROM DUAL "
-                + "WHERE NOT EXISTS "
-                + "(SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = 1)");   
-            
-            //updates the score on the post so it can be reflected in the jsp
-            
-            stmt.executeUpdate("update blog_submissions set score = "
-                + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
-            //success statement
-            out.println(username +", you upvoted this post.");
-            out.println("<a href=\"blogHome.jsp\">Return to blog</a>");             
-            
-    //decides that the action was a downvote        
-    } else if (request.getParameter("downvote") != null) {
-          //downvote button is clicked
-          Statement stmt = con.createStatement();
-            
-            //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
-            stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
-                + "SELECT "+post_id+",'"+username+"',-1 "
-                + "FROM DUAL "
-                + "WHERE NOT EXISTS (SELECT * FROM votes WHERE username = '"+username+"' AND submission_id = "+post_id+" AND vote = -1)");   
-            //updates the score on the post so it can be reflected in the jsp
-            
-            stmt.executeUpdate("update blog_submissions set score = "
-                + "(select sum(vote) from votes where submission_id = "+post_id+") where submission_id = "+post_id+";");
-            //success statement
-            out.println(username +", you downvoted this post.");
-            out.println("<a href=\"blogHome.jsp\">Return to blog</a>");              
-            
-    }  
 
-           } catch (SQLException ex) {
+            //gets variables from the jsp
+            String post_id = request.getParameter("post_id");
+            String username = request.getParameter("name");
+
+            //db connection
+            dbcon db = new dbcon();
+            Connection con = db.getCon();
+
+            //decides that the action was an upvote
+            if (request.getParameter("upvote") != null) {
+                //upvote button is clicked
+                Statement stmt = con.createStatement();
+
+                //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
+                stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
+                        + "SELECT " + post_id + ",'" + username + "',1 "
+                        + "FROM DUAL "
+                        + "WHERE NOT EXISTS "
+                        + "(SELECT * FROM votes WHERE username = '" + username + "' AND submission_id = " + post_id + " AND vote = 1)");
+
+                //updates the score on the post so it can be reflected in the jsp
+                stmt.executeUpdate("update blog_submissions set score = "
+                        + "(select sum(vote) from votes where submission_id = " + post_id + ") where submission_id = " + post_id + ";");
+                //success statement
+                out.println("<div style=\"background-color: lightgreen; padding: 10px; padding-left: 50px;\">");;
+                out.println("<form action=\"frHomepage.jsp#blog\">");
+                out.println(username + ", you upvoted this post!");
+                out.println("<br/>");
+                //session handling
+                out.println("<input type=\"submit\" value=\"Return to Blog Home\"/>");
+                out.println("</form>");
+                out.println("</div>");
+
+                //decides that the action was a downvote        
+            } else if (request.getParameter("downvote") != null) {
+                //downvote button is clicked
+                Statement stmt = con.createStatement();
+
+                //inserts record into vote table. "where not exists" ensures that 1 user cannot upvote/downvote something twice
+                stmt.executeUpdate("INSERT INTO votes (submission_id,username,vote) "
+                        + "SELECT " + post_id + ",'" + username + "',-1 "
+                        + "FROM DUAL "
+                        + "WHERE NOT EXISTS (SELECT * FROM votes WHERE username = '" + username + "' AND submission_id = " + post_id + " AND vote = -1)");
+                //updates the score on the post so it can be reflected in the jsp
+
+                stmt.executeUpdate("update blog_submissions set score = "
+                        + "(select sum(vote) from votes where submission_id = " + post_id + ") where submission_id = " + post_id + ";");
+
+                //success statement
+                out.println("<div style=\"background-color: darkblue; color:white; padding: 10px; padding-left: 50px;\">");;
+                out.println("<form action=\"frHomepage.jsp#blog\">");
+                out.println(username + ", you downvoted this post.");
+                out.println("<br/>");
+                //session handling
+                out.println("<input type=\"submit\" value=\"Return to Blog Home\"/>");
+                out.println("</form>");
+                out.println("</div>");
+
+            }
+
+        } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

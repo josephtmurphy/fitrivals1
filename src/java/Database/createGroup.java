@@ -72,8 +72,8 @@ public class createGroup extends HttpServlet {
                 //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"d_" + groupname + "\" readonly=\"readonly\"/>");
                 out.println("<input type=\"submit\" value=\"View Group\"/>");
-                out.println("</form");
-                out.println("</div");
+                out.println("</form>");
+                out.println("</div>");
 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,15 +97,15 @@ public class createGroup extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
                 stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','t_" + groupname + "');");
 
-                out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
+                out.println("<div style=\"background-color: lightgreen; padding: 10px; padding-left: 50px;\">");
                 out.println("<form action=\"viewGroups\">");
                 out.println("Success!");
                 out.println("<br/>");
                 //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"t_" + groupname + "\" readonly=\"readonly\"/>");
                 out.println("<input type=\"submit\" value=\"View Group\"/>");
-                out.println("</form");
-                out.println("</div");
+                out.println("</form>");
+                out.println("</div>");
 
             } catch (SQLException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

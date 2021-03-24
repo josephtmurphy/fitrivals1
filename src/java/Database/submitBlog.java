@@ -53,9 +53,15 @@ public class submitBlog extends HttpServlet {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO blog_submissions (username, blog_type, blog_title, blog_content, youtube_url, score) VALUES('" + username + "','" + blog_type + "','" + blog_title + "','" + blog_content + "','" + youtube_url + "',0);");
 
-            //landing page - displays group after session is logged
-            out.println("success");
-            out.println("<a href=\"blogHome.jsp\">View blog</a>");
+            //success statement
+            out.println("<div style=\"background-color: antiquewhite; padding: 10px; padding-left: 50px;\">");;
+            out.println("<form action=\"frHomepage.jsp#blog\">");
+            out.println(username + ", your post has been added!");
+            out.println("<br/>");
+            //session handling
+            out.println("<input type=\"submit\" value=\"Return to Blog Home\"/>");
+            out.println("</form>");
+            out.println("</div>");
 
         } catch (SQLException ex) {
             Logger.getLogger(submitBlog.class.getName()).log(Level.SEVERE, null, ex);

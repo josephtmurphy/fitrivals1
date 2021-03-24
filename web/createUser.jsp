@@ -13,9 +13,9 @@ and open the template in the editor.
     </head>
     <body>
         <form action="createUser" method="post">
-  <div class="container">
-    <h1>Register</h1>
-    <p>Please fill in this form to create an account.</p>
+  <div style="background-color: peachpuff" class="container">
+    <h1>Create a FitRivals account</h1>
+    <p>Fill in the boxes below to sign up to FitRivals - you may leave the physical statistics blank if you wish.</p>
     <hr>
 
     <label for="fullname"><b>Full Name</b></label>
@@ -28,19 +28,19 @@ and open the template in the editor.
     <input type="text" placeholder="Enter E-mail" name="email" id="email" required>
     
     <label for="height"><b>Height (cm)</b></label>
-    <input type="text" placeholder="Enter Height" name="height" id="height" required>  
+    <input type="text" placeholder="Enter Height" name="height" id="height">  
     
     <label for="weight"><b>Weight (lbs)</b></label>
-    <input type="text" placeholder="Enter Weight" name="weight" id="weight" required> 
+    <input type="text" placeholder="Enter Weight" name="weight" id="weight"> 
 
     <label for="thigh"><b>Thigh (cm)</b></label>
-    <input type="text" placeholder="Enter Thigh Measurement" name="thigh" id="thigh" required> 
+    <input type="text" placeholder="Enter Thigh Measurement" name="thigh" id="thigh"> 
     
     <label for="bicep"><b>Bicep (cm)</b></label>
-    <input type="text" placeholder="Enter Bicep Measurement" name="bicep" id="bicep" required> 
+    <input type="text" placeholder="Enter Bicep Measurement" name="bicep" id="bicep"> 
     
     <label for="waist"><b>Waist (cm)</b></label>
-    <input type="text" placeholder="Enter Waist Measurement" name="waist" id="waist" required>     
+    <input type="text" placeholder="Enter Waist Measurement" name="waist" id="waist">     
     
     <label for="dob"><b>Date of Birth</b></label>
     <br/>
@@ -56,12 +56,11 @@ and open the template in the editor.
     <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
     <hr>
 
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
     <button type="submit" class="registerbtn">Register</button>
   </div>
 
   <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
+    <p>Already have an account? <a href="login.jsp">Sign in</a>.</p>
   </div>
 </form>
     </body>

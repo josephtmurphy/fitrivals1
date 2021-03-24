@@ -59,8 +59,11 @@ public class createUser extends HttpServlet {
             stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
             stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
             
-            out.println("success");
-            out.println("<a href=\"homepage.jsp\">Return home</a>");
+            out.println("<div style=\"background-color: peachpuff; padding: 10px; padding-left: 50px;\">");
+            out.println(fullname + ", thank you for signing up!");
+            out.println("<br/>");
+            out.println("<a href=\"login.jsp\">Log in to FitRivals here</a>");
+            out.println("</div>");
             
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);

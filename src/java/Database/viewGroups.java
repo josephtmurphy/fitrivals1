@@ -72,7 +72,7 @@ public class viewGroups extends HttpServlet {
 
                 //prints nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
-                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
+                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
                         + "<ul class=\"navbar-nav ml-auto\">\n"
                         + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
@@ -189,7 +189,7 @@ public class viewGroups extends HttpServlet {
 
                 //prints the nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
-                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
+                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
                         + "<ul class=\"navbar-nav ml-auto\">\n"
                         + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
@@ -314,7 +314,7 @@ public class viewGroups extends HttpServlet {
 
                 //prints nav bar
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
-                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
+                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
                         + "<ul class=\"navbar-nav ml-auto\">\n"
                         + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
@@ -418,7 +418,7 @@ public class viewGroups extends HttpServlet {
                         + "    <script src=\"assets/js/creative.js\"></script>";
 
                 //combines all strings of different tables/ html syntax and prints 
-                String str = str0 + scoreString + str1 + str2 + str3 + str4 + strLeave + str5 + str6;
+                String str = str0 + scoreString + str1 + str2 + str4 + str3 + strLeave + str5 + str6;
                 out.println(str);
 
                 //return home
@@ -452,7 +452,7 @@ public class viewGroups extends HttpServlet {
 
                 //navbar code
                 String str0 = ("    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
-                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"#page-top\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
+                        + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                         + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
                         + "<ul class=\"navbar-nav ml-auto\">\n"
                         + "                        <li class=\"nav-item\"><a class=\"nav-link js-scroll-trigger\" href=\"frHomepage.jsp#groups\">Groups</a></li>\n"
