@@ -53,6 +53,7 @@ public class joinGroup extends HttpServlet {
                 //session handling
                 out.println("<input hidden type=\"text\" name=\"groupname\" value=\"" + groupname + "\" readonly=\"readonly\"/>");
 
+                //database connection
                 dbcon db = new dbcon();
                 Connection con = db.getCon();
 

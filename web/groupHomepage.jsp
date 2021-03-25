@@ -13,6 +13,7 @@
 <html>
 
     <head>
+        <%--link to css stylesheet, template retrieved from Bootstrap studio, name "Creative--%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>FitRivals - Groups</title>
@@ -24,7 +25,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
     
-    <%--nav bar--%>
+    <%--navbar code with links to specific sections of the homepage--%>
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -124,7 +125,7 @@
             </div>
         </section>
                             
-        <%--header with background image, retrieved from bootstrap studio sample programs--%>                    
+        <%--create a "time" score group--%>                    
         <section style="background-color: orchid;" id="about">
             <div class="container">
                 <div class="row">
@@ -158,11 +159,11 @@
                             <br/>                        
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Create Group"/>
                         </form>
-
                     </div>
                 </div>
             </div>
-        </section>                          
+        </section>                     
+                            
         <%--join group syntax--%>                    
         <section id="services">
             <div class="container">
@@ -186,9 +187,6 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-
-            </div>
         </section>
                             
         <%--view groups syntax--%>                    
@@ -200,6 +198,7 @@
                     <p>To see the current standings in your groups, select a group from the dropdown below!</p>
                     <input type="text" hidden name="name12" value="${user.username}" readonly="readonly"/>
                     <%
+                        //java code to show groups that the user is a member of in a dropdown
                         try {
                             dbcon db = new dbcon();
                             Connection con = db.getCon();
@@ -230,25 +229,8 @@
                 </form>
             </div>
         </section>    
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 text-center mx-auto">
-                        <h2 class="section-heading">Let's Get In Touch!</h2>
-                        <hr class="my-4">
-                        <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 text-center ml-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                        <p>123-456-6789</p>
-                    </div>
-                    <div class="col-lg-4 text-center mr-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
-                        <p><a href="mailto:your-email@your-domain.com">email@example.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    
+        <%--retrieves javascript code, also from bootstrap studio--%>            
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>

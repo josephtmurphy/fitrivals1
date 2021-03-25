@@ -45,7 +45,7 @@ public class createGroup extends HttpServlet {
         //decides the nature of the group's "goal"
         String groupType = request.getParameter("grouptype1");
 
-        //gets the data from the createGroup html file
+        //gets the data from the createGroup file
         String groupname = request.getParameter("groupname");
         String name = request.getParameter("name");
 
@@ -65,6 +65,7 @@ public class createGroup extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO d_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
                 stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','d_" + groupname + "');");
 
+                //success statement
                 out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
                 out.println("<form action=\"viewGroups\">");
                 out.println("Success!");
@@ -97,6 +98,7 @@ public class createGroup extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO t_" + groupname + "(name,distance,score,time) VALUES('" + name + "',0,0,0);");
                 stmt.executeUpdate("INSERT INTO group_members(username,groupname) VALUES('" + name + "','t_" + groupname + "');");
 
+                //success statement
                 out.println("<div style=\"background-color: lightgreen; padding: 10px; padding-left: 50px;\">");
                 out.println("<form action=\"viewGroups\">");
                 out.println("Success!");

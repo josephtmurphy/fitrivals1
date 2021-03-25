@@ -11,6 +11,7 @@ package Session;
  */
 //most session code retrieved from https://www.codejava.net/java-ee/servlet/how-to-use-session-in-java-web-application
 //and https://www.codejava.net/coding/how-to-code-login-and-logout-with-java-servlet-jsp-and-mysql
+
 import Database.dbcon;
 import java.sql.*;
 

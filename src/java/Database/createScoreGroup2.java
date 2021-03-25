@@ -65,6 +65,7 @@ public class createScoreGroup2 extends HttpServlet {
             //SQL syntax to log the groups scoring system
             stmt.executeUpdate("INSERT INTO time_scoring_systems (groupname,run_points,cycle_points,walk_points,strength_points) VALUES('ts_" + groupname + "'," + run_points + "," + cycle_points + "," + walk_points + "," + strength_points + ");");
 
+            //success statement
             out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
             out.println("<form action=\"viewGroups\">");
             out.println("Success!");

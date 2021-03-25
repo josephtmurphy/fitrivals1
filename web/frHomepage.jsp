@@ -10,6 +10,7 @@
 <html>
 
     <head>
+        <%--link to css stylesheet, template retrieved from Bootstrap studio, name "Creative--%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>FitRivals - Home</title>
@@ -21,6 +22,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
 
+    <%--navbar code with links to specific sections of the homepage--%>
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">FitRivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -35,6 +37,7 @@
                 </div>
             </div>
         </nav>
+        
         <header class="text-center text-white d-flex masthead" style="background-image:url('assets/img/header12.jpeg');">
             <div class="container my-auto">
                 <div class="row">
@@ -49,6 +52,7 @@
                 </div>
             </div>
         </header>
+                
         <section class="bg-primary" id="groups">
             <div class="container">
                 <div class="row">
@@ -64,6 +68,7 @@
                 </div>
             </div>
         </section>
+                            
         <section id="blog">
             <div class="container">
                 <div class="row">
@@ -108,6 +113,7 @@
                 </div>
             </div>
         </section>
+                            
         <section id="activity" class="text-white bg-dark">
             <form action="activityHomepage.jsp">
                 <div class="container text-center">
@@ -118,6 +124,7 @@
                 </div>
             </form>
         </section>    
+                    
         <section id="portfolio" class="p-0">
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
@@ -148,6 +155,7 @@
                 </div>
             </div>
         </section>
+                    
         <section id="myaccount">
             <div class="container">
                 <div class="row">
@@ -179,6 +187,8 @@
                 </div>
             </div>
         </section>
+        
+        <%--retrieves javascript code, also from bootstrap studio--%>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>

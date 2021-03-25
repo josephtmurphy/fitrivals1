@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+        <%--link to css stylesheet, template retrieved from Bootstrap studio, name "Creative--%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>FitRivals - Account</title>
@@ -17,29 +18,31 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
+
+    <%--navbar code with links to specific sections of the homepage--%>
     <body id="page-top">
-        <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-            <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#groups">Groups</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#blog">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#activity">Activity</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#myaccount">My Account</a></li>
-                        <li class="nav-item"><form action="UserLogoutServlet"><input type="submit" style="  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem" value="LOG OUT"></button></form></li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#groups">Groups</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#activity">Activity</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="frHomepage.jsp#myaccount">My Account</a></li>
+                    <li class="nav-item"><form action="UserLogoutServlet"><input type="submit" style="  background: none!important;border: none;color:crimson;font-weight: bold;display:block;padding:.5rem 1rem" value="LOG OUT"></button></form></li>
+                </ul>
             </div>
-        </nav>
-        <div style="background-color: palegreen; padding: 10px; padding-left: 50px;">
-            <form action="updateAccount" method="post">
-            <%--Fetches username to handle session--%>
-        <br/>
-        <br/>
-        <%--obtains username to handle session--%>
-        <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
-        <br/>
-        <br/>
+        </div>
+    </nav>
+    <div style="background-color: palegreen; padding: 10px; padding-left: 50px;">
+        <form action="updateAccount" method="post">
+            <br/>
+            <br/>
+            
+            <%--obtains username to handle session--%>
+            <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
+            <br/>
+            <br/>
             <%
                 //establishes connection to SQL database and fetches relevant user information
                 try {
@@ -50,6 +53,7 @@
                     ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + username + "';");
                     rs.next();
             %>
+            
             <%--Fetches and displays user's account details, makes them available to edit--%>
             <p><i>Enter your desired changes to your account information in the boxes below, and click "update" to save.</i></p>
             <p><i>Your details:</i>
@@ -73,6 +77,7 @@
                 <label for="password"><b>Password</b></label>
                 <input type="text" name="password" value="<%=rs.getString(5)%>"<%=rs.getString(5)%></input>
             </p>
+            
             <%--submit button allows you to save changes by activating updateAccount servlet--%>
             <%
                 } catch (SQLException sqe) {
@@ -83,6 +88,8 @@
             <br/>
             <br/>
             <br/>
+
+            <%--retrieves javascript code, also from bootstrap studio--%>
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.min.js"></script>
             <script src="assets/js/bs-init.js"></script>
@@ -90,7 +97,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
             <script src="assets/js/creative.js"></script>
-        </body>
-    </form>
-            </div>
+            </body>
+        </form>
+    </div>
 </html>

@@ -47,6 +47,7 @@ public class useractivities1 extends HttpServlet {
 
         try {
 
+            //connecting to stylesheet
             String cssTag = "<link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\">\n"
                     + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\">\n"
                     + "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic\">\n"
@@ -58,6 +59,7 @@ public class useractivities1 extends HttpServlet {
             out.println("<div style=\"backgroundcolor: hotpink;\"");
             out.println("<body style=\"backgroundcolor: hotpink;\">");
 
+            //nav bar syntax
             String strA = "    <nav class=\"navbar navbar-dark navbar-expand-lg fixed-top\" id=\"mainNav\">\n"
                     + "        <div class=\"container\"><a class=\"navbar-brand js-scroll-trigger\" href=\"frHomepage.jsp\">fitrivals</a><button data-toggle=\"collapse\" data-target=\"#navbarResponsive\" class=\"navbar-toggler navbar-toggler-right\" type=\"button\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><i class=\"fa fa-align-justify\"></i></button>\n"
                     + "            <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n"
@@ -175,6 +177,7 @@ public class useractivities1 extends HttpServlet {
                     + "        </div>"
                     + "    </header>";
 
+            //javascript syntax
             String str11 = "    <script src=\"assets/js/jquery.min.js\"></script>"
                     + "    <script src=\"assets/bootstrap/js/bootstrap.min.js\"></script>"
                     + "    <script src=\"assets/js/bs-init.js\"></script>"

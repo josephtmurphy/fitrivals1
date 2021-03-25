@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%--link to css stylesheet, template retrieved from Bootstrap studio, name "Creative--%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>FitRivals - Blog</title>
@@ -24,6 +25,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
 
+    <%--navbar code with links to specific sections of the homepage--%>
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -70,6 +72,7 @@
             <input hidden type="text" name="name" value="${user.username}" readonly="readonly"/>
 
             <%
+                    //prints upvote and downvote buttons
                     str += "<input id=\"upvote\" type=\"submit\" name=\"upvote\" value=\"Upvote\"/><input id=\"downvote\" type=\"submit\" name=\"downvote\" value=\"Downvote\"/>"
                             + "</div>"
                             + "</div>"
@@ -92,6 +95,8 @@
                 }
             %>
         </div>
+
+        <%--retrieves javascript code, also from bootstrap studio--%>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>

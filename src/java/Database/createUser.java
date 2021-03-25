@@ -37,7 +37,7 @@ public class createUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             //get data from create user jsp
             String email = request.getParameter("email");
             String username = request.getParameter("username");
@@ -49,26 +49,27 @@ public class createUser extends HttpServlet {
             String bicep = request.getParameter("bicep");
             String waist = request.getParameter("waist");
             String dob = request.getParameter("dob");
-            
+
             //connecting to our db
             dbcon db = new dbcon();
             Connection con = db.getCon();
-            
+
             //inserts record of user into SQL tables
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('"+email+"','"+username+"','"+fullname+"','"+password+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"','"+dob+"')");
-            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+height+"','"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
-            
+            stmt.executeUpdate("INSERT INTO users (user_email,username,full_name,password,height,weight,thigh,bicep,waist,dob) VALUES('" + email + "','" + username + "','" + fullname + "','" + password + "','" + height + "','" + weight + "','" + thigh + "','" + bicep + "','" + waist + "','" + dob + "')");
+            stmt.executeUpdate("INSERT INTO user_physique (username,user_height,user_weight,user_thigh,user_bicep,user_waist) values('" + username + "','" + height + "','" + weight + "','" + thigh + "','" + bicep + "','" + waist + "');");
+
+            //success statement
             out.println("<div style=\"background-color: peachpuff; padding: 10px; padding-left: 50px;\">");
             out.println(fullname + ", thank you for signing up!");
             out.println("<br/>");
             out.println("<a href=\"login.jsp\">Log in to FitRivals here</a>");
             out.println("</div>");
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

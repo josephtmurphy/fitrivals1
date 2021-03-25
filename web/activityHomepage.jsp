@@ -14,6 +14,7 @@
 <html>
 
     <head>
+        <%--link to css stylesheet, template retrieved from Bootstrap studio, name "Creative--%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>FitRivals - Activities</title>
@@ -25,6 +26,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     </head>
 
+    <%--navbar code with links to specific sections of the homepage--%>
     <body id="page-top">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="frHomepage.jsp">fitrivals</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
@@ -53,16 +55,19 @@
                 </div>
             </div>
         </header>
-        <section class="bg-primary" id="about">
+        
+        <section class="bg-primary" id="cardio">
             <div class="container">
                 <div class="row">
                     <div class="col offset-lg-8 text-center mx-auto">
+                        <%--retrieves bicycle icon--%>
                         <i class="fa fa-bicycle fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
                         <h2 class="text-white section-heading">Cardio Workouts</h2>         
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Select the group you wish to write the activity to, and then enter a distance (km), time (minutes), and a comment to be displayed in your group.</p>
                         <form action="createCardio">
                             <%
+                                //java code to show groups that the user is a member of in a dropdown
                                 try {
                                     dbcon db = new dbcon();
                                     Connection con = db.getCon();
@@ -125,16 +130,19 @@
                 </div>
             </div>
         </section>
-        <section id="services">
+                        
+        <section id="strength">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
+                        <%--retrieves heartbeat icon--%>
                         <i class="fa fa-heartbeat fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
                         <h2 class="text-black section-heading">Strength Workouts</h2>
                         <hr class="my-4">
                         <p class="mb-5">Select the group you wish to write the activity to, then choose the muscle groups you trained, time (minutes) for the duration of the session, and a comment to be displayed in your group.</p>
                         <form action="createStrength">
                             <%
+                                //java code to show groups that the user is a member of in a dropdown
                                 try {
                                     dbcon db = new dbcon();
                                     Connection con = db.getCon();
@@ -205,13 +213,16 @@
 
             </div>
         </section>
-        <section class="text-white bg-dark">
+                            
+        <section class="text-white bg-dark" id="comment">
             <div class="container text-center">
+                <%--retrieves comment icon--%>
                 <i class="fa fa-commenting fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
                 <h2 class="mb-4">Write a Comment</h2>
                 <p>Write a comment within a group - why not egg on a fellow group member with some support or banter?</p>
                 <form action="writeComment">
                     <%
+                        //java code to show groups that the user is a member of in a dropdown
                         try {
                             dbcon db = new dbcon();
                             Connection con = db.getCon();
@@ -251,25 +262,8 @@
                 </form>
             </div>
         </section>    
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 text-center mx-auto">
-                        <h2 class="section-heading">Let's Get In Touch!</h2>
-                        <hr class="my-4">
-                        <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 text-center ml-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                        <p>123-456-6789</p>
-                    </div>
-                    <div class="col-lg-4 text-center mr-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
-                        <p><a href="mailto:your-email@your-domain.com">email@example.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                  
+        <%--retrieves javascript code, also from bootstrap studio--%>            
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>

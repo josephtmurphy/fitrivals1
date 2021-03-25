@@ -38,7 +38,7 @@ public class updatePhysique extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            //retrieves parameters from jps
+            //retrieves parameters from jsp
             String username = request.getParameter("username");
             String date = request.getParameter("date");
             String height = request.getParameter("height");
@@ -59,6 +59,7 @@ public class updatePhysique extends HttpServlet {
             
             stmt.executeUpdate("INSERT INTO user_physique (username,date,user_height,user_weight,user_thigh,user_bicep,user_waist) values('"+username+"','"+date+"',"+height+",'"+weight+"','"+thigh+"','"+bicep+"','"+waist+"');");
             
+            //success statement
             out.println("<div style=\"background-color: paleturquoise; padding: 10px; padding-left: 50px;\">");
             out.println("<form action=\"updatePhysique.jsp\">");
             out.println("Success!");
