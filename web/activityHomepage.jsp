@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8 mx-auto">
-                    <p class="text-faded mb-5">Here you can record your workouts. Whether it be a run, cycle, walk or a strength training session, all you have to do is enter the details of the workout and choose a group to write it to.</p><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Find Out More</a>
+                    <p class="text-faded mb-5">Here you can record your workouts. Whether it be a run, cycle, walk or a strength training session, all you have to do is enter the details of the workout and choose a group to write it to.</p><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#cardio">Lets Go</a>
                 </div>
             </div>
         </header>
@@ -66,6 +66,7 @@
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Select the group you wish to write the activity to, and then enter a distance (km), time (minutes), and a comment to be displayed in your group.</p>
                         <form action="createCardio">
+                            <div id="alignmentstuff">
                             <%
                                 //java code to show groups that the user is a member of in a dropdown
                                 try {
@@ -87,43 +88,36 @@
                                 %>
                             </select>    
                             <br/>
-                            <br/>
                             <label for="name">Username:</label>
                             <input type="text" name="name" value="${user.username}" readonly/>
                             <br/>
-                            <br/>
                             <label for="activityType">Activity Type:</label>
                             <select name="activityType" id="activitytype">
-                            <br/>
                             <br/>
                                 <option>Run</option>
                                 <option>Walk</option>
                                 <option>Cycle</option>
                             </select> 
                             <br/>
-                            <br/>
                             <label for="date">Date:</label>
                             <input type="date" placeholder="Enter DOB" name="date" id="date"> 
-                            <br/>
                             <br/>
                             <label for="distance">Distance (km):</label>
                             <input type="number" name="distance" placeholder="Distance (km)"/>   
                             <br/>
-                            <br/>
                             <label for="time">Time (mins):</label>
                             <input type="number" name="time" placeholder="Time (mins)"/>
-                            <br/>
-                            <br/>            
+                            <br/>           
                             <label for="comment">Your comment on this activity:</label>
                             <input type="text" name="comment" placeholder="Your comment..."/>
-                            <br/>
-                            <br/>            
+                            <br/>         
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Log Activity"/>
                             <%
                                 } catch (SQLException sqe) {
                                     out.println(sqe);
                                 }
                             %>
+                            </div>
                         </form>
 
                     </div>
@@ -141,6 +135,7 @@
                         <hr class="my-4">
                         <p class="mb-5">Select the group you wish to write the activity to, then choose the muscle groups you trained, time (minutes) for the duration of the session, and a comment to be displayed in your group.</p>
                         <form action="createStrength">
+                            <div id="alignmentstuff">
                             <%
                                 //java code to show groups that the user is a member of in a dropdown
                                 try {
@@ -162,10 +157,8 @@
                                 %>
                             </select>
                             <br/>
-                            <br/>
                             <label for="username">Username:</label>
                             <input type="text" name="name" value="${user.username}" readonly/>
-                            <br/>
                             <br/>
                             <label for="muscleGroup1">Muscle Group Worked:</label>
                             <select name="muscleGroup1" id="muscleGroup1">
@@ -177,10 +170,8 @@
                                 <option>Full Body</option>
                             </select>
                             <br/>
-                            <br/>
                             <label for="date">Date:</label>
                             <input type="date" placeholder="Enter DOB" name="date" id="date"> 
-                            <br/>
                             <br/>
                             <label for="muscleGroup2">Secondary Muscle Group Worked:</label>
                             <select name="muscleGroup2" id="muscleGroup2">
@@ -192,19 +183,17 @@
                                 <option>Shoulders</option>
                             </select>      
                             <br/>
-                            <br/>
                             <label for="time"><b>Time (mins):</b></label>
                             <input type="number" name="time" placeholder="Time (mins)"/>      
                             <br/>
-                            <br/>
                             <label for="comment"><b>Your comment on this activity:</b></label>
                             <input type="text" name="comment" placeholder="Your comment..."/>
-                            <br/>
                             <br/>
                             <%} catch (SQLException sqe) {
                                     out.println(sqe);
                                 } %>
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Log Activity"/>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -221,6 +210,7 @@
                 <h2 class="mb-4">Write a Comment</h2>
                 <p>Write a comment within a group - why not egg on a fellow group member with some support or banter?</p>
                 <form action="writeComment">
+                    <div id="alignmentstuff">
                     <%
                         //java code to show groups that the user is a member of in a dropdown
                         try {
@@ -248,17 +238,14 @@
                         }
                     %>
                     <br/>
-                    <br/>
                     <label for="name12">Username:</label>
                     <input type="text" name="name12" value="${user.username}" readonly="readonly"/>
                     <br/>
-                    <br/>
                     <label for="comment"><b>Your comment:</b></label>
                     <input type="text" name="comment" placeholder="Your comment..."/>
-                    <br/>
                     <br/>          
                     <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Log Activity"/>
-                    <input type="submit" value="go"/>
+                    </div>
                 </form>
             </div>
         </section>    

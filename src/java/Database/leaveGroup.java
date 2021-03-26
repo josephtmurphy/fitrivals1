@@ -55,10 +55,15 @@ public class leaveGroup extends HttpServlet {
                 stmt.executeUpdate("DELETE FROM " + groupname + " WHERE NAME = '" + name + "';");
                 stmt.executeUpdate("DELETE FROM group_members WHERE USERNAME = '" + name + "' AND GROUPNAME = '" + groupname + "';");
 
-                //landing page - displays group after session is logged
-                out.println("Success");
-                out.println("<br/>");
-                out.println("<a href=\"frHomepage.jsp\">Return home</a>");
+            //success statement
+            out.println("<div style=\"background-color: hotpink; padding: 10px; padding-left: 50px;\">");;
+            out.println("<form action=\"frHomepage.jsp#groups\">");
+            out.println(name + ", you have left " + groupname + ".");
+            out.println("<br/>");
+            //session handling
+            out.println("<input type=\"submit\" value=\"Return to Groups\"/>");
+            out.println("</form>");
+            out.println("</div>");
                         
 
             } catch (SQLException ex) {

@@ -40,12 +40,8 @@
                 </div>
             </div>
         </nav> 
-
-        <div class="header">
-            <br/>
-            <h2 style="color: white;"><strong>FitRivals - Community Blog</strong></h2>
-        </div>
         <div id="videodiv">
+            <br/>
             <a href="submitBlog.jsp">Submit a Blog</a>
             <%
                 //establishes connection to SQL database and fetches relevant user information   

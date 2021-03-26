@@ -91,6 +91,8 @@
 
 #groupskey tr:nth-child(even){background-color: #f2f2f2;}
 
+#groupskey tr:nth-child(odd){background-color: grey; color:white;}
+
 #groupskey tr:hover {background-color: #ddd;}
 
 #groupskey th {
@@ -98,6 +100,32 @@
   padding-bottom: 8px;
   text-align: left;
   background-color: navy;
+  color: white;
+}
+
+#groupskey2 {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#groupskey2 td, #groupskey2 th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#groupskey2 tr:nth-child(even){background-color: #f2f2f2;}
+
+#groupskey2 tr:nth-child(odd){background-color: grey; color:white;}
+
+#groupskey2 tr:hover {background-color: #ddd;}
+
+#groupskey2 th {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+  background-color: darkred;
   color: white;
 }
 
@@ -203,4 +231,14 @@
 
 #textareastuff textarea {
     display: block;
+}
+
+#alignmentstuff {
+    display: block;
+}
+
+#alignmentstuff input, select, label input[type="text"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -66,13 +66,12 @@
                         <hr class="light my-4">
                         <p class="text-faded mb-4">To create a group, entire your desired group name below, and then select what criteria you want it to be ranked by (i.e., total distance covered, total time spent on activities).</p>
                         <form action="createGroup">
+                            <div id="alignmentstuff">
                             <label class="text-faded mb-4" for="groupname">Group name:</label>
                             <input type="text" name="groupname" id="groupname" placeholder="groupname"/>
                             <br/>
-                            <br/>
                             <label class="text-faded mb-4" for="username">Username:</label>
                             <input type="text" name="name" value="${user.username}" readonly/>
-                            <br/>
                             <br/>
                             <label class="text-faded mb-4" for="grouptype1">Group type:</label>
                             <select name="grouptype1" id="grouptype">
@@ -82,6 +81,7 @@
                             <br/>
                             <br/>
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Create Group"/>
+                            </div>
                         </form>
 
                     </div>
@@ -99,11 +99,12 @@
                         <hr class="light my-4">
                         <p class="text-faded mb-4">To create a group, entire your desired group name below, and then select what criteria you want it to be ranked by (i.e., total distance covered, total time spent on activities).</p>
                         <form action="createScoreGroup">
-                            <label for="groupname">Group name:</label>
+                            <div id="alignmentstuff">
+                            <label for="groupname">Group name:</label><br/>
                             <input type="text" name="groupname" id="groupname" placeholder="groupname"/>
                             <br/>
                             <br/>
-                            <label for="name">Username:</label>
+                            <label for="name">Username:</label><br/>
                             <input type="text" name="name" value="${user.username}" readonly/>
                             <br/>
                             <br/>
@@ -118,6 +119,7 @@
                             <br/>
                             <br/>
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Create Group"/>
+                            </div>
                         </form>
 
                     </div>
@@ -135,6 +137,7 @@
                         <hr class="light my-4">
                         <p class="text-faded mb-4">To create a group, entire your desired group name below, and then select what criteria you want it to be ranked by (i.e., total distance covered, total time spent on activities).</p>
                         <form action="createScoreGroup2">
+                            <div id="alignmentstuff">
                             <label for="groupname">Group name:</label>
                             <input type="text" name="groupname" id="groupname" placeholder="groupname"/>
                             <br/>
@@ -158,6 +161,7 @@
                             <br/>
                             <br/>                        
                             <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="Create Group"/>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -174,6 +178,7 @@
                         <hr class="my-4">
                         <p class="mb-5">To join a group, enter the name of the group you wish to join below, and then select what criteria which it is ranked by (i.e., total distance covered, total time spent on activities).</p>
                         <form action="joinGroup">
+                            <div id="alignmentstuff">
                             <label for="groupname">Group name:</label>
                             <input type="text" name="groupname" id="groupname" placeholder="groupname"/>
                             <br/>
@@ -183,6 +188,7 @@
                             <br/>
                             <br/>
                             <input class="btn btn-dark btn-xl js-scroll-trigger" role="button" type="submit" value="Join Group"/>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -195,6 +201,7 @@
                 <i class="fa fa-users fa-4x black mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
                 <h2 class="mb-4">View your Groups</h2>
                 <form action="viewGroups">
+                    <div id="alignmentstuff">
                     <p>To see the current standings in your groups, select a group from the dropdown below!</p>
                     <input type="text" hidden name="name12" value="${user.username}" readonly="readonly"/>
                     <%
@@ -226,6 +233,7 @@
                     <br/>
                     <br/>
                     <input class="btn btn-light btn-xl js-scroll-trigger" role="button" type="submit" value="View Group"/>
+                    </div>
                 </form>
             </div>
         </section>    

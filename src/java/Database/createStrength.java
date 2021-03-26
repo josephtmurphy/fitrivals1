@@ -104,7 +104,7 @@ public class createStrength extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_muscle1,log_muscle2,log_time,log_comment) VALUES('" + name + "','" + "Strength" + "','" + date + "','" + muscleGroup1 + "','" + muscleGroup2 + "'," + time + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,date,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "','" + date + "','" + time + ",'" + muscleGroup1 + ", " + muscleGroup2 + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_strengthactivities (username,groupname,activity,date,time,muscles,comment) VALUES('" + name + "','" + groupname + "', 'Strength" + "','" + date + "'," + time + ",'" + muscleGroup1 + " , " + muscleGroup2 + "', '" + comment + "');");
 
                 //redirects to view group
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");

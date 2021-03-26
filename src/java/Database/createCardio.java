@@ -286,7 +286,7 @@ public class createCardio extends HttpServlet {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("update " + groupname + " set distance = distance +" + distance + ", time = time + " + time + " where name = '" + name + "';");
                 stmt.executeUpdate("INSERT INTO " + groupname + "_log(name,activity,date,log_distance,log_time,log_comment) VALUES('" + name + "','" + activityType + "','" + date + "'," + distance + "," + time + ",'" + comment + "');");
-                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
+                stmt.executeUpdate("INSERT INTO all_cardioactivities (username,groupname,activity,date,time,distance,comment) VALUES('" + name + "','" + groupname + "','" + activityType + "','" + date + "'," + time + "," + distance + ",'" + comment + "');");
 
                 //landing page - displays group after session is logged
                 RequestDispatcher rd = request.getRequestDispatcher("viewGroups");
